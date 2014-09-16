@@ -1,0 +1,1 @@
+D:\ws\Visual Studio 2013\Projects\uFR_NDEF_example\uFR_NDEF_example\bin\Release\uFR_NDEF_example.exe.config
