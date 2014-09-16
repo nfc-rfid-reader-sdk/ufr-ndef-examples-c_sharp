@@ -311,19 +311,31 @@ ushort bw;
             return data_len;
         }
 
+
+        private void get_record_count()
+        {
+
+        }
+
+        private byte[] SubByteArray(byte[] sourceArray, int out_len)
+        {
+            byte[] truncArray = new byte[out_len];
+            Array.Copy(sourceArray, truncArray, truncArray.Length);
+            return truncArray;
+        }
+
         private void bReadCard_Click(object sender, EventArgs e)
         {
-            DL_STATUS result;
+            DL_STATUS result = DL_STATUS.UNKNOWN_ERROR;
             byte tlv_type;
             uint record_length;
             ushort bytes_read;
 
             byte[] type = new byte[256];
             byte[] id = new byte[256];
-            byte[] read_payload = new byte[1000];
+            byte[] payload = new byte[1000];
             byte type_length, id_length, tnf;
-            uint read_payload_length;
-            byte record_nr, i, j;
+            byte record_nr, j;
             byte message_cnt, record_cnt, empty_record_cnt;
             byte[] record_cnt_array = new byte[100];
             DLOGIC_CARD_TYPE cardtype;
@@ -350,29 +362,14 @@ ushort bw;
 
             NdefInfoCardType.Text = ct;
 
-
-
-
-
-
-
-
-            //if (SG1->RowCount < 2) SG1->RowCount = 2;
-            //SG1->FixedRows = 1;
-
-            //memset(record_cnt_array, 0, 100);
-
-            message_cnt = 0;
-            record_cnt = 0;
-            empty_record_cnt = 0;
-
             unsafe
             {
+                fixed (byte* pData = record_cnt_array)
+                    result = uFCoder.get_ndef_record_count(&message_cnt, &record_cnt, pData, &empty_record_cnt);
 
-                result = uFCoder.get_ndef_record_count(&message_cnt, &record_cnt, record_cnt_array, &empty_record_cnt);
             }
 
-            prn_status(result, "");
+            prn_status(result, "Read record count");
 
             if (result != DL_STATUS.UFR_OK)
             {
@@ -384,52 +381,129 @@ ushort bw;
             NdefInfoEmpty.Text = "Empty: " + empty_record_cnt;
 
 
-            SG1.RowCount = record_cnt + 1;
 
-            for (i = 1; i < SG1.RowCount + 1; i++)
-            {
-                for (j = 0; j < SG1.ColCount + 1; j++)
-                    SG1.Cells[j][i] = "";
-            }
 
-            SG1.Repaint();
+
+            // init table !
+            SG1.Rows.Clear();
+            txtPayload.Text = "Palyload:";
+
+            // configure fixed row 
+
+            //if (SG1.RowCount < 2) SG1.RowCount = 2;
+            //SG1.FixedRows = 1;
+
+            //memset(record_cnt_array, 0, 100);
+
+
+
+
+
+
+            //SG1.RowCount = record_cnt + 1;
+
+            //for (i = 1; i < SG1.RowCount + 1; i++)
+            //{
+            //    for (j = 0; j < SG1.ColCount + 1; j++)
+            //        SG1.Cells[j][i] = "";
+            //}
+
+            //SG1.Repaint();
 
             //PB1->Max = record_cnt * 10;
             //PB1->Position = 0;
 
-            for (i = 1; i < record_cnt + 1; i++)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            //ndef_record_struct ndef_record;
+            //unsigned char record_data[1000];
+            //byte tlv_type;
+            //uint record_length;
+            //ushort bytes_read;
+
+            uint payload_length;
+
+
+
+
+
+
+
+            for (record_nr = 1; record_nr < record_cnt + 1; record_nr++)
             {
-                SG1->Cells[0][i] = IntToStr(i);
-                record_nr = i;
-                read_payload_length = 0;
-                memset(type, 0, 256);
-                memset(id, 0, 256);
-                memset(read_payload, 0, 1000);
-                Application->ProcessMessages();
-                result = read_ndef_record(1, record_nr, &tnf, type, &type_length, id, &id_length, read_payload, &read_payload_length);
-                if (result)
+                //read_payload_length = 0;
+                //memset(type, 0, 256);
+                //memset(id, 0, 256);
+                //memset(read_payload, 0, 1000);
+                //Application->ProcessMessages();
+
+                unsafe
                 {
-                    if (result == UFR_WRONG_NDEF_CARD_FORMAT)
+                    fixed (byte* f_type = type)
+                    fixed (byte* f_id = id)
+                    fixed (byte* f_payload = payload)
+
+                        result = uFCoder.read_ndef_record(1, (byte)record_nr, &tnf, f_type, &type_length, f_id, &id_length, f_payload, &payload_length);
+                }
+
+
+                if (result != DL_STATUS.UFR_OK)
+                {
+                    if (result == DL_STATUS.UFR_WRONG_NDEF_CARD_FORMAT)
                         statusResult.Text = " NDEF format error";
-                    else if (result == UFR_NDEF_MESSAGE_NOT_FOUND)
+                    else if (result == DL_STATUS.UFR_NDEF_MESSAGE_NOT_FOUND)
                         statusResult.Text = " NDEF message not found";
                     else
-                        statusResult.Text = " Error: " + AnsiString(result);
-                }
-                else
-                {
-                    Application->ProcessMessages();
+                        statusResult.Text = " Error: " + result;
 
-                    SG1->Cells[1][i] = AnsiString((char*)&type);
-                    SG1->Cells[2][i] = IntToStr(read_payload_length);
-                    SG1->Cells[3][i] = AnsiString((char*)&read_payload[0], read_payload_length);
-                    PB1->Position = (1 + i) * 10;
-                    NdefInfo->Panels->Items[5]->Text = " TNF : " + AnsiString(tnf);
-                    statusResult.Text = " Reading " + IntToStr(i) + "/" + IntToStr(record_cnt);
+                    break;
                 }
+
+                string str_payload = System.Text.Encoding.UTF8.GetString(SubByteArray(payload, (int)payload_length));
+                string str_type = System.Text.Encoding.UTF8.GetString(SubByteArray(type, (int)type_length));
+                string str_tnf = "TNF: " + System.Convert.ToString(tnf);
+                //---------------------------------------------------------------------------
+
+                string[] row = { record_nr.ToString(), str_type.ToString(), payload_length.ToString(), str_payload };
+
+                SG1.Rows.Add(row);
+
+                //gridReader.Rows[idx].SetValues(ufr.get_info());
+
+                //PB1->Position = (1 + i) * 10;
+
+
+                NdefInfoTNF.Text = str_tnf;
+
+                statusResult.Text = " Reading " + record_nr + "/" + record_cnt;
+
             }  //for i
 
-            //SG1->Repaint();
+            //SG1.RowCount--;
+            SG1.Update();
             //PB1->Position = 0;
 
             statusResult.Text = "Reading DONE!";
@@ -446,6 +520,18 @@ ushort bw;
                 }
             }
 
+        }
+
+        private void SG1_SelectionChanged(object sender, EventArgs e)
+        {
+            if (SG1.CurrentRow.Index + 1 == SG1.RowCount)
+            {
+                txtPayload.Text = "Payload:";
+            }
+            else
+            {
+                txtPayload.Text = SG1.CurrentRow.Cells[3].Value.ToString();
+            }
         }
 
     }

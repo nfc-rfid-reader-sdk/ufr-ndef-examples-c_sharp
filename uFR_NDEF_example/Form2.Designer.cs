@@ -43,14 +43,9 @@
             this.bOpenReader = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabNFCRd = new System.Windows.Forms.TabPage();
-            this.label15 = new System.Windows.Forms.Label();
             this.bReadCard = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.SG1 = new System.Windows.Forms.DataGridView();
-            this.No = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Length = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Payload = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtPayload = new System.Windows.Forms.RichTextBox();
             this.tabNFCWr = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
@@ -105,7 +100,11 @@
             this.NdefInfoMsgs = new System.Windows.Forms.ToolStripStatusLabel();
             this.NdefInfoRecs = new System.Windows.Forms.ToolStripStatusLabel();
             this.NdefInfoEmpty = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel7 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.NdefInfoTNF = new System.Windows.Forms.ToolStripStatusLabel();
+            this.No = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Length = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Payload = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statInfo.SuspendLayout();
             this.statDevice.SuspendLayout();
             this.panelReader.SuspendLayout();
@@ -269,7 +268,6 @@
             // tabNFCRd
             // 
             this.tabNFCRd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tabNFCRd.Controls.Add(this.label15);
             this.tabNFCRd.Controls.Add(this.bReadCard);
             this.tabNFCRd.Controls.Add(this.panel1);
             this.tabNFCRd.Location = new System.Drawing.Point(4, 35);
@@ -279,15 +277,6 @@
             this.tabNFCRd.TabIndex = 0;
             this.tabNFCRd.Text = "Read NFC data";
             this.tabNFCRd.UseVisualStyleBackColor = true;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(261, 28);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(45, 13);
-            this.label15.TabIndex = 2;
-            this.label15.Text = "Payload";
             // 
             // bReadCard
             // 
@@ -317,52 +306,24 @@
             this.Type,
             this.Length,
             this.Payload});
-            this.SG1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.SG1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SG1.Location = new System.Drawing.Point(0, 0);
             this.SG1.Name = "SG1";
             this.SG1.RowHeadersVisible = false;
-            this.SG1.Size = new System.Drawing.Size(255, 343);
+            this.SG1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.SG1.Size = new System.Drawing.Size(428, 192);
             this.SG1.TabIndex = 0;
-            // 
-            // No
-            // 
-            this.No.Frozen = true;
-            this.No.HeaderText = "No";
-            this.No.Name = "No";
-            this.No.ReadOnly = true;
-            this.No.Width = 30;
-            // 
-            // Type
-            // 
-            this.Type.Frozen = true;
-            this.Type.HeaderText = "Type";
-            this.Type.Name = "Type";
-            this.Type.ReadOnly = true;
-            this.Type.Width = 60;
-            // 
-            // Length
-            // 
-            this.Length.Frozen = true;
-            this.Length.HeaderText = "Length";
-            this.Length.Name = "Length";
-            this.Length.ReadOnly = true;
-            this.Length.Width = 50;
-            // 
-            // Payload
-            // 
-            this.Payload.Frozen = true;
-            this.Payload.HeaderText = "Payload";
-            this.Payload.Name = "Payload";
-            this.Payload.ReadOnly = true;
+            this.SG1.SelectionChanged += new System.EventHandler(this.SG1_SelectionChanged);
             // 
             // txtPayload
             // 
-            this.txtPayload.Dock = System.Windows.Forms.DockStyle.Right;
-            this.txtPayload.Location = new System.Drawing.Point(261, 0);
+            this.txtPayload.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.txtPayload.Location = new System.Drawing.Point(0, 192);
             this.txtPayload.Name = "txtPayload";
-            this.txtPayload.Size = new System.Drawing.Size(167, 343);
+            this.txtPayload.ReadOnly = true;
+            this.txtPayload.Size = new System.Drawing.Size(428, 151);
             this.txtPayload.TabIndex = 1;
-            this.txtPayload.Text = "proba prvi red\ndrugi red\n";
+            this.txtPayload.Text = "Payload:";
             // 
             // tabNFCWr
             // 
@@ -822,7 +783,7 @@
             this.NdefInfoMsgs,
             this.NdefInfoRecs,
             this.NdefInfoEmpty,
-            this.toolStripStatusLabel7});
+            this.NdefInfoTNF});
             this.statNDEF.Location = new System.Drawing.Point(0, 480);
             this.statNDEF.Name = "statNDEF";
             this.statNDEF.Size = new System.Drawing.Size(444, 22);
@@ -867,12 +828,44 @@
             this.NdefInfoEmpty.Size = new System.Drawing.Size(50, 17);
             this.NdefInfoEmpty.Text = "Empty";
             // 
-            // toolStripStatusLabel7
+            // NdefInfoTNF
             // 
-            this.toolStripStatusLabel7.AutoSize = false;
-            this.toolStripStatusLabel7.Name = "toolStripStatusLabel7";
-            this.toolStripStatusLabel7.Size = new System.Drawing.Size(50, 17);
-            this.toolStripStatusLabel7.Text = "toolStripStatusLabel7";
+            this.NdefInfoTNF.AutoSize = false;
+            this.NdefInfoTNF.Name = "NdefInfoTNF";
+            this.NdefInfoTNF.Size = new System.Drawing.Size(50, 17);
+            this.NdefInfoTNF.Text = "TNF";
+            // 
+            // No
+            // 
+            this.No.Frozen = true;
+            this.No.HeaderText = "No";
+            this.No.Name = "No";
+            this.No.ReadOnly = true;
+            this.No.Width = 30;
+            // 
+            // Type
+            // 
+            this.Type.Frozen = true;
+            this.Type.HeaderText = "Type";
+            this.Type.Name = "Type";
+            this.Type.ReadOnly = true;
+            this.Type.Width = 40;
+            // 
+            // Length
+            // 
+            this.Length.Frozen = true;
+            this.Length.HeaderText = "Length";
+            this.Length.Name = "Length";
+            this.Length.ReadOnly = true;
+            this.Length.Width = 50;
+            // 
+            // Payload
+            // 
+            this.Payload.Frozen = true;
+            this.Payload.HeaderText = "Payload";
+            this.Payload.Name = "Payload";
+            this.Payload.ReadOnly = true;
+            this.Payload.Width = 250;
             // 
             // Form2
             // 
@@ -885,7 +878,7 @@
             this.Controls.Add(this.statDevice);
             this.Controls.Add(this.statInfo);
             this.Name = "Form2";
-            this.Text = "Form2";
+            this.Text = "  NFC Type 2 Tag programming example -  D-Logic";
             this.statInfo.ResumeLayout(false);
             this.statInfo.PerformLayout();
             this.statDevice.ResumeLayout(false);
@@ -893,7 +886,6 @@
             this.panelReader.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabNFCRd.ResumeLayout(false);
-            this.tabNFCRd.PerformLayout();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SG1)).EndInit();
             this.tabNFCWr.ResumeLayout(false);
@@ -947,7 +939,7 @@
         private System.Windows.Forms.RichTextBox txtPayload;
         private System.Windows.Forms.DataGridView SG1;
         private System.Windows.Forms.Button bReadCard;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel7;
+        private System.Windows.Forms.ToolStripStatusLabel NdefInfoTNF;
         private System.Windows.Forms.TabControl tabControl2;
         private System.Windows.Forms.TabPage tabPhone;
         private System.Windows.Forms.TabPage tabSMS;
@@ -988,7 +980,6 @@
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.DataGridViewTextBoxColumn No;
         private System.Windows.Forms.DataGridViewTextBoxColumn Type;
         private System.Windows.Forms.DataGridViewTextBoxColumn Length;
