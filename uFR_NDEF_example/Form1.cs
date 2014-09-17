@@ -35,8 +35,6 @@ namespace uFR_NDEF_example
             InitializeComponent();
 
             ComboBox1.SelectedIndex = 1;
-
-
         }
 
         private void bOpenReader_Click(object sender, EventArgs e)

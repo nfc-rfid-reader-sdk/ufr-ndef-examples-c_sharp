@@ -46,6 +46,10 @@
             this.bReadCard = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.SG1 = new System.Windows.Forms.DataGridView();
+            this.No = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Length = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Payload = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtPayload = new System.Windows.Forms.RichTextBox();
             this.tabNFCWr = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
@@ -69,25 +73,25 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox12 = new System.Windows.Forms.TextBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.eSkype = new System.Windows.Forms.TextBox();
+            this.eWeb = new System.Windows.Forms.TextBox();
+            this.eCompany = new System.Windows.Forms.TextBox();
+            this.eTitle = new System.Windows.Forms.TextBox();
+            this.ePEmail = new System.Windows.Forms.TextBox();
+            this.ePPhone = new System.Windows.Forms.TextBox();
+            this.eBEmail = new System.Windows.Forms.TextBox();
+            this.eCPhone = new System.Windows.Forms.TextBox();
+            this.eBPhone = new System.Windows.Forms.TextBox();
+            this.eFirst = new System.Windows.Forms.TextBox();
+            this.eLast = new System.Windows.Forms.TextBox();
+            this.eDisplay = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.bWrvCard = new System.Windows.Forms.Button();
             this.tabTools = new System.Windows.Forms.TabPage();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.bEraseAllRec = new System.Windows.Forms.Button();
@@ -101,10 +105,7 @@
             this.NdefInfoRecs = new System.Windows.Forms.ToolStripStatusLabel();
             this.NdefInfoEmpty = new System.Windows.Forms.ToolStripStatusLabel();
             this.NdefInfoTNF = new System.Windows.Forms.ToolStripStatusLabel();
-            this.No = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Length = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Payload = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label15 = new System.Windows.Forms.Label();
             this.statInfo.SuspendLayout();
             this.statDevice.SuspendLayout();
             this.panelReader.SuspendLayout();
@@ -131,7 +132,7 @@
             this.statusResult});
             this.statInfo.Location = new System.Drawing.Point(0, 524);
             this.statInfo.Name = "statInfo";
-            this.statInfo.Size = new System.Drawing.Size(444, 22);
+            this.statInfo.Size = new System.Drawing.Size(443, 22);
             this.statInfo.TabIndex = 0;
             this.statInfo.Text = "statusStrip1";
             // 
@@ -172,7 +173,7 @@
             this.statDevice.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.statDevice.Location = new System.Drawing.Point(0, 502);
             this.statDevice.Name = "statDevice";
-            this.statDevice.Size = new System.Drawing.Size(444, 22);
+            this.statDevice.Size = new System.Drawing.Size(443, 22);
             this.statDevice.Stretch = false;
             this.statDevice.TabIndex = 1;
             this.statDevice.Text = "statusStrip2";
@@ -227,14 +228,14 @@
             this.panelReader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelReader.Location = new System.Drawing.Point(0, 0);
             this.panelReader.Name = "panelReader";
-            this.panelReader.Size = new System.Drawing.Size(444, 46);
+            this.panelReader.Size = new System.Drawing.Size(443, 46);
             this.panelReader.TabIndex = 3;
             // 
             // bCloseReader
             // 
-            this.bCloseReader.Location = new System.Drawing.Point(217, 2);
+            this.bCloseReader.Location = new System.Drawing.Point(223, 3);
             this.bCloseReader.Name = "bCloseReader";
-            this.bCloseReader.Size = new System.Drawing.Size(180, 38);
+            this.bCloseReader.Size = new System.Drawing.Size(208, 38);
             this.bCloseReader.TabIndex = 1;
             this.bCloseReader.Text = "Close Reader";
             this.bCloseReader.UseVisualStyleBackColor = true;
@@ -242,7 +243,7 @@
             // 
             // bOpenReader
             // 
-            this.bOpenReader.Location = new System.Drawing.Point(3, 3);
+            this.bOpenReader.Location = new System.Drawing.Point(12, 3);
             this.bOpenReader.Name = "bOpenReader";
             this.bOpenReader.Size = new System.Drawing.Size(208, 38);
             this.bOpenReader.TabIndex = 0;
@@ -261,9 +262,9 @@
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.Padding = new System.Drawing.Point(6, 8);
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(444, 434);
+            this.tabControl1.Size = new System.Drawing.Size(443, 434);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
-            this.tabControl1.TabIndex = 4;
+            this.tabControl1.TabIndex = 2;
             // 
             // tabNFCRd
             // 
@@ -273,7 +274,7 @@
             this.tabNFCRd.Location = new System.Drawing.Point(4, 35);
             this.tabNFCRd.Name = "tabNFCRd";
             this.tabNFCRd.Padding = new System.Windows.Forms.Padding(3);
-            this.tabNFCRd.Size = new System.Drawing.Size(436, 395);
+            this.tabNFCRd.Size = new System.Drawing.Size(435, 395);
             this.tabNFCRd.TabIndex = 0;
             this.tabNFCRd.Text = "Read NFC data";
             this.tabNFCRd.UseVisualStyleBackColor = true;
@@ -282,9 +283,9 @@
             // 
             this.bReadCard.Location = new System.Drawing.Point(7, 6);
             this.bReadCard.Name = "bReadCard";
-            this.bReadCard.Size = new System.Drawing.Size(75, 23);
+            this.bReadCard.Size = new System.Drawing.Size(419, 38);
             this.bReadCard.TabIndex = 0;
-            this.bReadCard.Text = "bReadCard";
+            this.bReadCard.Text = "Read Card";
             this.bReadCard.UseVisualStyleBackColor = true;
             this.bReadCard.Click += new System.EventHandler(this.bReadCard_Click);
             // 
@@ -293,13 +294,16 @@
             this.panel1.Controls.Add(this.SG1);
             this.panel1.Controls.Add(this.txtPayload);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(3, 47);
+            this.panel1.Location = new System.Drawing.Point(3, 50);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(428, 343);
+            this.panel1.Size = new System.Drawing.Size(427, 340);
             this.panel1.TabIndex = 1;
             // 
             // SG1
             // 
+            this.SG1.AllowUserToAddRows = false;
+            this.SG1.AllowUserToDeleteRows = false;
+            this.SG1.AllowUserToResizeRows = false;
             this.SG1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.SG1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.No,
@@ -311,17 +315,49 @@
             this.SG1.Name = "SG1";
             this.SG1.RowHeadersVisible = false;
             this.SG1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.SG1.Size = new System.Drawing.Size(428, 192);
+            this.SG1.Size = new System.Drawing.Size(427, 190);
             this.SG1.TabIndex = 0;
             this.SG1.SelectionChanged += new System.EventHandler(this.SG1_SelectionChanged);
+            // 
+            // No
+            // 
+            this.No.Frozen = true;
+            this.No.HeaderText = "No";
+            this.No.Name = "No";
+            this.No.ReadOnly = true;
+            this.No.Width = 30;
+            // 
+            // Type
+            // 
+            this.Type.Frozen = true;
+            this.Type.HeaderText = "Type";
+            this.Type.Name = "Type";
+            this.Type.ReadOnly = true;
+            this.Type.Width = 40;
+            // 
+            // Length
+            // 
+            this.Length.Frozen = true;
+            this.Length.HeaderText = "Length";
+            this.Length.Name = "Length";
+            this.Length.ReadOnly = true;
+            this.Length.Width = 50;
+            // 
+            // Payload
+            // 
+            this.Payload.Frozen = true;
+            this.Payload.HeaderText = "Payload";
+            this.Payload.Name = "Payload";
+            this.Payload.ReadOnly = true;
+            this.Payload.Width = 250;
             // 
             // txtPayload
             // 
             this.txtPayload.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.txtPayload.Location = new System.Drawing.Point(0, 192);
+            this.txtPayload.Location = new System.Drawing.Point(0, 190);
             this.txtPayload.Name = "txtPayload";
             this.txtPayload.ReadOnly = true;
-            this.txtPayload.Size = new System.Drawing.Size(428, 151);
+            this.txtPayload.Size = new System.Drawing.Size(427, 150);
             this.txtPayload.TabIndex = 1;
             this.txtPayload.Text = "Payload:";
             // 
@@ -332,7 +368,7 @@
             this.tabNFCWr.Location = new System.Drawing.Point(4, 35);
             this.tabNFCWr.Name = "tabNFCWr";
             this.tabNFCWr.Padding = new System.Windows.Forms.Padding(3);
-            this.tabNFCWr.Size = new System.Drawing.Size(436, 395);
+            this.tabNFCWr.Size = new System.Drawing.Size(435, 395);
             this.tabNFCWr.TabIndex = 1;
             this.tabNFCWr.Text = "Write NFC data";
             this.tabNFCWr.UseVisualStyleBackColor = true;
@@ -347,7 +383,7 @@
             this.tabControl2.Location = new System.Drawing.Point(3, 3);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(428, 387);
+            this.tabControl2.Size = new System.Drawing.Size(427, 387);
             this.tabControl2.TabIndex = 0;
             // 
             // tabPhone
@@ -357,7 +393,7 @@
             this.tabPhone.Location = new System.Drawing.Point(4, 22);
             this.tabPhone.Name = "tabPhone";
             this.tabPhone.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPhone.Size = new System.Drawing.Size(420, 361);
+            this.tabPhone.Size = new System.Drawing.Size(419, 361);
             this.tabPhone.TabIndex = 0;
             this.tabPhone.Text = "Phone";
             this.tabPhone.UseVisualStyleBackColor = true;
@@ -366,10 +402,11 @@
             // 
             this.bWritePhone.Location = new System.Drawing.Point(6, 32);
             this.bWritePhone.Name = "bWritePhone";
-            this.bWritePhone.Size = new System.Drawing.Size(402, 23);
+            this.bWritePhone.Size = new System.Drawing.Size(402, 84);
             this.bWritePhone.TabIndex = 1;
             this.bWritePhone.Text = "Write Phone";
             this.bWritePhone.UseVisualStyleBackColor = true;
+            this.bWritePhone.Click += new System.EventHandler(this.bWritePhone_Click);
             // 
             // ePhone
             // 
@@ -389,19 +426,20 @@
             this.tabSMS.Location = new System.Drawing.Point(4, 22);
             this.tabSMS.Name = "tabSMS";
             this.tabSMS.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSMS.Size = new System.Drawing.Size(420, 361);
+            this.tabSMS.Size = new System.Drawing.Size(419, 361);
             this.tabSMS.TabIndex = 1;
             this.tabSMS.Text = "SMS";
             this.tabSMS.UseVisualStyleBackColor = true;
             // 
             // bWrSMS
             // 
-            this.bWrSMS.Location = new System.Drawing.Point(227, 49);
+            this.bWrSMS.Location = new System.Drawing.Point(167, 23);
             this.bWrSMS.Name = "bWrSMS";
-            this.bWrSMS.Size = new System.Drawing.Size(75, 23);
-            this.bWrSMS.TabIndex = 5;
+            this.bWrSMS.Size = new System.Drawing.Size(126, 203);
+            this.bWrSMS.TabIndex = 2;
             this.bWrSMS.Text = "Write SMS";
             this.bWrSMS.UseVisualStyleBackColor = true;
+            this.bWrSMS.Click += new System.EventHandler(this.bWrSMS_Click);
             // 
             // label2
             // 
@@ -417,7 +455,7 @@
             this.eSMSPhone.Location = new System.Drawing.Point(10, 206);
             this.eSMSPhone.Name = "eSMSPhone";
             this.eSMSPhone.Size = new System.Drawing.Size(151, 20);
-            this.eSMSPhone.TabIndex = 3;
+            this.eSMSPhone.TabIndex = 1;
             // 
             // lSMSChars
             // 
@@ -444,31 +482,34 @@
             this.eSMS.Size = new System.Drawing.Size(151, 146);
             this.eSMS.TabIndex = 0;
             this.eSMS.Text = "";
+            this.eSMS.TextChanged += new System.EventHandler(this.eSMS_TextChanged);
             // 
             // tabURL
             // 
+            this.tabURL.Controls.Add(this.label15);
             this.tabURL.Controls.Add(this.bWrURL);
             this.tabURL.Controls.Add(this.eURL);
             this.tabURL.Location = new System.Drawing.Point(4, 22);
             this.tabURL.Name = "tabURL";
             this.tabURL.Padding = new System.Windows.Forms.Padding(3);
-            this.tabURL.Size = new System.Drawing.Size(420, 361);
+            this.tabURL.Size = new System.Drawing.Size(419, 361);
             this.tabURL.TabIndex = 2;
             this.tabURL.Text = "URL";
             this.tabURL.UseVisualStyleBackColor = true;
             // 
             // bWrURL
             // 
-            this.bWrURL.Location = new System.Drawing.Point(6, 44);
+            this.bWrURL.Location = new System.Drawing.Point(6, 64);
             this.bWrURL.Name = "bWrURL";
-            this.bWrURL.Size = new System.Drawing.Size(75, 23);
+            this.bWrURL.Size = new System.Drawing.Size(345, 82);
             this.bWrURL.TabIndex = 1;
-            this.bWrURL.Text = "button1";
+            this.bWrURL.Text = "Write URL";
             this.bWrURL.UseVisualStyleBackColor = true;
+            this.bWrURL.Click += new System.EventHandler(this.bWrURL_Click);
             // 
             // eURL
             // 
-            this.eURL.Location = new System.Drawing.Point(6, 18);
+            this.eURL.Location = new System.Drawing.Point(6, 38);
             this.eURL.Name = "eURL";
             this.eURL.Size = new System.Drawing.Size(345, 20);
             this.eURL.TabIndex = 0;
@@ -481,29 +522,29 @@
             this.tabCard.Controls.Add(this.label11);
             this.tabCard.Controls.Add(this.label10);
             this.tabCard.Controls.Add(this.label9);
-            this.tabCard.Controls.Add(this.textBox12);
-            this.tabCard.Controls.Add(this.textBox11);
-            this.tabCard.Controls.Add(this.textBox10);
-            this.tabCard.Controls.Add(this.textBox9);
-            this.tabCard.Controls.Add(this.textBox8);
-            this.tabCard.Controls.Add(this.textBox7);
-            this.tabCard.Controls.Add(this.textBox6);
-            this.tabCard.Controls.Add(this.textBox5);
-            this.tabCard.Controls.Add(this.textBox4);
-            this.tabCard.Controls.Add(this.textBox3);
-            this.tabCard.Controls.Add(this.textBox2);
-            this.tabCard.Controls.Add(this.textBox1);
+            this.tabCard.Controls.Add(this.eSkype);
+            this.tabCard.Controls.Add(this.eWeb);
+            this.tabCard.Controls.Add(this.eCompany);
+            this.tabCard.Controls.Add(this.eTitle);
+            this.tabCard.Controls.Add(this.ePEmail);
+            this.tabCard.Controls.Add(this.eBEmail);
+            this.tabCard.Controls.Add(this.ePPhone);
+            this.tabCard.Controls.Add(this.eCPhone);
+            this.tabCard.Controls.Add(this.eBPhone);
+            this.tabCard.Controls.Add(this.eFirst);
+            this.tabCard.Controls.Add(this.eLast);
+            this.tabCard.Controls.Add(this.eDisplay);
             this.tabCard.Controls.Add(this.label8);
             this.tabCard.Controls.Add(this.label7);
             this.tabCard.Controls.Add(this.label6);
             this.tabCard.Controls.Add(this.label5);
             this.tabCard.Controls.Add(this.label4);
             this.tabCard.Controls.Add(this.label3);
-            this.tabCard.Controls.Add(this.button2);
+            this.tabCard.Controls.Add(this.bWrvCard);
             this.tabCard.Location = new System.Drawing.Point(4, 22);
             this.tabCard.Name = "tabCard";
             this.tabCard.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCard.Size = new System.Drawing.Size(420, 361);
+            this.tabCard.Size = new System.Drawing.Size(419, 361);
             this.tabCard.TabIndex = 3;
             this.tabCard.Text = "vCard";
             this.tabCard.UseVisualStyleBackColor = true;
@@ -562,89 +603,89 @@
             this.label9.TabIndex = 14;
             this.label9.Text = "Bussiness E-mail";
             // 
-            // textBox12
+            // eSkype
             // 
-            this.textBox12.Location = new System.Drawing.Point(120, 296);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(197, 20);
-            this.textBox12.TabIndex = 19;
+            this.eSkype.Location = new System.Drawing.Point(120, 296);
+            this.eSkype.Name = "eSkype";
+            this.eSkype.Size = new System.Drawing.Size(197, 20);
+            this.eSkype.TabIndex = 11;
             // 
-            // textBox11
+            // eWeb
             // 
-            this.textBox11.Location = new System.Drawing.Point(120, 270);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(197, 20);
-            this.textBox11.TabIndex = 18;
+            this.eWeb.Location = new System.Drawing.Point(120, 270);
+            this.eWeb.Name = "eWeb";
+            this.eWeb.Size = new System.Drawing.Size(197, 20);
+            this.eWeb.TabIndex = 10;
             // 
-            // textBox10
+            // eCompany
             // 
-            this.textBox10.Location = new System.Drawing.Point(120, 244);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(197, 20);
-            this.textBox10.TabIndex = 17;
+            this.eCompany.Location = new System.Drawing.Point(120, 244);
+            this.eCompany.Name = "eCompany";
+            this.eCompany.Size = new System.Drawing.Size(197, 20);
+            this.eCompany.TabIndex = 9;
             // 
-            // textBox9
+            // eTitle
             // 
-            this.textBox9.Location = new System.Drawing.Point(120, 218);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(197, 20);
-            this.textBox9.TabIndex = 16;
+            this.eTitle.Location = new System.Drawing.Point(120, 218);
+            this.eTitle.Name = "eTitle";
+            this.eTitle.Size = new System.Drawing.Size(197, 20);
+            this.eTitle.TabIndex = 8;
             // 
-            // textBox8
+            // ePEmail
             // 
-            this.textBox8.Location = new System.Drawing.Point(120, 192);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(197, 20);
-            this.textBox8.TabIndex = 15;
+            this.ePEmail.Location = new System.Drawing.Point(120, 192);
+            this.ePEmail.Name = "ePEmail";
+            this.ePEmail.Size = new System.Drawing.Size(197, 20);
+            this.ePEmail.TabIndex = 7;
             // 
-            // textBox7
+            // ePPhone
             // 
-            this.textBox7.Location = new System.Drawing.Point(120, 140);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(197, 20);
-            this.textBox7.TabIndex = 13;
+            this.ePPhone.Location = new System.Drawing.Point(120, 140);
+            this.ePPhone.Name = "ePPhone";
+            this.ePPhone.Size = new System.Drawing.Size(197, 20);
+            this.ePPhone.TabIndex = 5;
             // 
-            // textBox6
+            // eBEmail
             // 
-            this.textBox6.Location = new System.Drawing.Point(120, 166);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(197, 20);
-            this.textBox6.TabIndex = 12;
+            this.eBEmail.Location = new System.Drawing.Point(120, 166);
+            this.eBEmail.Name = "eBEmail";
+            this.eBEmail.Size = new System.Drawing.Size(197, 20);
+            this.eBEmail.TabIndex = 6;
             // 
-            // textBox5
+            // eCPhone
             // 
-            this.textBox5.Location = new System.Drawing.Point(120, 114);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(197, 20);
-            this.textBox5.TabIndex = 11;
+            this.eCPhone.Location = new System.Drawing.Point(120, 114);
+            this.eCPhone.Name = "eCPhone";
+            this.eCPhone.Size = new System.Drawing.Size(197, 20);
+            this.eCPhone.TabIndex = 4;
             // 
-            // textBox4
+            // eBPhone
             // 
-            this.textBox4.Location = new System.Drawing.Point(120, 88);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(197, 20);
-            this.textBox4.TabIndex = 10;
+            this.eBPhone.Location = new System.Drawing.Point(120, 88);
+            this.eBPhone.Name = "eBPhone";
+            this.eBPhone.Size = new System.Drawing.Size(197, 20);
+            this.eBPhone.TabIndex = 3;
             // 
-            // textBox3
+            // eFirst
             // 
-            this.textBox3.Location = new System.Drawing.Point(120, 62);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(197, 20);
-            this.textBox3.TabIndex = 9;
+            this.eFirst.Location = new System.Drawing.Point(120, 62);
+            this.eFirst.Name = "eFirst";
+            this.eFirst.Size = new System.Drawing.Size(197, 20);
+            this.eFirst.TabIndex = 2;
             // 
-            // textBox2
+            // eLast
             // 
-            this.textBox2.Location = new System.Drawing.Point(120, 36);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(197, 20);
-            this.textBox2.TabIndex = 8;
+            this.eLast.Location = new System.Drawing.Point(120, 36);
+            this.eLast.Name = "eLast";
+            this.eLast.Size = new System.Drawing.Size(197, 20);
+            this.eLast.TabIndex = 1;
             // 
-            // textBox1
+            // eDisplay
             // 
-            this.textBox1.Location = new System.Drawing.Point(120, 10);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(197, 20);
-            this.textBox1.TabIndex = 7;
+            this.eDisplay.Location = new System.Drawing.Point(120, 10);
+            this.eDisplay.Name = "eDisplay";
+            this.eDisplay.Size = new System.Drawing.Size(197, 20);
+            this.eDisplay.TabIndex = 0;
             // 
             // label8
             // 
@@ -700,14 +741,15 @@
             this.label3.TabIndex = 1;
             this.label3.Text = "* Display Name";
             // 
-            // button2
+            // bWrvCard
             // 
-            this.button2.Location = new System.Drawing.Point(21, 332);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(296, 23);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.bWrvCard.Location = new System.Drawing.Point(21, 332);
+            this.bWrvCard.Name = "bWrvCard";
+            this.bWrvCard.Size = new System.Drawing.Size(296, 23);
+            this.bWrvCard.TabIndex = 12;
+            this.bWrvCard.Text = "Write vCard";
+            this.bWrvCard.UseVisualStyleBackColor = true;
+            this.bWrvCard.Click += new System.EventHandler(this.bWrvCard_Click);
             // 
             // tabTools
             // 
@@ -720,7 +762,7 @@
             this.tabTools.Location = new System.Drawing.Point(4, 35);
             this.tabTools.Name = "tabTools";
             this.tabTools.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTools.Size = new System.Drawing.Size(436, 395);
+            this.tabTools.Size = new System.Drawing.Size(435, 395);
             this.tabTools.TabIndex = 2;
             this.tabTools.Text = "TOOLS";
             this.tabTools.UseVisualStyleBackColor = true;
@@ -730,7 +772,7 @@
             this.progressBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.progressBar1.Location = new System.Drawing.Point(3, 365);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(426, 23);
+            this.progressBar1.Size = new System.Drawing.Size(425, 23);
             this.progressBar1.TabIndex = 4;
             // 
             // bEraseAllRec
@@ -738,8 +780,8 @@
             this.bEraseAllRec.Location = new System.Drawing.Point(143, 144);
             this.bEraseAllRec.Name = "bEraseAllRec";
             this.bEraseAllRec.Size = new System.Drawing.Size(248, 38);
-            this.bEraseAllRec.TabIndex = 3;
-            this.bEraseAllRec.Text = "bEraseAllRec";
+            this.bEraseAllRec.TabIndex = 2;
+            this.bEraseAllRec.Text = "Erase All Records";
             this.bEraseAllRec.UseVisualStyleBackColor = true;
             this.bEraseAllRec.Click += new System.EventHandler(this.bEraseAllRec_Click);
             // 
@@ -748,8 +790,8 @@
             this.bEraseLastRec.Location = new System.Drawing.Point(9, 83);
             this.bEraseLastRec.Name = "bEraseLastRec";
             this.bEraseLastRec.Size = new System.Drawing.Size(244, 38);
-            this.bEraseLastRec.TabIndex = 2;
-            this.bEraseLastRec.Text = "bEraseLastRec";
+            this.bEraseLastRec.TabIndex = 1;
+            this.bEraseLastRec.Text = "Erase Last Record";
             this.bEraseLastRec.UseVisualStyleBackColor = true;
             this.bEraseLastRec.Click += new System.EventHandler(this.bEraseLastRec_Click);
             // 
@@ -758,8 +800,8 @@
             this.bCardClear.Location = new System.Drawing.Point(143, 242);
             this.bCardClear.Name = "bCardClear";
             this.bCardClear.Size = new System.Drawing.Size(248, 38);
-            this.bCardClear.TabIndex = 1;
-            this.bCardClear.Text = "bCardClear";
+            this.bCardClear.TabIndex = 3;
+            this.bCardClear.Text = "Card Clear";
             this.bCardClear.UseVisualStyleBackColor = true;
             this.bCardClear.Click += new System.EventHandler(this.bCardClear_Click);
             // 
@@ -769,7 +811,7 @@
             this.bCardInit.Name = "bCardInit";
             this.bCardInit.Size = new System.Drawing.Size(385, 38);
             this.bCardInit.TabIndex = 0;
-            this.bCardInit.Text = "bCardInit";
+            this.bCardInit.Text = "Card Initialize for NDEF messages";
             this.bCardInit.UseVisualStyleBackColor = true;
             this.bCardInit.Click += new System.EventHandler(this.bCardInit_Click);
             // 
@@ -786,7 +828,7 @@
             this.NdefInfoTNF});
             this.statNDEF.Location = new System.Drawing.Point(0, 480);
             this.statNDEF.Name = "statNDEF";
-            this.statNDEF.Size = new System.Drawing.Size(444, 22);
+            this.statNDEF.Size = new System.Drawing.Size(443, 22);
             this.statNDEF.TabIndex = 2;
             this.statNDEF.Text = "statusStrip3";
             // 
@@ -835,43 +877,20 @@
             this.NdefInfoTNF.Size = new System.Drawing.Size(50, 17);
             this.NdefInfoTNF.Text = "TNF";
             // 
-            // No
+            // label15
             // 
-            this.No.Frozen = true;
-            this.No.HeaderText = "No";
-            this.No.Name = "No";
-            this.No.ReadOnly = true;
-            this.No.Width = 30;
-            // 
-            // Type
-            // 
-            this.Type.Frozen = true;
-            this.Type.HeaderText = "Type";
-            this.Type.Name = "Type";
-            this.Type.ReadOnly = true;
-            this.Type.Width = 40;
-            // 
-            // Length
-            // 
-            this.Length.Frozen = true;
-            this.Length.HeaderText = "Length";
-            this.Length.Name = "Length";
-            this.Length.ReadOnly = true;
-            this.Length.Width = 50;
-            // 
-            // Payload
-            // 
-            this.Payload.Frozen = true;
-            this.Payload.HeaderText = "Payload";
-            this.Payload.Name = "Payload";
-            this.Payload.ReadOnly = true;
-            this.Payload.Width = 250;
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(7, 19);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(155, 13);
+            this.label15.TabIndex = 2;
+            this.label15.Text = "Enter URL without http://www.";
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(444, 546);
+            this.ClientSize = new System.Drawing.Size(443, 546);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panelReader);
             this.Controls.Add(this.statNDEF);
@@ -955,34 +974,35 @@
         private System.Windows.Forms.RichTextBox eSMS;
         private System.Windows.Forms.Button bWrURL;
         private System.Windows.Forms.TextBox eURL;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox ePPhone;
+        private System.Windows.Forms.TextBox eBEmail;
+        private System.Windows.Forms.TextBox eCPhone;
+        private System.Windows.Forms.TextBox eBPhone;
+        private System.Windows.Forms.TextBox eFirst;
+        private System.Windows.Forms.TextBox eLast;
+        private System.Windows.Forms.TextBox eDisplay;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button bWrvCard;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox12;
-        private System.Windows.Forms.TextBox textBox11;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox eSkype;
+        private System.Windows.Forms.TextBox eWeb;
+        private System.Windows.Forms.TextBox eCompany;
+        private System.Windows.Forms.TextBox eTitle;
+        private System.Windows.Forms.TextBox ePEmail;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.DataGridViewTextBoxColumn No;
         private System.Windows.Forms.DataGridViewTextBoxColumn Type;
         private System.Windows.Forms.DataGridViewTextBoxColumn Length;
         private System.Windows.Forms.DataGridViewTextBoxColumn Payload;
+        private System.Windows.Forms.Label label15;
     }
 }

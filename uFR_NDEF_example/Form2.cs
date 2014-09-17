@@ -13,45 +13,63 @@ namespace uFR_NDEF_example
 {
     public partial class Form2 : Form
     {
-        bool reader_state;
-
         public Form2()
         {
             InitializeComponent();
+
+            for (int i = 1; i < statNDEF.Items.Count; i++)
+            {
+                statNDEF.Items[i].Text = "";
+            }
+
+
+            for (int i = 1; i < statInfo.Items.Count; i++)
+            {
+                statInfo.Items[i].Text = "";
+            }
+
+            for (int i = 1; i < statDevice.Items.Count; i++)
+            {
+                statDevice.Items[i].Text = "";
+            }
+
+            reader_close_do();
+
+            read_dll_version();
         }
 
         private void prn_status(DL_STATUS status, string ok_text)
         {
             string msg;
+            string status_msg = status.ToString().Replace("UFR_", "").Replace('_', ' ');
+
+            // remove from start UFR_
+            // all _ to space
 
             if (status == DL_STATUS.UFR_OK)
             {
                 msg = " OK - " + ok_text;
+                statusResult.BackColor = Color.Lime;
             }
             else
             {
-                msg = " Error: " + status;
+                //msg = " Error: " + status_msg;
+                msg = " " + status_msg;
+
+                statusResult.BackColor = Color.Red;
             }
 
             // prn
             statusResult.Text = msg;
         }
 
-        private DL_STATUS reader_open()
+        private void read_dll_version()
         {
-            uint reader_type;
-            byte[] reader_sn = new byte[8];
             uint dll_ver;
             byte dll_major_ver;
             byte dll_minor_ver;
             ushort dll_build;
-            byte fw_major_ver;
-            byte fw_minor_ver;
-            byte fw_build;
-            byte hw_major;
-            byte hw_minor;
 
-            DL_STATUS status;
 
             //-------------------------------------------------------
             // uFR DLL
@@ -60,8 +78,21 @@ namespace uFR_NDEF_example
             dll_minor_ver = (byte)(dll_ver >> 8);
             dll_build = (byte)(dll_ver >> 16);
 
-            DevInfoDLL.Text = " DLL " + (dll_major_ver) + "." + (dll_minor_ver) +
+            DevInfoDLL.Text = " DLL: " + (dll_major_ver) + "." + (dll_minor_ver) +
                   "." + (dll_build);
+        }
+
+        private DL_STATUS reader_open()
+        {
+            DL_STATUS status;
+
+            uint reader_type;
+            byte[] reader_sn = new byte[8];
+            byte fw_major_ver;
+            byte fw_minor_ver;
+            byte fw_build;
+            byte hw_major;
+            byte hw_minor;
 
             //-------------------------------------------------------
             status = uFCoder.ReaderOpen();
@@ -90,18 +121,13 @@ namespace uFR_NDEF_example
 
             if (status != DL_STATUS.UFR_OK)
             {
-                statusReader.Text = " Not connected";
-                reader_state = false;
                 return status;
             }
 
             //-------------------------------------------------------
 
-            statusReader.Text = " CONNECTED ";
-
-            reader_state = true;
-
             DevInfoSN.Text = " SN : " + System.Text.Encoding.UTF8.GetString(reader_sn);
+
             DevInfoHW.Text = " HW : " + (int)hw_major + "." + hw_minor;
 
             DevInfoFW.Text = " FW : " + (fw_major_ver) + "." +
@@ -115,23 +141,18 @@ namespace uFR_NDEF_example
         {
             statusReader.Text = " CONNECTED ";
 
-            reader_state = true;
-
             panelReader.BackColor = Color.LimeGreen; // LIME
 
             if (tabControl1.Enabled == false)
             {
                 tabControl1.Enabled = true;
-                //BtREAD->SetFocus();
+                //BtREAD.SetFocus();
             }
-
-            statusResult.Text = DL_STATUS.UFR_OK.ToString();
         }
 
         private void reader_close_do()
         {
             statusReader.Text = " Not connected";
-            reader_state = false;
 
             panelReader.BackColor = Color.Red;
 
@@ -151,6 +172,8 @@ namespace uFR_NDEF_example
             this.Update();
 
             status = reader_open();
+
+            prn_status(status, "Reader Open");
 
             if (status == DL_STATUS.UFR_OK)
             {
@@ -327,15 +350,15 @@ ushort bw;
         private void bReadCard_Click(object sender, EventArgs e)
         {
             DL_STATUS result = DL_STATUS.UNKNOWN_ERROR;
-            byte tlv_type;
-            uint record_length;
-            ushort bytes_read;
+            //byte tlv_type;
+            //uint record_length;
+            //ushort bytes_read;
 
             byte[] type = new byte[256];
             byte[] id = new byte[256];
             byte[] payload = new byte[1000];
             byte type_length, id_length, tnf;
-            byte record_nr, j;
+            byte record_nr;
             byte message_cnt, record_cnt, empty_record_cnt;
             byte[] record_cnt_array = new byte[100];
             DLOGIC_CARD_TYPE cardtype;
@@ -410,8 +433,8 @@ ushort bw;
 
             //SG1.Repaint();
 
-            //PB1->Max = record_cnt * 10;
-            //PB1->Position = 0;
+            //PB1.Max = record_cnt * 10;
+            //PB1.Position = 0;
 
 
 
@@ -439,7 +462,7 @@ ushort bw;
 
 
             //ndef_record_struct ndef_record;
-            //unsigned char record_data[1000];
+            //byte record_data[1000];
             //byte tlv_type;
             //uint record_length;
             //ushort bytes_read;
@@ -458,7 +481,7 @@ ushort bw;
                 //memset(type, 0, 256);
                 //memset(id, 0, 256);
                 //memset(read_payload, 0, 1000);
-                //Application->ProcessMessages();
+                //Application.ProcessMessages();
 
                 unsafe
                 {
@@ -493,7 +516,7 @@ ushort bw;
 
                 //gridReader.Rows[idx].SetValues(ufr.get_info());
 
-                //PB1->Position = (1 + i) * 10;
+                //PB1.Position = (1 + i) * 10;
 
 
                 NdefInfoTNF.Text = str_tnf;
@@ -504,7 +527,7 @@ ushort bw;
 
             //SG1.RowCount--;
             SG1.Update();
-            //PB1->Position = 0;
+            //PB1.Position = 0;
 
             statusResult.Text = "Reading DONE!";
 
@@ -524,14 +547,260 @@ ushort bw;
 
         private void SG1_SelectionChanged(object sender, EventArgs e)
         {
-            if (SG1.CurrentRow.Index + 1 == SG1.RowCount)
+            txtPayload.Text = SG1.CurrentRow.Cells[3].Value.ToString();
+        }
+
+        private DL_STATUS ndef_write(int TNF, string Type, string ID, byte[] Payload)
+        {
+            DL_STATUS result = DL_STATUS.UNKNOWN_ERROR;
+
+
+
+            byte card_formated;
+
+            byte tnf = (byte)TNF;
+
+            byte[] type = System.Text.Encoding.UTF8.GetBytes(Type);
+            byte type_length = (byte)type.Length;
+
+            byte[] id = System.Text.Encoding.UTF8.GetBytes(ID);
+            byte id_length = (byte)ID.Length;
+
+            //byte[] payload = new byte[1000];
+            byte[] payload = Payload;
+            uint payload_length = (uint) payload.Length;
+
+            //memset(type, 0, 256);
+            //memset(id, 0, 256);
+            //memset(payload, 0, 1000);
+
+            //Payload
+
+            unsafe
             {
-                txtPayload.Text = "Payload:";
+                fixed (byte* f_type = type)
+                fixed (byte* f_id = id)
+                fixed (byte* f_payload = payload)
+                    result = uFCoder.write_ndef_record(1, &tnf, f_type, &type_length, f_id, &id_length, f_payload, &payload_length, &card_formated);
             }
-            else
+
+            //prn_st("write_ndef_record", result);
+
+            return result;
+        }
+
+        private void eSMS_TextChanged(object sender, EventArgs e)
+        {
+            lSMSChars.Text = "Chars: " + eSMS.Text.Length;
+        }
+
+        private void bWritePhone_Click(object sender, EventArgs e)
+        {
+            DL_STATUS result = DL_STATUS.UNKNOWN_ERROR;
+            int tnf;
+            string type;
+            string id;
+            byte[] payload;
+            string tmp_str = "";
+            byte[] tmp_payload;
+
+            // TODO : validate phone number
+
+            if (ePhone.Text.Length == 0)
             {
-                txtPayload.Text = SG1.CurrentRow.Cells[3].Value.ToString();
+                MessageBox.Show("Phone number is mandatory!");
+                ePhone.Focus();
+                return;
             }
+
+            // Tel TNF=1, Type = URI = "U", Type Length =1 , payload[0]=5
+
+            tmp_str = ePhone.Text;
+            tmp_payload = System.Text.Encoding.UTF8.GetBytes(tmp_str);
+
+            payload = new byte[tmp_payload.Length + 1];
+            Array.Copy(tmp_payload, 0, payload, 1, tmp_payload.Length);
+            payload[0] = 5;
+
+            tnf = 1;
+            type = "U";
+            id = "";
+
+            result = ndef_write(tnf, type, id, payload);
+
+            prn_status(result, "Phone Written");
+        }
+
+        private void bWrSMS_Click(object sender, EventArgs e)
+        {
+            DL_STATUS result = DL_STATUS.UNKNOWN_ERROR;
+            int tnf;
+            string type;
+            string id;
+            byte[] payload;
+            string tmp_str = "";
+            byte[] tmp_payload;
+
+            // TODO: validate SMS
+
+            if (eSMS.Text.Length == 0)
+            {
+                MessageBox.Show("Phone number is mandatory!");
+                eSMS.Focus();
+                return;
+            }
+
+            // SMS TNF=1, Type = URI = "U", Type Length =1 , payload[0]=0 , "sms:", "?body:"
+            tmp_str = "sms: " + eSMSPhone.Text + "?body=" + eSMS.Text;
+
+            tmp_payload = System.Text.Encoding.UTF8.GetBytes(tmp_str);
+            payload = new byte[tmp_payload.Length + 1];
+            Array.Copy(tmp_payload, 0, payload, 1, tmp_payload.Length);
+            payload[0] = 0;
+
+            tnf = 1;
+            type = "U";
+            id = "";
+
+            result = ndef_write(tnf, type, id, payload);
+
+            prn_status(result, "SMS Written");
+        }
+
+        private void bWrURL_Click(object sender, EventArgs e)
+        {
+            DL_STATUS result = DL_STATUS.UNKNOWN_ERROR;
+            int tnf;
+            string type;
+            string id;
+            byte[] payload;
+            string tmp_str = "";
+            byte[] tmp_payload;
+
+            // TODO: validate URL
+
+            if (eURL.Text == "")
+            {
+                MessageBox.Show("URL field is mandatory!");
+                eURL.Focus();
+                return;
+            }
+
+            // URL TNF=1, Type = URI = "U", Type Length =1 , payload[0]=1
+            tmp_str = eURL.Text;
+
+            tmp_payload = System.Text.Encoding.UTF8.GetBytes(tmp_str);
+            payload = new byte[tmp_payload.Length + 1];
+            Array.Copy(tmp_payload, 0, payload, 1, tmp_payload.Length);
+            payload[0] = 1;
+
+            tnf = 1;
+            type = "U";
+            id = "";
+
+            result = ndef_write(tnf, type, id, payload);
+
+            prn_status(result, "URL Written");
+        }
+
+        private void bWrvCard_Click(object sender, EventArgs e)
+        {
+            DL_STATUS result = DL_STATUS.UNKNOWN_ERROR;
+            int tnf;
+            string type;
+            string id;
+            byte[] payload;
+            string tmp_str = "";
+            byte[] tmp_payload;
+
+            // TODO: validate vCard
+
+
+
+            string DispName, LastName, FirstName, Title, Company;
+            string BPhone, CPhone, PPhone, BEmail, PEmail, WebURL, SkypeName;
+
+
+
+            DispName = eDisplay.Text.Trim();
+            LastName = eLast.Text.Trim();
+            FirstName = eFirst.Text.Trim();
+            BPhone = eBPhone.Text.Trim();
+            CPhone = eCPhone.Text.Trim();
+            PPhone = ePPhone.Text.Trim();
+            BEmail = eBEmail.Text.Trim();
+            PEmail = ePEmail.Text.Trim();
+            Title = eTitle.Text.Trim();
+            Company = eCompany.Text.Trim();
+            WebURL = eWeb.Text.Trim();
+            SkypeName = eSkype.Text.Trim();
+
+
+            if (DispName.Length == 0)
+            {
+                MessageBox.Show("Display Name and Last Name fields are mandatory!");
+                eDisplay.Focus();
+                return;
+            }
+
+
+            if (LastName.Length == 0)
+            {
+                MessageBox.Show("Display Name and Last Name fields are mandatory!");
+                eLast.Focus();
+                return;
+            }
+
+
+
+            //format NDEF payload for vCard 3.0
+
+
+            tmp_str = "BEGIN:VCARD\r\n";
+            tmp_str += "VERSION:3.0\r\n";
+            tmp_str += "N:" + LastName + ";";// replace N with N;CHARSET=UTF-8;ENCODING=8BIT:
+            tmp_str += FirstName + ";;;\r\n";
+            tmp_str += "FN:" + DispName + "\r\n";
+
+            if (CPhone.Length != 0)
+                tmp_str += "TEL;CELL:" + CPhone + "\r\n";
+            if (BPhone.Length != 0)
+                tmp_str += "TEL;WORK:" + BPhone + "\r\n";
+            if (PPhone.Length != 0)
+                tmp_str += "TEL;HOME:" + PPhone + "\r\n";
+            if (BEmail.Length != 0)
+                tmp_str += "EMAIL;WORK:" + BEmail + "\r\n";
+            if (PEmail.Length != 0)
+                tmp_str += "EMAIL;HOME:" + PEmail + "\r\n";
+            if (Title.Length != 0)
+                tmp_str += "TITLE:" + Title + "\r\n";
+            if (Company.Length != 0)
+                tmp_str += "ORG:" + Company + "\r\n";
+            if (WebURL.Length != 0)
+                tmp_str += "URL:" + WebURL + "\r\n";
+            if (SkypeName.Length != 0)
+                tmp_str += "X-SKYPE:" + SkypeName + "\r\n";
+            tmp_str += "END:VCARD";
+
+            MessageBox.Show(tmp_str, "vCard len= " + tmp_str.Length);
+
+            // tmp_str is prepared
+
+            // vCard TNF=2, Type = Mime = "text/x-vCard", Type length=12, payload[0]=1 , max 255 bytes
+
+            tmp_payload = System.Text.Encoding.UTF8.GetBytes(tmp_str);
+            //payload = new byte[tmp_payload.Length + 1];
+            //Array.Copy(tmp_payload, 0, payload, 1, tmp_payload.Length);
+            //payload[0] = 0;
+            payload = tmp_payload;
+
+            tnf = 2;
+            type = "text/x-vCard";
+            id = "";
+
+            result = ndef_write(tnf, type, id, payload);
+
+            prn_status(result, "vCard Written");
         }
 
     }
