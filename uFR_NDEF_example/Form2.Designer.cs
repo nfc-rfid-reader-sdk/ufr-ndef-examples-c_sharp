@@ -64,6 +64,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.eSMS = new System.Windows.Forms.RichTextBox();
             this.tabURL = new System.Windows.Forms.TabPage();
+            this.label15 = new System.Windows.Forms.Label();
             this.bWrURL = new System.Windows.Forms.Button();
             this.eURL = new System.Windows.Forms.TextBox();
             this.tabCard = new System.Windows.Forms.TabPage();
@@ -78,8 +79,8 @@
             this.eCompany = new System.Windows.Forms.TextBox();
             this.eTitle = new System.Windows.Forms.TextBox();
             this.ePEmail = new System.Windows.Forms.TextBox();
-            this.ePPhone = new System.Windows.Forms.TextBox();
             this.eBEmail = new System.Windows.Forms.TextBox();
+            this.ePPhone = new System.Windows.Forms.TextBox();
             this.eCPhone = new System.Windows.Forms.TextBox();
             this.eBPhone = new System.Windows.Forms.TextBox();
             this.eFirst = new System.Windows.Forms.TextBox();
@@ -105,7 +106,6 @@
             this.NdefInfoRecs = new System.Windows.Forms.ToolStripStatusLabel();
             this.NdefInfoEmpty = new System.Windows.Forms.ToolStripStatusLabel();
             this.NdefInfoTNF = new System.Windows.Forms.ToolStripStatusLabel();
-            this.label15 = new System.Windows.Forms.Label();
             this.statInfo.SuspendLayout();
             this.statDevice.SuspendLayout();
             this.panelReader.SuspendLayout();
@@ -497,6 +497,15 @@
             this.tabURL.Text = "URL";
             this.tabURL.UseVisualStyleBackColor = true;
             // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(7, 19);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(155, 13);
+            this.label15.TabIndex = 2;
+            this.label15.Text = "Enter URL without http://www.";
+            // 
             // bWrURL
             // 
             this.bWrURL.Location = new System.Drawing.Point(6, 64);
@@ -638,19 +647,19 @@
             this.ePEmail.Size = new System.Drawing.Size(197, 20);
             this.ePEmail.TabIndex = 7;
             // 
-            // ePPhone
-            // 
-            this.ePPhone.Location = new System.Drawing.Point(120, 140);
-            this.ePPhone.Name = "ePPhone";
-            this.ePPhone.Size = new System.Drawing.Size(197, 20);
-            this.ePPhone.TabIndex = 5;
-            // 
             // eBEmail
             // 
             this.eBEmail.Location = new System.Drawing.Point(120, 166);
             this.eBEmail.Name = "eBEmail";
             this.eBEmail.Size = new System.Drawing.Size(197, 20);
             this.eBEmail.TabIndex = 6;
+            // 
+            // ePPhone
+            // 
+            this.ePPhone.Location = new System.Drawing.Point(120, 140);
+            this.ePPhone.Name = "ePPhone";
+            this.ePPhone.Size = new System.Drawing.Size(197, 20);
+            this.ePPhone.TabIndex = 5;
             // 
             // eCPhone
             // 
@@ -876,15 +885,6 @@
             this.NdefInfoTNF.Name = "NdefInfoTNF";
             this.NdefInfoTNF.Size = new System.Drawing.Size(50, 17);
             this.NdefInfoTNF.Text = "TNF";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(7, 19);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(155, 13);
-            this.label15.TabIndex = 2;
-            this.label15.Text = "Enter URL without http://www.";
             // 
             // Form2
             // 

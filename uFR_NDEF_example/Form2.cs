@@ -168,7 +168,7 @@ namespace uFR_NDEF_example
             DL_STATUS status;
 
             panelReader.BackColor = Color.DarkRed;
-            statusResult.Text = "Bitte warten...";
+            statusResult.Text = "Please wait...";
             this.Update();
 
             status = reader_open();
@@ -396,6 +396,7 @@ ushort bw;
 
             if (result != DL_STATUS.UFR_OK)
             {
+                statusResult.Text = "Card is not initialized";
                 return;
             }
 
@@ -403,77 +404,14 @@ ushort bw;
             NdefInfoRecs.Text = "Recs : " + record_cnt;
             NdefInfoEmpty.Text = "Empty: " + empty_record_cnt;
 
-
-
-
-
             // init table !
             SG1.Rows.Clear();
             txtPayload.Text = "Palyload:";
 
-            // configure fixed row 
-
-            //if (SG1.RowCount < 2) SG1.RowCount = 2;
-            //SG1.FixedRows = 1;
-
-            //memset(record_cnt_array, 0, 100);
-
-
-
-
-
-
-            //SG1.RowCount = record_cnt + 1;
-
-            //for (i = 1; i < SG1.RowCount + 1; i++)
-            //{
-            //    for (j = 0; j < SG1.ColCount + 1; j++)
-            //        SG1.Cells[j][i] = "";
-            //}
-
-            //SG1.Repaint();
-
             //PB1.Max = record_cnt * 10;
             //PB1.Position = 0;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            //ndef_record_struct ndef_record;
-            //byte record_data[1000];
-            //byte tlv_type;
-            //uint record_length;
-            //ushort bytes_read;
-
             uint payload_length;
-
-
-
-
-
-
 
             for (record_nr = 1; record_nr < record_cnt + 1; record_nr++)
             {
@@ -481,7 +419,6 @@ ushort bw;
                 //memset(type, 0, 256);
                 //memset(id, 0, 256);
                 //memset(read_payload, 0, 1000);
-                //Application.ProcessMessages();
 
                 unsafe
                 {
@@ -514,10 +451,7 @@ ushort bw;
 
                 SG1.Rows.Add(row);
 
-                //gridReader.Rows[idx].SetValues(ufr.get_info());
-
                 //PB1.Position = (1 + i) * 10;
-
 
                 NdefInfoTNF.Text = str_tnf;
 
@@ -525,7 +459,6 @@ ushort bw;
 
             }  //for i
 
-            //SG1.RowCount--;
             SG1.Update();
             //PB1.Position = 0;
 
@@ -568,7 +501,7 @@ ushort bw;
 
             //byte[] payload = new byte[1000];
             byte[] payload = Payload;
-            uint payload_length = (uint) payload.Length;
+            uint payload_length = (uint)payload.Length;
 
             //memset(type, 0, 256);
             //memset(id, 0, 256);
