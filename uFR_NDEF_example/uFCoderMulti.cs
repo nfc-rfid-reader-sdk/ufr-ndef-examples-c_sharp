@@ -250,5 +250,13 @@ namespace uFCoderMulti
         public static extern DL_STATUS GetBuildNumber(byte* build);
 
         //---------------------------------------------------------------------
+        [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, EntryPoint = "SectorTrailerWriteUnsafe_PK")]
+        public static extern DL_STATUS SectorTrailerWriteUnsafe_PK(byte addressing_mode, byte address, byte* sector_trailer,
+                                                  byte auth_mode, byte* key);
+        //---------------------------------------------------------------------
+        [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, EntryPoint = "LinearWrite_PK")]
+        public static extern DL_STATUS LinearWrite_PK(byte* data, ushort linear_address, ushort length, ushort* bytes_written,
+                                     byte auth_mode, byte* key);
+        //---------------------------------------------------------------------
     }
 }

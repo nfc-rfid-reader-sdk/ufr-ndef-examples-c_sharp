@@ -54,7 +54,7 @@ namespace uFR_NDEF_example
                 tsmiCopyAll.Click += (sender, e) => rtb.SelectAll();
                 tsmiCopyAll.Click += (sender, e) => rtb.Copy();
                 cms.Items.Add(tsmiCopyAll);
-                
+
                 rtb.ContextMenuStrip = cms;
             }
         }
@@ -223,57 +223,50 @@ namespace uFR_NDEF_example
 
         private void bCardClear_Click(object sender, EventArgs e)
         {
-            /*
-             * 
             DL_STATUS status;
 
-     
+            byte addressingmode;
+            byte address;
+            byte authmode;
 
-byte addressingmode,
-                address, authmode;
-byte      sectortrailer[16]={0xff,0xff,0xff,0xff,0xff,0xff,0xff,0x07,0x80,0x69,0xff,0xff,0xff,0xff,0xff,0xff};
-//byte      NFCKey[6] ={0xd3,0xf7,0xd3,0xf7,0xd3,0xf7};
-//byte      MADKey[6] ={0xa0,0xa1,0xa2,0xa3,0xa4,0xa5};
-byte      DEFKey[6] ={0xff,0xff,0xff,0xff,0xff,0xff};
-byte      data[752];
-ushort bw;
-           int i;
-           uint res;
+            byte[] sectortrailer = new byte[16] { 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x07, 0x80, 0x69, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff };
+            //byte[]      NFCKey =new byte[6]{0xd3,0xf7,0xd3,0xf7,0xd3,0xf7};
+            //byte[]      MADKey =new byte[6]{0xa0,0xa1,0xa2,0xa3,0xa4,0xa5};
+            byte[] DEFKey = new byte[6] { 0xff, 0xff, 0xff, 0xff, 0xff, 0xff };
+            ushort data_len;
+            byte[] data;
 
+            ushort bw;
+            int i;
 
-        addressingmode=0x01;
-        address=0x00;
-        authmode=0x61;
+            addressingmode = 0x01;
+            address = 0x00;
+            authmode = 0x61;
 
+            for (address = 0; address < 16; address++)
+            {
+                unsafe
+                {
+                    fixed (byte* fix_sectortrailer = sectortrailer)
+                    fixed (byte* fix_DEFKey = DEFKey)
+                        status = uFCoder.SectorTrailerWriteUnsafe_PK(addressingmode, address, fix_sectortrailer, authmode, fix_DEFKey);
+                }
+            }
 
+            data_len = (ushort)getcardlen(getcardtype());
+            data = new byte[data_len + 1];
 
-
-       res= SectorTrailerWriteUnsafe_PK(addressingmode,address,
-     sectortrailer,authmode,DEFKey);
-
-
-
-        for (i=1  ;i<16; i++)
-                {res= SectorTrailerWriteUnsafe_PK(addressingmode,i,
-     sectortrailer,authmode,DEFKey);
-        res=res+res;
-        }
-
-
-            for (i=0  ;i<data_len+1; i++)
-        {data[i]=0x00;
-
-         }
-
-       res = LinearWrite_PK(data,0,data_len,&bw,authmode,DEFKey);
-        ShowMessage("Card erased ");
-
-
+            unsafe
+            {
+                fixed (byte* fix_data = data)
+                fixed (byte* fix_DEFKey = DEFKey)
+                    status = uFCoder.LinearWrite_PK(fix_data, 0, data_len, &bw, authmode, fix_DEFKey);
+            }
 
             prn_status(status, "Card erased");
-             * */
 
-            MessageBox.Show("Card erased - NOT IMPLEMENTED !!!");
+            if (status == DL_STATUS.UFR_OK)
+                MessageBox.Show("Card erased !!!");
         }
 
         private void bEraseAllRec_Click(object sender, EventArgs e)
