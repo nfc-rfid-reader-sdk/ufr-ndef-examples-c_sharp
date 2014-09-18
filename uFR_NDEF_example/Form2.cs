@@ -16,6 +16,7 @@ namespace uFR_NDEF_example
         public Form2()
         {
             InitializeComponent();
+            AddContextMenu(txtPayload);
 
             for (int i = 1; i < statNDEF.Items.Count; i++)
             {
@@ -36,6 +37,26 @@ namespace uFR_NDEF_example
             reader_close_do();
 
             read_dll_version();
+        }
+
+        public void AddContextMenu(RichTextBox rtb)
+        {
+            if (rtb.ContextMenuStrip == null)
+            {
+                ContextMenuStrip cms = new ContextMenuStrip { ShowImageMargin = false };
+
+                ToolStripMenuItem tsmiCopy = new ToolStripMenuItem("Copy");
+                tsmiCopy.Click += (sender, e) => rtb.Copy();
+                cms.Items.Add(tsmiCopy);
+
+                ToolStripMenuItem tsmiCopyAll = new ToolStripMenuItem("Copy All");
+                tsmiCopyAll.Click += (sender, e) => rtb.Focus();
+                tsmiCopyAll.Click += (sender, e) => rtb.SelectAll();
+                tsmiCopyAll.Click += (sender, e) => rtb.Copy();
+                cms.Items.Add(tsmiCopyAll);
+                
+                rtb.ContextMenuStrip = cms;
+            }
         }
 
         private void prn_status(DL_STATUS status, string ok_text)
@@ -406,7 +427,7 @@ ushort bw;
 
             // init table !
             SG1.Rows.Clear();
-            txtPayload.Text = "Palyload:";
+            txtPayload.Text = "Payload:";
 
             //PB1.Max = record_cnt * 10;
             //PB1.Position = 0;

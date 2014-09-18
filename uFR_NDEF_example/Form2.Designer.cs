@@ -926,6 +926,8 @@
 
         #endregion
 
+        #region Windows Form Designer object
+
         private System.Windows.Forms.StatusStrip statInfo;
         private System.Windows.Forms.StatusStrip statDevice;
         private System.Windows.Forms.Panel panelReader;
@@ -1004,5 +1006,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Length;
         private System.Windows.Forms.DataGridViewTextBoxColumn Payload;
         private System.Windows.Forms.Label label15;
+
+        #endregion
+
     }
 }
