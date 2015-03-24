@@ -52,6 +52,11 @@
             this.Payload = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtPayload = new System.Windows.Forms.RichTextBox();
             this.tabNFCWr = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.bWrAAR = new System.Windows.Forms.Button();
+            this.eAAR = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPhone = new System.Windows.Forms.TabPage();
             this.bWritePhone = new System.Windows.Forms.Button();
@@ -114,6 +119,8 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SG1)).BeginInit();
             this.tabNFCWr.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPhone.SuspendLayout();
             this.tabSMS.SuspendLayout();
@@ -130,7 +137,7 @@
             this.toolStripStatusLabel6,
             this.statusReader,
             this.statusResult});
-            this.statInfo.Location = new System.Drawing.Point(0, 524);
+            this.statInfo.Location = new System.Drawing.Point(0, 596);
             this.statInfo.Name = "statInfo";
             this.statInfo.Size = new System.Drawing.Size(443, 22);
             this.statInfo.TabIndex = 0;
@@ -171,7 +178,7 @@
             this.DevInfoFW,
             this.DevInfoDLL});
             this.statDevice.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.statDevice.Location = new System.Drawing.Point(0, 502);
+            this.statDevice.Location = new System.Drawing.Point(0, 574);
             this.statDevice.Name = "statDevice";
             this.statDevice.Size = new System.Drawing.Size(443, 22);
             this.statDevice.Stretch = false;
@@ -233,9 +240,9 @@
             // 
             // bCloseReader
             // 
-            this.bCloseReader.Location = new System.Drawing.Point(223, 3);
+            this.bCloseReader.Location = new System.Drawing.Point(241, 3);
             this.bCloseReader.Name = "bCloseReader";
-            this.bCloseReader.Size = new System.Drawing.Size(208, 38);
+            this.bCloseReader.Size = new System.Drawing.Size(190, 38);
             this.bCloseReader.TabIndex = 1;
             this.bCloseReader.Text = "Close Reader";
             this.bCloseReader.UseVisualStyleBackColor = true;
@@ -245,7 +252,7 @@
             // 
             this.bOpenReader.Location = new System.Drawing.Point(12, 3);
             this.bOpenReader.Name = "bOpenReader";
-            this.bOpenReader.Size = new System.Drawing.Size(208, 38);
+            this.bOpenReader.Size = new System.Drawing.Size(190, 38);
             this.bOpenReader.TabIndex = 0;
             this.bOpenReader.Text = "Open Reader";
             this.bOpenReader.UseVisualStyleBackColor = true;
@@ -262,7 +269,7 @@
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.Padding = new System.Drawing.Point(6, 8);
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(443, 434);
+            this.tabControl1.Size = new System.Drawing.Size(443, 506);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
             this.tabControl1.TabIndex = 2;
             // 
@@ -274,7 +281,7 @@
             this.tabNFCRd.Location = new System.Drawing.Point(4, 35);
             this.tabNFCRd.Name = "tabNFCRd";
             this.tabNFCRd.Padding = new System.Windows.Forms.Padding(3);
-            this.tabNFCRd.Size = new System.Drawing.Size(435, 395);
+            this.tabNFCRd.Size = new System.Drawing.Size(435, 467);
             this.tabNFCRd.TabIndex = 0;
             this.tabNFCRd.Text = "Read NFC data";
             this.tabNFCRd.UseVisualStyleBackColor = true;
@@ -294,9 +301,9 @@
             this.panel1.Controls.Add(this.SG1);
             this.panel1.Controls.Add(this.txtPayload);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(3, 50);
+            this.panel1.Location = new System.Drawing.Point(3, 52);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(427, 340);
+            this.panel1.Size = new System.Drawing.Size(427, 410);
             this.panel1.TabIndex = 1;
             // 
             // SG1
@@ -315,7 +322,7 @@
             this.SG1.Name = "SG1";
             this.SG1.RowHeadersVisible = false;
             this.SG1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.SG1.Size = new System.Drawing.Size(427, 190);
+            this.SG1.Size = new System.Drawing.Size(427, 265);
             this.SG1.TabIndex = 0;
             this.SG1.SelectionChanged += new System.EventHandler(this.SG1_SelectionChanged);
             // 
@@ -354,24 +361,72 @@
             // txtPayload
             // 
             this.txtPayload.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.txtPayload.Location = new System.Drawing.Point(0, 190);
+            this.txtPayload.Location = new System.Drawing.Point(0, 265);
             this.txtPayload.Name = "txtPayload";
             this.txtPayload.ReadOnly = true;
-            this.txtPayload.Size = new System.Drawing.Size(427, 150);
+            this.txtPayload.Size = new System.Drawing.Size(427, 145);
             this.txtPayload.TabIndex = 1;
             this.txtPayload.Text = "Payload:";
             // 
             // tabNFCWr
             // 
             this.tabNFCWr.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tabNFCWr.Controls.Add(this.tabControl2);
+            this.tabNFCWr.Controls.Add(this.groupBox1);
+            this.tabNFCWr.Controls.Add(this.panel4);
             this.tabNFCWr.Location = new System.Drawing.Point(4, 35);
             this.tabNFCWr.Name = "tabNFCWr";
             this.tabNFCWr.Padding = new System.Windows.Forms.Padding(3);
-            this.tabNFCWr.Size = new System.Drawing.Size(435, 395);
+            this.tabNFCWr.Size = new System.Drawing.Size(435, 467);
             this.tabNFCWr.TabIndex = 1;
             this.tabNFCWr.Text = "Write NFC data";
             this.tabNFCWr.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.bWrAAR);
+            this.groupBox1.Controls.Add(this.eAAR);
+            this.groupBox1.Controls.Add(this.label16);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupBox1.Location = new System.Drawing.Point(3, 387);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(427, 75);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Add Launch Application ( AAR )";
+            // 
+            // bWrAAR
+            // 
+            this.bWrAAR.Location = new System.Drawing.Point(9, 45);
+            this.bWrAAR.Name = "bWrAAR";
+            this.bWrAAR.Size = new System.Drawing.Size(412, 23);
+            this.bWrAAR.TabIndex = 2;
+            this.bWrAAR.Text = "Write AAR";
+            this.bWrAAR.UseVisualStyleBackColor = true;
+            this.bWrAAR.Click += new System.EventHandler(this.bWrAAR_Click);
+            // 
+            // eAAR
+            // 
+            this.eAAR.Location = new System.Drawing.Point(76, 19);
+            this.eAAR.Name = "eAAR";
+            this.eAAR.Size = new System.Drawing.Size(345, 20);
+            this.eAAR.TabIndex = 1;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(6, 22);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(64, 13);
+            this.label16.TabIndex = 0;
+            this.label16.Text = "Pkg name : ";
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.tabControl2);
+            this.panel4.Location = new System.Drawing.Point(-1, -1);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(435, 387);
+            this.panel4.TabIndex = 0;
             // 
             // tabControl2
             // 
@@ -380,11 +435,11 @@
             this.tabControl2.Controls.Add(this.tabURL);
             this.tabControl2.Controls.Add(this.tabCard);
             this.tabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl2.Location = new System.Drawing.Point(3, 3);
+            this.tabControl2.Location = new System.Drawing.Point(0, 0);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(427, 387);
-            this.tabControl2.TabIndex = 0;
+            this.tabControl2.Size = new System.Drawing.Size(435, 387);
+            this.tabControl2.TabIndex = 1;
             // 
             // tabPhone
             // 
@@ -393,7 +448,7 @@
             this.tabPhone.Location = new System.Drawing.Point(4, 22);
             this.tabPhone.Name = "tabPhone";
             this.tabPhone.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPhone.Size = new System.Drawing.Size(419, 361);
+            this.tabPhone.Size = new System.Drawing.Size(427, 361);
             this.tabPhone.TabIndex = 0;
             this.tabPhone.Text = "Phone";
             this.tabPhone.UseVisualStyleBackColor = true;
@@ -426,7 +481,7 @@
             this.tabSMS.Location = new System.Drawing.Point(4, 22);
             this.tabSMS.Name = "tabSMS";
             this.tabSMS.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSMS.Size = new System.Drawing.Size(419, 361);
+            this.tabSMS.Size = new System.Drawing.Size(427, 361);
             this.tabSMS.TabIndex = 1;
             this.tabSMS.Text = "SMS";
             this.tabSMS.UseVisualStyleBackColor = true;
@@ -482,7 +537,6 @@
             this.eSMS.Size = new System.Drawing.Size(151, 146);
             this.eSMS.TabIndex = 0;
             this.eSMS.Text = "";
-            this.eSMS.TextChanged += new System.EventHandler(this.eSMS_TextChanged);
             // 
             // tabURL
             // 
@@ -492,7 +546,7 @@
             this.tabURL.Location = new System.Drawing.Point(4, 22);
             this.tabURL.Name = "tabURL";
             this.tabURL.Padding = new System.Windows.Forms.Padding(3);
-            this.tabURL.Size = new System.Drawing.Size(419, 361);
+            this.tabURL.Size = new System.Drawing.Size(427, 361);
             this.tabURL.TabIndex = 2;
             this.tabURL.Text = "URL";
             this.tabURL.UseVisualStyleBackColor = true;
@@ -553,7 +607,7 @@
             this.tabCard.Location = new System.Drawing.Point(4, 22);
             this.tabCard.Name = "tabCard";
             this.tabCard.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCard.Size = new System.Drawing.Size(419, 361);
+            this.tabCard.Size = new System.Drawing.Size(427, 361);
             this.tabCard.TabIndex = 3;
             this.tabCard.Text = "vCard";
             this.tabCard.UseVisualStyleBackColor = true;
@@ -771,7 +825,7 @@
             this.tabTools.Location = new System.Drawing.Point(4, 35);
             this.tabTools.Name = "tabTools";
             this.tabTools.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTools.Size = new System.Drawing.Size(435, 395);
+            this.tabTools.Size = new System.Drawing.Size(435, 467);
             this.tabTools.TabIndex = 2;
             this.tabTools.Text = "TOOLS";
             this.tabTools.UseVisualStyleBackColor = true;
@@ -779,7 +833,7 @@
             // progressBar1
             // 
             this.progressBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.progressBar1.Location = new System.Drawing.Point(3, 365);
+            this.progressBar1.Location = new System.Drawing.Point(3, 437);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(425, 23);
             this.progressBar1.TabIndex = 4;
@@ -835,7 +889,7 @@
             this.NdefInfoRecs,
             this.NdefInfoEmpty,
             this.NdefInfoTNF});
-            this.statNDEF.Location = new System.Drawing.Point(0, 480);
+            this.statNDEF.Location = new System.Drawing.Point(0, 552);
             this.statNDEF.Name = "statNDEF";
             this.statNDEF.Size = new System.Drawing.Size(443, 22);
             this.statNDEF.TabIndex = 2;
@@ -890,7 +944,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(443, 546);
+            this.ClientSize = new System.Drawing.Size(443, 618);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panelReader);
             this.Controls.Add(this.statNDEF);
@@ -908,6 +962,9 @@
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SG1)).EndInit();
             this.tabNFCWr.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.panel4.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
             this.tabPhone.ResumeLayout(false);
             this.tabPhone.PerformLayout();
@@ -961,23 +1018,43 @@
         private System.Windows.Forms.DataGridView SG1;
         private System.Windows.Forms.Button bReadCard;
         private System.Windows.Forms.ToolStripStatusLabel NdefInfoTNF;
+        private System.Windows.Forms.DataGridViewTextBoxColumn No;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Type;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Length;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Payload;
+
+        #endregion
+
+        private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.TabControl tabControl2;
         private System.Windows.Forms.TabPage tabPhone;
-        private System.Windows.Forms.TabPage tabSMS;
-        private System.Windows.Forms.TabPage tabURL;
-        private System.Windows.Forms.TabPage tabCard;
         private System.Windows.Forms.Button bWritePhone;
         private System.Windows.Forms.TextBox ePhone;
+        private System.Windows.Forms.TabPage tabSMS;
         private System.Windows.Forms.Button bWrSMS;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox eSMSPhone;
         private System.Windows.Forms.Label lSMSChars;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RichTextBox eSMS;
+        private System.Windows.Forms.TabPage tabURL;
+        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button bWrURL;
         private System.Windows.Forms.TextBox eURL;
-        private System.Windows.Forms.TextBox ePPhone;
+        private System.Windows.Forms.TabPage tabCard;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox eSkype;
+        private System.Windows.Forms.TextBox eWeb;
+        private System.Windows.Forms.TextBox eCompany;
+        private System.Windows.Forms.TextBox eTitle;
+        private System.Windows.Forms.TextBox ePEmail;
         private System.Windows.Forms.TextBox eBEmail;
+        private System.Windows.Forms.TextBox ePPhone;
         private System.Windows.Forms.TextBox eCPhone;
         private System.Windows.Forms.TextBox eBPhone;
         private System.Windows.Forms.TextBox eFirst;
@@ -990,24 +1067,10 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button bWrvCard;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox eSkype;
-        private System.Windows.Forms.TextBox eWeb;
-        private System.Windows.Forms.TextBox eCompany;
-        private System.Windows.Forms.TextBox eTitle;
-        private System.Windows.Forms.TextBox ePEmail;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn No;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Type;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Length;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Payload;
-        private System.Windows.Forms.Label label15;
-
-        #endregion
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button bWrAAR;
+        private System.Windows.Forms.TextBox eAAR;
+        private System.Windows.Forms.Label label16;
 
     }
 }

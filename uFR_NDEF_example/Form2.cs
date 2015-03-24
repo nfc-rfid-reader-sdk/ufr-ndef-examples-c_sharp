@@ -237,7 +237,6 @@ namespace uFR_NDEF_example
             byte[] data;
 
             ushort bw;
-            int i;
 
             addressingmode = 0x01;
             address = 0x00;
@@ -748,6 +747,34 @@ namespace uFR_NDEF_example
             result = ndef_write(tnf, type, id, payload);
 
             prn_status(result, "vCard Written");
+        }
+
+        private void bWrAAR_Click(object sender, EventArgs e)
+        {
+            DL_STATUS result = DL_STATUS.UNKNOWN_ERROR;
+            int tnf;
+            string type;
+            string id;
+            byte[] payload;
+
+            if (eAAR.Text.Length == 0)
+            {
+                MessageBox.Show("URL field is mandatory!");
+                eURL.Focus();
+                return;
+            }
+
+            // URL TNF=4, Type= "android.com:pkg", Type Length= 15, payload[0]=1
+
+            payload = System.Text.Encoding.UTF8.GetBytes(eAAR.Text);
+
+            tnf = 4;
+            type = "android.com:pkg";
+            id = "";
+
+            result = ndef_write(tnf, type, id, payload);
+
+            prn_status(result, "AAR Written");
         }
 
     }
