@@ -133,7 +133,7 @@ namespace uFCoderMulti
     public static unsafe class uFCoder
     {
         //--------------------------------------------------------------------------------------------------
-        const string DLL_NAME = "uFCoder.dll";
+        const string DLL_NAME = "uFCoder-x86.dll";
         //--------------------------------------------------------------------------------------------------
 
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, EntryPoint = "ReaderOpen")]
