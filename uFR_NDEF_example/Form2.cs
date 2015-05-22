@@ -7,12 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 using uFCoderMulti;
 
 namespace uFR_NDEF_example
 {
     public partial class Form2 : Form
     {
+        public const int BLUETOOTH_ADDRESS_SIZE_WITH_DELIMITERS = 17;
+
         public Form2()
         {
             InitializeComponent();
@@ -777,5 +780,56 @@ namespace uFR_NDEF_example
             prn_status(result, "AAR Written");
         }
 
+        private void maskedTextBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char c = e.KeyChar;
+            if (!Regex.IsMatch(e.KeyChar.ToString(), "^[0-9a-fA-F\r]+$"))
+                e.KeyChar = '.';
+        }
+
+        private void maskedTextBox1_Enter(object sender, EventArgs e)
+        {
+            BeginInvoke((Action)delegate
+            {
+                maskedTextBox1.SelectAll();
+            });
+        }
+
+        private static byte[] CnvHexStr2ByteArr(string inStr)
+        {
+            return Array.ConvertAll(inStr.Split('-'), s => byte.Parse(s, System.Globalization.NumberStyles.HexNumber));
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DL_STATUS result = DL_STATUS.UNKNOWN_ERROR;
+            int tnf = 2; // media type
+            string type = "application/vnd.bluetooth.ep.oob";
+            string id = "";
+            byte[] payload = new byte[8];
+            String hexStr = maskedTextBox1.Text.Replace(" ", "").Replace("::", "").Replace(':', '-');
+
+            if (hexStr.Length != BLUETOOTH_ADDRESS_SIZE_WITH_DELIMITERS)
+            {
+                MessageBox.Show("You must enter 6 hexadecimal numbers!" + "\nDebug: >" + hexStr + "< " + hexStr.Length);
+                maskedTextBox1.Focus();
+                return;
+            }
+
+            byte[] payload_addr_fragment = CnvHexStr2ByteArr(hexStr);
+
+            payload[1] = 0; // ...
+            payload[0] = 8; // payload length - fixed for this purpose
+
+            for (int i = 0; i < 6; i++)
+            {
+                payload[2 + i] = payload_addr_fragment[5 - i]; // indexes: [2 + i] where 2 is offset
+            }
+
+            // MessageBox.Show("Debug: Written value is: " + BitConverter.ToString(payload));
+
+            result = ndef_write(tnf, type, id, payload);
+            prn_status(result, "Bluetooth address written");
+        }
     }
 }

@@ -98,6 +98,11 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.bWrvCard = new System.Windows.Forms.Button();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label17 = new System.Windows.Forms.Label();
             this.tabTools = new System.Windows.Forms.TabPage();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.bEraseAllRec = new System.Windows.Forms.Button();
@@ -126,6 +131,8 @@
             this.tabSMS.SuspendLayout();
             this.tabURL.SuspendLayout();
             this.tabCard.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.tabTools.SuspendLayout();
             this.statNDEF.SuspendLayout();
             this.SuspendLayout();
@@ -140,7 +147,7 @@
             this.statInfo.Location = new System.Drawing.Point(0, 596);
             this.statInfo.Name = "statInfo";
             this.statInfo.Size = new System.Drawing.Size(443, 22);
-            this.statInfo.TabIndex = 0;
+            this.statInfo.TabIndex = 4;
             this.statInfo.Text = "statusStrip1";
             // 
             // toolStripStatusLabel6
@@ -182,7 +189,7 @@
             this.statDevice.Name = "statDevice";
             this.statDevice.Size = new System.Drawing.Size(443, 22);
             this.statDevice.Stretch = false;
-            this.statDevice.TabIndex = 1;
+            this.statDevice.TabIndex = 3;
             this.statDevice.Text = "statusStrip2";
             // 
             // toolStripStatusLabel5
@@ -236,7 +243,7 @@
             this.panelReader.Location = new System.Drawing.Point(0, 0);
             this.panelReader.Name = "panelReader";
             this.panelReader.Size = new System.Drawing.Size(443, 46);
-            this.panelReader.TabIndex = 3;
+            this.panelReader.TabIndex = 0;
             // 
             // bCloseReader
             // 
@@ -271,7 +278,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(443, 506);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
-            this.tabControl1.TabIndex = 2;
+            this.tabControl1.TabIndex = 1;
             // 
             // tabNFCRd
             // 
@@ -390,7 +397,7 @@
             this.groupBox1.Location = new System.Drawing.Point(3, 387);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(427, 75);
-            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Add Launch Application ( AAR )";
             // 
@@ -434,12 +441,13 @@
             this.tabControl2.Controls.Add(this.tabSMS);
             this.tabControl2.Controls.Add(this.tabURL);
             this.tabControl2.Controls.Add(this.tabCard);
+            this.tabControl2.Controls.Add(this.tabPage1);
             this.tabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl2.Location = new System.Drawing.Point(0, 0);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
             this.tabControl2.Size = new System.Drawing.Size(435, 387);
-            this.tabControl2.TabIndex = 1;
+            this.tabControl2.TabIndex = 0;
             // 
             // tabPhone
             // 
@@ -510,7 +518,7 @@
             this.eSMSPhone.Location = new System.Drawing.Point(10, 206);
             this.eSMSPhone.Name = "eSMSPhone";
             this.eSMSPhone.Size = new System.Drawing.Size(151, 20);
-            this.eSMSPhone.TabIndex = 1;
+            this.eSMSPhone.TabIndex = 5;
             // 
             // lSMSChars
             // 
@@ -518,7 +526,7 @@
             this.lSMSChars.Location = new System.Drawing.Point(96, 172);
             this.lSMSChars.Name = "lSMSChars";
             this.lSMSChars.Size = new System.Drawing.Size(37, 13);
-            this.lSMSChars.TabIndex = 2;
+            this.lSMSChars.TabIndex = 3;
             this.lSMSChars.Text = "Chars:";
             // 
             // label1
@@ -527,7 +535,7 @@
             this.label1.Location = new System.Drawing.Point(7, 7);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(154, 13);
-            this.label1.TabIndex = 1;
+            this.label1.TabIndex = 0;
             this.label1.Text = "Message text (max. 160 chars).";
             // 
             // eSMS
@@ -535,7 +543,7 @@
             this.eSMS.Location = new System.Drawing.Point(10, 23);
             this.eSMS.Name = "eSMS";
             this.eSMS.Size = new System.Drawing.Size(151, 146);
-            this.eSMS.TabIndex = 0;
+            this.eSMS.TabIndex = 1;
             this.eSMS.Text = "";
             // 
             // tabURL
@@ -557,7 +565,7 @@
             this.label15.Location = new System.Drawing.Point(7, 19);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(155, 13);
-            this.label15.TabIndex = 2;
+            this.label15.TabIndex = 0;
             this.label15.Text = "Enter URL without http://www.";
             // 
             // bWrURL
@@ -565,7 +573,7 @@
             this.bWrURL.Location = new System.Drawing.Point(6, 64);
             this.bWrURL.Name = "bWrURL";
             this.bWrURL.Size = new System.Drawing.Size(345, 82);
-            this.bWrURL.TabIndex = 1;
+            this.bWrURL.TabIndex = 2;
             this.bWrURL.Text = "Write URL";
             this.bWrURL.UseVisualStyleBackColor = true;
             this.bWrURL.Click += new System.EventHandler(this.bWrURL_Click);
@@ -575,7 +583,7 @@
             this.eURL.Location = new System.Drawing.Point(6, 38);
             this.eURL.Name = "eURL";
             this.eURL.Size = new System.Drawing.Size(345, 20);
-            this.eURL.TabIndex = 0;
+            this.eURL.TabIndex = 1;
             // 
             // tabCard
             // 
@@ -618,7 +626,7 @@
             this.label14.Location = new System.Drawing.Point(48, 299);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(66, 13);
-            this.label14.TabIndex = 24;
+            this.label14.TabIndex = 22;
             this.label14.Text = "Skype name";
             // 
             // label13
@@ -627,7 +635,7 @@
             this.label13.Location = new System.Drawing.Point(43, 273);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(71, 13);
-            this.label13.TabIndex = 23;
+            this.label13.TabIndex = 20;
             this.label13.Text = "Website URL";
             // 
             // label12
@@ -636,7 +644,7 @@
             this.label12.Location = new System.Drawing.Point(63, 247);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(51, 13);
-            this.label12.TabIndex = 22;
+            this.label12.TabIndex = 18;
             this.label12.Text = "Company";
             // 
             // label11
@@ -645,7 +653,7 @@
             this.label11.Location = new System.Drawing.Point(87, 221);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(27, 13);
-            this.label11.TabIndex = 21;
+            this.label11.TabIndex = 16;
             this.label11.Text = "Title";
             // 
             // label10
@@ -654,7 +662,7 @@
             this.label10.Location = new System.Drawing.Point(43, 195);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(71, 13);
-            this.label10.TabIndex = 20;
+            this.label10.TabIndex = 14;
             this.label10.Text = "Private E-mail";
             // 
             // label9
@@ -663,7 +671,7 @@
             this.label9.Location = new System.Drawing.Point(29, 169);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(85, 13);
-            this.label9.TabIndex = 14;
+            this.label9.TabIndex = 12;
             this.label9.Text = "Bussiness E-mail";
             // 
             // eSkype
@@ -671,84 +679,84 @@
             this.eSkype.Location = new System.Drawing.Point(120, 296);
             this.eSkype.Name = "eSkype";
             this.eSkype.Size = new System.Drawing.Size(197, 20);
-            this.eSkype.TabIndex = 11;
+            this.eSkype.TabIndex = 23;
             // 
             // eWeb
             // 
             this.eWeb.Location = new System.Drawing.Point(120, 270);
             this.eWeb.Name = "eWeb";
             this.eWeb.Size = new System.Drawing.Size(197, 20);
-            this.eWeb.TabIndex = 10;
+            this.eWeb.TabIndex = 21;
             // 
             // eCompany
             // 
             this.eCompany.Location = new System.Drawing.Point(120, 244);
             this.eCompany.Name = "eCompany";
             this.eCompany.Size = new System.Drawing.Size(197, 20);
-            this.eCompany.TabIndex = 9;
+            this.eCompany.TabIndex = 19;
             // 
             // eTitle
             // 
             this.eTitle.Location = new System.Drawing.Point(120, 218);
             this.eTitle.Name = "eTitle";
             this.eTitle.Size = new System.Drawing.Size(197, 20);
-            this.eTitle.TabIndex = 8;
+            this.eTitle.TabIndex = 17;
             // 
             // ePEmail
             // 
             this.ePEmail.Location = new System.Drawing.Point(120, 192);
             this.ePEmail.Name = "ePEmail";
             this.ePEmail.Size = new System.Drawing.Size(197, 20);
-            this.ePEmail.TabIndex = 7;
+            this.ePEmail.TabIndex = 15;
             // 
             // eBEmail
             // 
             this.eBEmail.Location = new System.Drawing.Point(120, 166);
             this.eBEmail.Name = "eBEmail";
             this.eBEmail.Size = new System.Drawing.Size(197, 20);
-            this.eBEmail.TabIndex = 6;
+            this.eBEmail.TabIndex = 13;
             // 
             // ePPhone
             // 
             this.ePPhone.Location = new System.Drawing.Point(120, 140);
             this.ePPhone.Name = "ePPhone";
             this.ePPhone.Size = new System.Drawing.Size(197, 20);
-            this.ePPhone.TabIndex = 5;
+            this.ePPhone.TabIndex = 11;
             // 
             // eCPhone
             // 
             this.eCPhone.Location = new System.Drawing.Point(120, 114);
             this.eCPhone.Name = "eCPhone";
             this.eCPhone.Size = new System.Drawing.Size(197, 20);
-            this.eCPhone.TabIndex = 4;
+            this.eCPhone.TabIndex = 9;
             // 
             // eBPhone
             // 
             this.eBPhone.Location = new System.Drawing.Point(120, 88);
             this.eBPhone.Name = "eBPhone";
             this.eBPhone.Size = new System.Drawing.Size(197, 20);
-            this.eBPhone.TabIndex = 3;
+            this.eBPhone.TabIndex = 7;
             // 
             // eFirst
             // 
             this.eFirst.Location = new System.Drawing.Point(120, 62);
             this.eFirst.Name = "eFirst";
             this.eFirst.Size = new System.Drawing.Size(197, 20);
-            this.eFirst.TabIndex = 2;
+            this.eFirst.TabIndex = 5;
             // 
             // eLast
             // 
             this.eLast.Location = new System.Drawing.Point(120, 36);
             this.eLast.Name = "eLast";
             this.eLast.Size = new System.Drawing.Size(197, 20);
-            this.eLast.TabIndex = 1;
+            this.eLast.TabIndex = 3;
             // 
             // eDisplay
             // 
             this.eDisplay.Location = new System.Drawing.Point(120, 10);
             this.eDisplay.Name = "eDisplay";
             this.eDisplay.Size = new System.Drawing.Size(197, 20);
-            this.eDisplay.TabIndex = 0;
+            this.eDisplay.TabIndex = 1;
             // 
             // label8
             // 
@@ -756,7 +764,7 @@
             this.label8.Location = new System.Drawing.Point(40, 143);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(74, 13);
-            this.label8.TabIndex = 6;
+            this.label8.TabIndex = 10;
             this.label8.Text = "Private Phone";
             // 
             // label7
@@ -765,7 +773,7 @@
             this.label7.Location = new System.Drawing.Point(56, 117);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(58, 13);
-            this.label7.TabIndex = 5;
+            this.label7.TabIndex = 8;
             this.label7.Text = "Cell Phone";
             // 
             // label6
@@ -774,7 +782,7 @@
             this.label6.Location = new System.Drawing.Point(26, 91);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(88, 13);
-            this.label6.TabIndex = 4;
+            this.label6.TabIndex = 6;
             this.label6.Text = "Bussiness Phone";
             // 
             // label5
@@ -783,7 +791,7 @@
             this.label5.Location = new System.Drawing.Point(57, 65);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(57, 13);
-            this.label5.TabIndex = 3;
+            this.label5.TabIndex = 4;
             this.label5.Text = "First Name";
             // 
             // label4
@@ -801,7 +809,7 @@
             this.label3.Location = new System.Drawing.Point(35, 13);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(79, 13);
-            this.label3.TabIndex = 1;
+            this.label3.TabIndex = 0;
             this.label3.Text = "* Display Name";
             // 
             // bWrvCard
@@ -809,10 +817,64 @@
             this.bWrvCard.Location = new System.Drawing.Point(21, 332);
             this.bWrvCard.Name = "bWrvCard";
             this.bWrvCard.Size = new System.Drawing.Size(296, 23);
-            this.bWrvCard.TabIndex = 12;
+            this.bWrvCard.TabIndex = 24;
             this.bWrvCard.Text = "Write vCard";
             this.bWrvCard.UseVisualStyleBackColor = true;
             this.bWrvCard.Click += new System.EventHandler(this.bWrvCard_Click);
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.groupBox2);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(427, 361);
+            this.tabPage1.TabIndex = 4;
+            this.tabPage1.Text = "Bluetooth";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.maskedTextBox1);
+            this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.Controls.Add(this.label17);
+            this.groupBox2.Location = new System.Drawing.Point(41, 37);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(343, 201);
+            this.groupBox2.TabIndex = 0;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Bluetooth secure simple pairing";
+            // 
+            // maskedTextBox1
+            // 
+            this.maskedTextBox1.Font = new System.Drawing.Font("Courier New", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.maskedTextBox1.Location = new System.Drawing.Point(80, 72);
+            this.maskedTextBox1.Mask = ">AA:AA:AA:AA:AA:AA";
+            this.maskedTextBox1.Name = "maskedTextBox1";
+            this.maskedTextBox1.Size = new System.Drawing.Size(182, 23);
+            this.maskedTextBox1.TabIndex = 1;
+            this.maskedTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.maskedTextBox1.Enter += new System.EventHandler(this.maskedTextBox1_Enter);
+            this.maskedTextBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.maskedTextBox1_KeyPress);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(80, 126);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(182, 40);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Write Bluetooth Address";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(124, 40);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(95, 13);
+            this.label17.TabIndex = 0;
+            this.label17.Text = "Bluetooth address:";
             // 
             // tabTools
             // 
@@ -951,6 +1013,7 @@
             this.Controls.Add(this.statDevice);
             this.Controls.Add(this.statInfo);
             this.Name = "Form2";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "  NFC Type 2 Tag programming example -  D-Logic";
             this.statInfo.ResumeLayout(false);
             this.statInfo.PerformLayout();
@@ -974,6 +1037,9 @@
             this.tabURL.PerformLayout();
             this.tabCard.ResumeLayout(false);
             this.tabCard.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.tabTools.ResumeLayout(false);
             this.statNDEF.ResumeLayout(false);
             this.statNDEF.PerformLayout();
@@ -1071,6 +1137,11 @@
         private System.Windows.Forms.Button bWrAAR;
         private System.Windows.Forms.TextBox eAAR;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
 
     }
 }
