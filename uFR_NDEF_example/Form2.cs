@@ -811,7 +811,7 @@ namespace uFR_NDEF_example
 
             if (hexStr.Length != BLUETOOTH_ADDRESS_SIZE_WITH_DELIMITERS)
             {
-                MessageBox.Show("You must enter 6 hexadecimal numbers!" + "\nDebug: >" + hexStr + "< " + hexStr.Length);
+                MessageBox.Show("You must enter 6 hexadecimal numbers!" /* + "\nDebug: >" + hexStr + "< " + hexStr.Length */);
                 maskedTextBox1.Focus();
                 return;
             }
