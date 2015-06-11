@@ -538,6 +538,32 @@ namespace uFR_NDEF_example
             return result;
         }
 
+        private DL_STATUS write_emulation_ndef(int TNF, string Type, string ID, byte[] Payload)
+        {
+            DL_STATUS result = DL_STATUS.UNKNOWN_ERROR;
+
+            byte tnf = (byte)TNF;
+
+            byte[] type = System.Text.Encoding.UTF8.GetBytes(Type);
+            byte type_length = (byte)type.Length;
+
+            byte[] id = System.Text.Encoding.UTF8.GetBytes(ID);
+            byte id_length = (byte)ID.Length;
+
+            byte[] payload = Payload;
+            uint payload_length = (uint)payload.Length;
+
+            unsafe
+            {
+                fixed (byte* f_type = type)
+                fixed (byte* f_id = id)
+                fixed (byte* f_payload = payload)
+                    result = uFCoder.write_emulation_ndef(&tnf, f_type, &type_length, f_id, &id_length, f_payload, &payload_length);
+            }
+
+            return result;
+        }
+
         private void eSMS_TextChanged(object sender, EventArgs e)
         {
             lSMSChars.Text = "Chars: " + eSMS.Text.Length;
@@ -575,7 +601,7 @@ namespace uFR_NDEF_example
             type = "U";
             id = "";
 
-            result = ndef_write(tnf, type, id, payload);
+            result = write_emulation_ndef(tnf, type, id, payload); 
 
             prn_status(result, "Phone Written");
         }
@@ -830,6 +856,244 @@ namespace uFR_NDEF_example
 
             result = ndef_write(tnf, type, id, payload);
             prn_status(result, "Bluetooth address written");
+        }
+
+        private void btnStartTagEmulation_Click(object sender, EventArgs e)
+        {
+            DL_STATUS status;
+
+            status = uFCoder.tag_emulation_start();
+            prn_status(status, "Tag emulation mode activated");
+        }
+
+        private void btnStopTagEmulation_Click(object sender, EventArgs e)
+        {
+            DL_STATUS status;
+
+            status = uFCoder.tag_emulation_stop();
+            prn_status(status, "Tag emulation mode deactivated");
+        }
+
+        private void btnStorePhoneToReader_Click(object sender, EventArgs e)
+        {
+            DL_STATUS status = DL_STATUS.UNKNOWN_ERROR;
+            int tnf;
+            string type;
+            string id;
+            byte[] payload;
+            string tmp_str = "";
+            byte[] tmp_payload;
+
+            // TODO : validate phone number
+
+            if (ePhone.Text.Length == 0)
+            {
+                MessageBox.Show("Phone number is mandatory!");
+                ePhone.Focus();
+                return;
+            }
+
+            // Tel TNF=1, Type = URI = "U", Type Length =1 , payload[0]=5
+
+            tmp_str = ePhone.Text;
+            tmp_payload = System.Text.Encoding.UTF8.GetBytes(tmp_str);
+
+            payload = new byte[tmp_payload.Length + 1];
+            Array.Copy(tmp_payload, 0, payload, 1, tmp_payload.Length);
+            payload[0] = 5;
+
+            tnf = 1;
+            type = "U";
+            id = "";
+
+            status = write_emulation_ndef(tnf, type, id, payload);
+            prn_status(status, "Phone has been stored");
+        }
+
+        private void btnStoreSmsToReader_Click(object sender, EventArgs e)
+        {
+            DL_STATUS status = DL_STATUS.UNKNOWN_ERROR;
+            int tnf;
+            string type;
+            string id;
+            byte[] payload;
+            string tmp_str = "";
+            byte[] tmp_payload;
+
+            // TODO: validate SMS
+
+            if (eSMS.Text.Length == 0)
+            {
+                MessageBox.Show("Phone number is mandatory!");
+                eSMS.Focus();
+                return;
+            }
+
+            // SMS TNF=1, Type = URI = "U", Type Length =1 , payload[0]=0 , "sms:", "?body:"
+            tmp_str = "sms: " + eSMSPhone.Text + "?body=" + eSMS.Text;
+
+            tmp_payload = System.Text.Encoding.UTF8.GetBytes(tmp_str);
+            payload = new byte[tmp_payload.Length + 1];
+            Array.Copy(tmp_payload, 0, payload, 1, tmp_payload.Length);
+            payload[0] = 0;
+
+            tnf = 1;
+            type = "U";
+            id = "";
+
+            status = write_emulation_ndef(tnf, type, id, payload);
+
+            prn_status(status, "SMS has been stored");
+        }
+
+        private void btnStoreUrlToReader_Click(object sender, EventArgs e)
+        {
+            DL_STATUS status = DL_STATUS.UNKNOWN_ERROR;
+            int tnf;
+            string type;
+            string id;
+            byte[] payload;
+            string tmp_str = "";
+            byte[] tmp_payload;
+
+            // TODO: validate URL
+
+            if (eURL.Text == "")
+            {
+                MessageBox.Show("URL field is mandatory!");
+                eURL.Focus();
+                return;
+            }
+
+            // URL TNF=1, Type = URI = "U", Type Length =1 , payload[0]=1
+            tmp_str = eURL.Text;
+
+            tmp_payload = System.Text.Encoding.UTF8.GetBytes(tmp_str);
+            payload = new byte[tmp_payload.Length + 1];
+            Array.Copy(tmp_payload, 0, payload, 1, tmp_payload.Length);
+            payload[0] = 1;
+
+            tnf = 1;
+            type = "U";
+            id = "";
+
+            status = write_emulation_ndef(tnf, type, id, payload);
+            prn_status(status, "URL has been stored");
+        }
+
+        private void btnStoreVCardToReader_Click(object sender, EventArgs e)
+        {
+            DL_STATUS status = DL_STATUS.UNKNOWN_ERROR;
+            int tnf;
+            string type;
+            string id;
+            byte[] payload;
+            string tmp_str = "";
+            byte[] tmp_payload;
+            string DispName, LastName, FirstName, Title, Company;
+            string BPhone, CPhone, PPhone, BEmail, PEmail, WebURL, SkypeName;
+
+            // TODO: validate vCard
+
+            DispName = eDisplay.Text.Trim();
+            LastName = eLast.Text.Trim();
+            FirstName = eFirst.Text.Trim();
+            BPhone = eBPhone.Text.Trim();
+            CPhone = eCPhone.Text.Trim();
+            PPhone = ePPhone.Text.Trim();
+            BEmail = eBEmail.Text.Trim();
+            PEmail = ePEmail.Text.Trim();
+            Title = eTitle.Text.Trim();
+            Company = eCompany.Text.Trim();
+            WebURL = eWeb.Text.Trim();
+            SkypeName = eSkype.Text.Trim();
+
+            if (DispName.Length == 0)
+            {
+                MessageBox.Show("Display Name and Last Name fields are mandatory!");
+                eDisplay.Focus();
+                return;
+            }
+
+            if (LastName.Length == 0)
+            {
+                MessageBox.Show("Display Name and Last Name fields are mandatory!");
+                eLast.Focus();
+                return;
+            }
+
+            //format NDEF payload for vCard 3.0
+            tmp_str = "BEGIN:VCARD\r\n";
+            tmp_str += "VERSION:3.0\r\n";
+            tmp_str += "N:" + LastName + ";";// replace N with N;CHARSET=UTF-8;ENCODING=8BIT:
+            tmp_str += FirstName + ";;;\r\n";
+            tmp_str += "FN:" + DispName + "\r\n";
+
+            if (CPhone.Length != 0)
+                tmp_str += "TEL;CELL:" + CPhone + "\r\n";
+            if (BPhone.Length != 0)
+                tmp_str += "TEL;WORK:" + BPhone + "\r\n";
+            if (PPhone.Length != 0)
+                tmp_str += "TEL;HOME:" + PPhone + "\r\n";
+            if (BEmail.Length != 0)
+                tmp_str += "EMAIL;WORK:" + BEmail + "\r\n";
+            if (PEmail.Length != 0)
+                tmp_str += "EMAIL;HOME:" + PEmail + "\r\n";
+            if (Title.Length != 0)
+                tmp_str += "TITLE:" + Title + "\r\n";
+            if (Company.Length != 0)
+                tmp_str += "ORG:" + Company + "\r\n";
+            if (WebURL.Length != 0)
+                tmp_str += "URL:" + WebURL + "\r\n";
+            if (SkypeName.Length != 0)
+                tmp_str += "X-SKYPE:" + SkypeName + "\r\n";
+            tmp_str += "END:VCARD";
+
+            MessageBox.Show(tmp_str, "vCard len= " + tmp_str.Length);
+
+            // tmp_str is prepared
+            // vCard TNF=2, Type = Mime = "text/x-vCard", Type length=12, payload[0]=1 , max 255 bytes
+            tmp_payload = System.Text.Encoding.UTF8.GetBytes(tmp_str);
+            payload = tmp_payload;
+
+            tnf = 2;
+            type = "text/x-vCard";
+            id = "";
+
+            status = write_emulation_ndef(tnf, type, id, payload);
+            prn_status(status, "vCard has been stored");
+        }
+
+        private void btnStoreBluetoothToReader_Click(object sender, EventArgs e)
+        {
+            DL_STATUS status = DL_STATUS.UNKNOWN_ERROR;
+            int tnf = 2; // media type
+            string type = "application/vnd.bluetooth.ep.oob";
+            string id = "";
+            byte[] payload = new byte[8];
+            String hexStr = maskedTextBox1.Text.Replace(" ", "").Replace("::", "").Replace(':', '-');
+
+            if (hexStr.Length != BLUETOOTH_ADDRESS_SIZE_WITH_DELIMITERS)
+            {
+                MessageBox.Show("You must enter 6 hexadecimal numbers!" /* + "\nDebug: >" + hexStr + "< " + hexStr.Length */);
+                maskedTextBox1.Focus();
+                return;
+            }
+
+            byte[] payload_addr_fragment = CnvHexStr2ByteArr(hexStr);
+
+            payload[1] = 0; // ...
+            payload[0] = 8; // payload length - fixed for this purpose
+
+            for (int i = 0; i < 6; i++)
+            {
+                payload[2 + i] = payload_addr_fragment[5 - i]; // indexes: [2 + i] where 2 is offset
+            }
+
+            // MessageBox.Show("Debug: Written value is: " + BitConverter.ToString(payload));
+
+            status = write_emulation_ndef(tnf, type, id, payload);
+            prn_status(status, "Bluetooth has been stored");
         }
     }
 }

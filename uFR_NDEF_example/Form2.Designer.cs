@@ -59,9 +59,11 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPhone = new System.Windows.Forms.TabPage();
+            this.btnStorePhoneToReader = new System.Windows.Forms.Button();
             this.bWritePhone = new System.Windows.Forms.Button();
             this.ePhone = new System.Windows.Forms.TextBox();
             this.tabSMS = new System.Windows.Forms.TabPage();
+            this.btnStoreSmsToReader = new System.Windows.Forms.Button();
             this.bWrSMS = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.eSMSPhone = new System.Windows.Forms.TextBox();
@@ -69,10 +71,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.eSMS = new System.Windows.Forms.RichTextBox();
             this.tabURL = new System.Windows.Forms.TabPage();
+            this.btnStoreUrlToReader = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.bWrURL = new System.Windows.Forms.Button();
             this.eURL = new System.Windows.Forms.TextBox();
             this.tabCard = new System.Windows.Forms.TabPage();
+            this.btnStoreVCardToReader = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -100,10 +104,14 @@
             this.bWrvCard = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnStoreBluetoothToReader = new System.Windows.Forms.Button();
             this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
             this.tabTools = new System.Windows.Forms.TabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnStopTagEmulation = new System.Windows.Forms.Button();
+            this.btnStartTagEmulation = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.bEraseAllRec = new System.Windows.Forms.Button();
             this.bEraseLastRec = new System.Windows.Forms.Button();
@@ -134,6 +142,7 @@
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tabTools.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.statNDEF.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -451,6 +460,7 @@
             // 
             // tabPhone
             // 
+            this.tabPhone.Controls.Add(this.btnStorePhoneToReader);
             this.tabPhone.Controls.Add(this.bWritePhone);
             this.tabPhone.Controls.Add(this.ePhone);
             this.tabPhone.Location = new System.Drawing.Point(4, 22);
@@ -460,6 +470,17 @@
             this.tabPhone.TabIndex = 0;
             this.tabPhone.Text = "Phone";
             this.tabPhone.UseVisualStyleBackColor = true;
+            // 
+            // btnStorePhoneToReader
+            // 
+            this.btnStorePhoneToReader.Location = new System.Drawing.Point(6, 122);
+            this.btnStorePhoneToReader.Name = "btnStorePhoneToReader";
+            this.btnStorePhoneToReader.Size = new System.Drawing.Size(402, 84);
+            this.btnStorePhoneToReader.TabIndex = 2;
+            this.btnStorePhoneToReader.Text = "Store phone number for tag emulation mode\r\n(min. v3.8.0 firmware and library need" +
+    "ed)";
+            this.btnStorePhoneToReader.UseVisualStyleBackColor = true;
+            this.btnStorePhoneToReader.Click += new System.EventHandler(this.btnStorePhoneToReader_Click);
             // 
             // bWritePhone
             // 
@@ -480,6 +501,7 @@
             // 
             // tabSMS
             // 
+            this.tabSMS.Controls.Add(this.btnStoreSmsToReader);
             this.tabSMS.Controls.Add(this.bWrSMS);
             this.tabSMS.Controls.Add(this.label2);
             this.tabSMS.Controls.Add(this.eSMSPhone);
@@ -493,6 +515,16 @@
             this.tabSMS.TabIndex = 1;
             this.tabSMS.Text = "SMS";
             this.tabSMS.UseVisualStyleBackColor = true;
+            // 
+            // btnStoreSmsToReader
+            // 
+            this.btnStoreSmsToReader.Location = new System.Drawing.Point(10, 232);
+            this.btnStoreSmsToReader.Name = "btnStoreSmsToReader";
+            this.btnStoreSmsToReader.Size = new System.Drawing.Size(283, 61);
+            this.btnStoreSmsToReader.TabIndex = 6;
+            this.btnStoreSmsToReader.Text = "Store SMS for tag emulation mode\r\n(min. v3.8.0 firmware and library needed)";
+            this.btnStoreSmsToReader.UseVisualStyleBackColor = true;
+            this.btnStoreSmsToReader.Click += new System.EventHandler(this.btnStoreSmsToReader_Click);
             // 
             // bWrSMS
             // 
@@ -548,6 +580,7 @@
             // 
             // tabURL
             // 
+            this.tabURL.Controls.Add(this.btnStoreUrlToReader);
             this.tabURL.Controls.Add(this.label15);
             this.tabURL.Controls.Add(this.bWrURL);
             this.tabURL.Controls.Add(this.eURL);
@@ -558,6 +591,16 @@
             this.tabURL.TabIndex = 2;
             this.tabURL.Text = "URL";
             this.tabURL.UseVisualStyleBackColor = true;
+            // 
+            // btnStoreUrlToReader
+            // 
+            this.btnStoreUrlToReader.Location = new System.Drawing.Point(6, 152);
+            this.btnStoreUrlToReader.Name = "btnStoreUrlToReader";
+            this.btnStoreUrlToReader.Size = new System.Drawing.Size(345, 82);
+            this.btnStoreUrlToReader.TabIndex = 3;
+            this.btnStoreUrlToReader.Text = "Store URL for tag emulation mode\r\n(min. v3.8.0 firmware and library needed)";
+            this.btnStoreUrlToReader.UseVisualStyleBackColor = true;
+            this.btnStoreUrlToReader.Click += new System.EventHandler(this.btnStoreUrlToReader_Click);
             // 
             // label15
             // 
@@ -587,6 +630,7 @@
             // 
             // tabCard
             // 
+            this.tabCard.Controls.Add(this.btnStoreVCardToReader);
             this.tabCard.Controls.Add(this.label14);
             this.tabCard.Controls.Add(this.label13);
             this.tabCard.Controls.Add(this.label12);
@@ -619,6 +663,16 @@
             this.tabCard.TabIndex = 3;
             this.tabCard.Text = "vCard";
             this.tabCard.UseVisualStyleBackColor = true;
+            // 
+            // btnStoreVCardToReader
+            // 
+            this.btnStoreVCardToReader.Location = new System.Drawing.Point(323, 218);
+            this.btnStoreVCardToReader.Name = "btnStoreVCardToReader";
+            this.btnStoreVCardToReader.Size = new System.Drawing.Size(98, 137);
+            this.btnStoreVCardToReader.TabIndex = 25;
+            this.btnStoreVCardToReader.Text = "Store vCard for tag emulation mode\r\n(min. v3.8.0 firmware and library needed)";
+            this.btnStoreVCardToReader.UseVisualStyleBackColor = true;
+            this.btnStoreVCardToReader.Click += new System.EventHandler(this.btnStoreVCardToReader_Click);
             // 
             // label14
             // 
@@ -835,15 +889,27 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnStoreBluetoothToReader);
             this.groupBox2.Controls.Add(this.maskedTextBox1);
             this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.label17);
             this.groupBox2.Location = new System.Drawing.Point(41, 37);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(343, 201);
+            this.groupBox2.Size = new System.Drawing.Size(343, 268);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Bluetooth secure simple pairing";
+            // 
+            // btnStoreBluetoothToReader
+            // 
+            this.btnStoreBluetoothToReader.Location = new System.Drawing.Point(35, 172);
+            this.btnStoreBluetoothToReader.Name = "btnStoreBluetoothToReader";
+            this.btnStoreBluetoothToReader.Size = new System.Drawing.Size(274, 62);
+            this.btnStoreBluetoothToReader.TabIndex = 3;
+            this.btnStoreBluetoothToReader.Text = "Store Bluetooth Address for tag emulation mode\r\n(min. v3.8.0 firmware and library" +
+    " needed)";
+            this.btnStoreBluetoothToReader.UseVisualStyleBackColor = true;
+            this.btnStoreBluetoothToReader.Click += new System.EventHandler(this.btnStoreBluetoothToReader_Click);
             // 
             // maskedTextBox1
             // 
@@ -879,6 +945,7 @@
             // tabTools
             // 
             this.tabTools.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.tabTools.Controls.Add(this.groupBox3);
             this.tabTools.Controls.Add(this.progressBar1);
             this.tabTools.Controls.Add(this.bEraseAllRec);
             this.tabTools.Controls.Add(this.bEraseLastRec);
@@ -892,6 +959,37 @@
             this.tabTools.Text = "TOOLS";
             this.tabTools.UseVisualStyleBackColor = true;
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.btnStopTagEmulation);
+            this.groupBox3.Controls.Add(this.btnStartTagEmulation);
+            this.groupBox3.Location = new System.Drawing.Point(9, 206);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(416, 215);
+            this.groupBox3.TabIndex = 5;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Tag emulation mode (min. v3.8.0 firmware and library needed)";
+            // 
+            // btnStopTagEmulation
+            // 
+            this.btnStopTagEmulation.Location = new System.Drawing.Point(84, 81);
+            this.btnStopTagEmulation.Name = "btnStopTagEmulation";
+            this.btnStopTagEmulation.Size = new System.Drawing.Size(248, 38);
+            this.btnStopTagEmulation.TabIndex = 4;
+            this.btnStopTagEmulation.Text = "Stop tag emulation mode";
+            this.btnStopTagEmulation.UseVisualStyleBackColor = true;
+            this.btnStopTagEmulation.Click += new System.EventHandler(this.btnStopTagEmulation_Click);
+            // 
+            // btnStartTagEmulation
+            // 
+            this.btnStartTagEmulation.Location = new System.Drawing.Point(84, 37);
+            this.btnStartTagEmulation.Name = "btnStartTagEmulation";
+            this.btnStartTagEmulation.Size = new System.Drawing.Size(248, 38);
+            this.btnStartTagEmulation.TabIndex = 3;
+            this.btnStartTagEmulation.Text = "Start tag emulation mode";
+            this.btnStartTagEmulation.UseVisualStyleBackColor = true;
+            this.btnStartTagEmulation.Click += new System.EventHandler(this.btnStartTagEmulation_Click);
+            // 
             // progressBar1
             // 
             this.progressBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -902,7 +1000,7 @@
             // 
             // bEraseAllRec
             // 
-            this.bEraseAllRec.Location = new System.Drawing.Point(143, 144);
+            this.bEraseAllRec.Location = new System.Drawing.Point(143, 106);
             this.bEraseAllRec.Name = "bEraseAllRec";
             this.bEraseAllRec.Size = new System.Drawing.Size(248, 38);
             this.bEraseAllRec.TabIndex = 2;
@@ -912,9 +1010,9 @@
             // 
             // bEraseLastRec
             // 
-            this.bEraseLastRec.Location = new System.Drawing.Point(9, 83);
+            this.bEraseLastRec.Location = new System.Drawing.Point(143, 62);
             this.bEraseLastRec.Name = "bEraseLastRec";
-            this.bEraseLastRec.Size = new System.Drawing.Size(244, 38);
+            this.bEraseLastRec.Size = new System.Drawing.Size(248, 38);
             this.bEraseLastRec.TabIndex = 1;
             this.bEraseLastRec.Text = "Erase Last Record";
             this.bEraseLastRec.UseVisualStyleBackColor = true;
@@ -922,7 +1020,7 @@
             // 
             // bCardClear
             // 
-            this.bCardClear.Location = new System.Drawing.Point(143, 242);
+            this.bCardClear.Location = new System.Drawing.Point(143, 150);
             this.bCardClear.Name = "bCardClear";
             this.bCardClear.Size = new System.Drawing.Size(248, 38);
             this.bCardClear.TabIndex = 3;
@@ -932,9 +1030,9 @@
             // 
             // bCardInit
             // 
-            this.bCardInit.Location = new System.Drawing.Point(6, 6);
+            this.bCardInit.Location = new System.Drawing.Point(9, 18);
             this.bCardInit.Name = "bCardInit";
-            this.bCardInit.Size = new System.Drawing.Size(385, 38);
+            this.bCardInit.Size = new System.Drawing.Size(416, 38);
             this.bCardInit.TabIndex = 0;
             this.bCardInit.Text = "Card Initialize for NDEF messages";
             this.bCardInit.UseVisualStyleBackColor = true;
@@ -1041,6 +1139,7 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.tabTools.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
             this.statNDEF.ResumeLayout(false);
             this.statNDEF.PerformLayout();
             this.ResumeLayout(false);
@@ -1142,6 +1241,14 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.Button btnStorePhoneToReader;
+        private System.Windows.Forms.Button btnStoreSmsToReader;
+        private System.Windows.Forms.Button btnStoreUrlToReader;
+        private System.Windows.Forms.Button btnStoreVCardToReader;
+        private System.Windows.Forms.Button btnStoreBluetoothToReader;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button btnStopTagEmulation;
+        private System.Windows.Forms.Button btnStartTagEmulation;
 
     }
 }

@@ -173,6 +173,15 @@ namespace uFCoderMulti
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, EntryPoint = "ndef_card_initialization")]
         public static extern DL_STATUS ndef_card_initialization();
 
+        [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, EntryPoint = "write_emulation_ndef")]
+        public static extern DL_STATUS write_emulation_ndef(byte* tnf, byte* type_record, byte* type_length, byte* id, byte* id_length,
+                                                            byte* payload, uint* payload_length);
+
+        [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, EntryPoint = "tag_emulation_start")]
+        public static extern DL_STATUS tag_emulation_start();
+
+        [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, EntryPoint = "tag_emulation_stop")]
+        public static extern DL_STATUS tag_emulation_stop();
         //---------------------------------------------------------------------
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, EntryPoint = "GetDlogicCardType")]
         public static extern DL_STATUS GetDlogicCardType(byte* lpucCardType);
