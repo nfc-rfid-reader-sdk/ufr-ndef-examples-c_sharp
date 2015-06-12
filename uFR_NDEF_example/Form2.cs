@@ -558,7 +558,7 @@ namespace uFR_NDEF_example
                 fixed (byte* f_type = type)
                 fixed (byte* f_id = id)
                 fixed (byte* f_payload = payload)
-                    result = uFCoder.write_emulation_ndef(&tnf, f_type, &type_length, f_id, &id_length, f_payload, &payload_length);
+                    result = uFCoder.WriteEmulationNdef(tnf, f_type, type_length, f_id, id_length, f_payload, payload_length);
             }
 
             return result;
@@ -862,16 +862,16 @@ namespace uFR_NDEF_example
         {
             DL_STATUS status;
 
-            status = uFCoder.tag_emulation_start();
-            prn_status(status, "Tag emulation mode activated");
+            status = uFCoder.TagEmulationStart();
+            prn_status(status, "emulation mode activated");
         }
 
         private void btnStopTagEmulation_Click(object sender, EventArgs e)
         {
             DL_STATUS status;
 
-            status = uFCoder.tag_emulation_stop();
-            prn_status(status, "Tag emulation mode deactivated");
+            status = uFCoder.TagEmulationStop();
+            prn_status(status, "emulation mode deactivated");
         }
 
         private void btnStorePhoneToReader_Click(object sender, EventArgs e)
@@ -907,7 +907,7 @@ namespace uFR_NDEF_example
             id = "";
 
             status = write_emulation_ndef(tnf, type, id, payload);
-            prn_status(status, "Phone has been stored");
+            prn_status(status, "Phone written");
         }
 
         private void btnStoreSmsToReader_Click(object sender, EventArgs e)
@@ -943,7 +943,7 @@ namespace uFR_NDEF_example
 
             status = write_emulation_ndef(tnf, type, id, payload);
 
-            prn_status(status, "SMS has been stored");
+            prn_status(status, "SMS written");
         }
 
         private void btnStoreUrlToReader_Click(object sender, EventArgs e)
@@ -978,7 +978,7 @@ namespace uFR_NDEF_example
             id = "";
 
             status = write_emulation_ndef(tnf, type, id, payload);
-            prn_status(status, "URL has been stored");
+            prn_status(status, "URL written");
         }
 
         private void btnStoreVCardToReader_Click(object sender, EventArgs e)
@@ -1061,7 +1061,7 @@ namespace uFR_NDEF_example
             id = "";
 
             status = write_emulation_ndef(tnf, type, id, payload);
-            prn_status(status, "vCard has been stored");
+            prn_status(status, "vCard written");
         }
 
         private void btnStoreBluetoothToReader_Click(object sender, EventArgs e)
@@ -1093,7 +1093,7 @@ namespace uFR_NDEF_example
             // MessageBox.Show("Debug: Written value is: " + BitConverter.ToString(payload));
 
             status = write_emulation_ndef(tnf, type, id, payload);
-            prn_status(status, "Bluetooth has been stored");
+            prn_status(status, "Bluetooth address written");
         }
     }
 }
