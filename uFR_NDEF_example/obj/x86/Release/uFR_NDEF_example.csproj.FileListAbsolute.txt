@@ -1,12 +1,3 @@
-d:\d-logic\svn_repo\sw_open\ufr\c#\ndef_example\trunk\uFR_NDEF_example\uFR_NDEF_example\obj\x86\Release\uFR_NDEF_example.frmTestNDEF.resources
-d:\d-logic\svn_repo\sw_open\ufr\c#\ndef_example\trunk\uFR_NDEF_example\uFR_NDEF_example\obj\x86\Release\uFR_NDEF_example.Form2.resources
-d:\d-logic\svn_repo\sw_open\ufr\c#\ndef_example\trunk\uFR_NDEF_example\uFR_NDEF_example\obj\x86\Release\uFR_NDEF_example.Properties.Resources.resources
-d:\d-logic\svn_repo\sw_open\ufr\c#\ndef_example\trunk\uFR_NDEF_example\uFR_NDEF_example\obj\x86\Release\uFR_NDEF_example.csproj.GenerateResource.Cache
-d:\d-logic\svn_repo\sw_open\ufr\c#\ndef_example\trunk\uFR_NDEF_example\uFR_NDEF_example\bin\x86\Release\uFR_NDEF_example.exe.config
-d:\d-logic\svn_repo\sw_open\ufr\c#\ndef_example\trunk\uFR_NDEF_example\uFR_NDEF_example\bin\x86\Release\uFR_NDEF_example.exe
-d:\d-logic\svn_repo\sw_open\ufr\c#\ndef_example\trunk\uFR_NDEF_example\uFR_NDEF_example\bin\x86\Release\uFR_NDEF_example.pdb
-d:\d-logic\svn_repo\sw_open\ufr\c#\ndef_example\trunk\uFR_NDEF_example\uFR_NDEF_example\obj\x86\Release\uFR_NDEF_example.exe
-d:\d-logic\svn_repo\sw_open\ufr\c#\ndef_example\trunk\uFR_NDEF_example\uFR_NDEF_example\obj\x86\Release\uFR_NDEF_example.pdb
 C:\prj\sw_open\ufr\C#\uFR_NDEF_example\uFR_NDEF_example\bin\x86\Release\uFR_NDEF_example.exe.config
 C:\prj\sw_open\ufr\C#\uFR_NDEF_example\uFR_NDEF_example\obj\x86\Release\uFR_NDEF_example.exe
 C:\prj\sw_open\ufr\C#\uFR_NDEF_example\uFR_NDEF_example\obj\x86\Release\uFR_NDEF_example.pdb
@@ -17,3 +8,13 @@ C:\prj\sw_open\ufr\C#\uFR_NDEF_example\uFR_NDEF_example\obj\x86\Release\uFR_NDEF
 C:\prj\sw_open\ufr\C#\uFR_NDEF_example\uFR_NDEF_example\obj\x86\Release\uFR_NDEF_example.Form2.resources
 C:\prj\sw_open\ufr\C#\uFR_NDEF_example\uFR_NDEF_example\obj\x86\Release\uFR_NDEF_example.Properties.Resources.resources
 C:\prj\sw_open\ufr\C#\uFR_NDEF_example\uFR_NDEF_example\obj\x86\Release\uFR_NDEF_example.csproj.GenerateResource.Cache
+d:\d-logic\svn_repo\sw_open\ufr\c#\ndef_example\trunk\uFR_NDEF_example\uFR_NDEF_example\bin\x86\Release\uFR_NDEF_example.exe.config
+d:\d-logic\svn_repo\sw_open\ufr\c#\ndef_example\trunk\uFR_NDEF_example\uFR_NDEF_example\bin\x86\Release\uFR_NDEF_example.exe
+d:\d-logic\svn_repo\sw_open\ufr\c#\ndef_example\trunk\uFR_NDEF_example\uFR_NDEF_example\bin\x86\Release\uFR_NDEF_example.pdb
+d:\d-logic\svn_repo\sw_open\ufr\c#\ndef_example\trunk\uFR_NDEF_example\uFR_NDEF_example\obj\x86\Release\uFR_NDEF_example.csprojResolveAssemblyReference.cache
+d:\d-logic\svn_repo\sw_open\ufr\c#\ndef_example\trunk\uFR_NDEF_example\uFR_NDEF_example\obj\x86\Release\uFR_NDEF_example.frmTestNDEF.resources
+d:\d-logic\svn_repo\sw_open\ufr\c#\ndef_example\trunk\uFR_NDEF_example\uFR_NDEF_example\obj\x86\Release\uFR_NDEF_example.Form2.resources
+d:\d-logic\svn_repo\sw_open\ufr\c#\ndef_example\trunk\uFR_NDEF_example\uFR_NDEF_example\obj\x86\Release\uFR_NDEF_example.Properties.Resources.resources
+d:\d-logic\svn_repo\sw_open\ufr\c#\ndef_example\trunk\uFR_NDEF_example\uFR_NDEF_example\obj\x86\Release\uFR_NDEF_example.csproj.GenerateResource.Cache
+d:\d-logic\svn_repo\sw_open\ufr\c#\ndef_example\trunk\uFR_NDEF_example\uFR_NDEF_example\obj\x86\Release\uFR_NDEF_example.exe
+d:\d-logic\svn_repo\sw_open\ufr\c#\ndef_example\trunk\uFR_NDEF_example\uFR_NDEF_example\obj\x86\Release\uFR_NDEF_example.pdb

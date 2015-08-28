@@ -12,7 +12,6 @@ d:\d-logic\svn_repo\sw_open\ufr\c#\ndef_example\trunk\uFR_NDEF_example\uFR_NDEF_
 d:\d-logic\svn_repo\sw_open\ufr\c#\ndef_example\trunk\uFR_NDEF_example\uFR_NDEF_example\obj\Release\uFR_NDEF_example.pdb
 d:\d-logic\svn_repo\sw_open\ufr\c#\ndef_example\trunk\uFR_NDEF_example\uFR_NDEF_example\bin\Release\uFR_NDEF_example.exe
 d:\d-logic\svn_repo\sw_open\ufr\c#\ndef_example\trunk\uFR_NDEF_example\uFR_NDEF_example\bin\Release\uFR_NDEF_example.pdb
-d:\d-logic\svn_repo\sw_open\ufr\c#\ndef_example\trunk\uFR_NDEF_example\uFR_NDEF_example\obj\Release\uFR_NDEF_example.csprojResolveAssemblyReference.cache
 d:\d-logic\svn_repo\sw_open\ufr\c#\ndef_example\trunk\uFR_NDEF_example\uFR_NDEF_example\obj\Release\uFR_NDEF_example.frmTestNDEF.resources
 d:\d-logic\svn_repo\sw_open\ufr\c#\ndef_example\trunk\uFR_NDEF_example\uFR_NDEF_example\obj\Release\uFR_NDEF_example.Form2.resources
 d:\d-logic\svn_repo\sw_open\ufr\c#\ndef_example\trunk\uFR_NDEF_example\uFR_NDEF_example\obj\Release\uFR_NDEF_example.Properties.Resources.resources
