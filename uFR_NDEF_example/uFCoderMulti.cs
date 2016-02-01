@@ -191,6 +191,12 @@ namespace uFCoderMulti
 
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, EntryPoint = "CombinedModeEmulationStart")]
         public static extern DL_STATUS CombinedModeEmulationStart();
+
+        [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, EntryPoint = "EnterShareRamCommMode")]
+        public static extern DL_STATUS EnterShareRamCommMode();
+
+        [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, EntryPoint = "ExitShareRamCommMode")]
+        public static extern DL_STATUS ExitShareRamCommMode();
         //---------------------------------------------------------------------
 
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, EntryPoint = "GetDlogicCardType")]

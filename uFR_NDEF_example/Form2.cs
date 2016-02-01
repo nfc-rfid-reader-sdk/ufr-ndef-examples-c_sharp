@@ -870,7 +870,7 @@ namespace uFR_NDEF_example
         {
             DL_STATUS status;
 
-            status = uFCoder.TagEmulationStart();
+            status = uFCoder.CombinedModeEmulationStart();
             prn_status(status, "dedicated emulation mode activated");
         }
 
@@ -879,6 +879,23 @@ namespace uFR_NDEF_example
             DL_STATUS status;
 
             status = uFCoder.TagEmulationStop();
+            prn_status(status, "emulation mode deactivated");
+        }
+
+        private void btnStartSharedRamEmu_Click(object sender, EventArgs e)
+        {
+            DL_STATUS status;
+
+            status = uFCoder.EnterShareRamCommMode();
+            prn_status(status, "dedicated emulation mode activated");
+
+        }
+
+        private void btnStopSharedRamEmu_Click(object sender, EventArgs e)
+        {
+            DL_STATUS status;
+
+            status = uFCoder.ExitShareRamCommMode();
             prn_status(status, "emulation mode deactivated");
         }
 
