@@ -601,7 +601,7 @@ namespace uFR_NDEF_example
             type = "U";
             id = "";
 
-            result = write_emulation_ndef(tnf, type, id, payload); 
+            result = ndef_write(tnf, type, id, payload);
 
             prn_status(result, "Phone Written");
         }
@@ -863,7 +863,15 @@ namespace uFR_NDEF_example
             DL_STATUS status;
 
             status = uFCoder.TagEmulationStart();
-            prn_status(status, "emulation mode activated");
+            prn_status(status, "dedicated emulation mode activated");
+        }
+
+        private void btnStartCombinedEmulationMode_Click(object sender, EventArgs e)
+        {
+            DL_STATUS status;
+
+            status = uFCoder.TagEmulationStart();
+            prn_status(status, "dedicated emulation mode activated");
         }
 
         private void btnStopTagEmulation_Click(object sender, EventArgs e)

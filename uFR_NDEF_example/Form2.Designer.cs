@@ -124,6 +124,7 @@
             this.NdefInfoRecs = new System.Windows.Forms.ToolStripStatusLabel();
             this.NdefInfoEmpty = new System.Windows.Forms.ToolStripStatusLabel();
             this.NdefInfoTNF = new System.Windows.Forms.ToolStripStatusLabel();
+            this.btnStartCombinedEmulationMode = new System.Windows.Forms.Button();
             this.statInfo.SuspendLayout();
             this.statDevice.SuspendLayout();
             this.panelReader.SuspendLayout();
@@ -961,6 +962,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btnStartCombinedEmulationMode);
             this.groupBox3.Controls.Add(this.btnStopTagEmulation);
             this.groupBox3.Controls.Add(this.btnStartTagEmulation);
             this.groupBox3.Location = new System.Drawing.Point(9, 206);
@@ -972,7 +974,7 @@
             // 
             // btnStopTagEmulation
             // 
-            this.btnStopTagEmulation.Location = new System.Drawing.Point(84, 81);
+            this.btnStopTagEmulation.Location = new System.Drawing.Point(84, 125);
             this.btnStopTagEmulation.Name = "btnStopTagEmulation";
             this.btnStopTagEmulation.Size = new System.Drawing.Size(248, 38);
             this.btnStopTagEmulation.TabIndex = 4;
@@ -986,7 +988,7 @@
             this.btnStartTagEmulation.Name = "btnStartTagEmulation";
             this.btnStartTagEmulation.Size = new System.Drawing.Size(248, 38);
             this.btnStartTagEmulation.TabIndex = 3;
-            this.btnStartTagEmulation.Text = "Start tag emulation mode";
+            this.btnStartTagEmulation.Text = "Start dedicated tag emulation mode";
             this.btnStartTagEmulation.UseVisualStyleBackColor = true;
             this.btnStartTagEmulation.Click += new System.EventHandler(this.btnStartTagEmulation_Click);
             // 
@@ -1099,6 +1101,16 @@
             this.NdefInfoTNF.Name = "NdefInfoTNF";
             this.NdefInfoTNF.Size = new System.Drawing.Size(50, 17);
             this.NdefInfoTNF.Text = "TNF";
+            // 
+            // btnStartCombinedEmulationMode
+            // 
+            this.btnStartCombinedEmulationMode.Location = new System.Drawing.Point(84, 81);
+            this.btnStartCombinedEmulationMode.Name = "btnStartCombinedEmulationMode";
+            this.btnStartCombinedEmulationMode.Size = new System.Drawing.Size(248, 38);
+            this.btnStartCombinedEmulationMode.TabIndex = 5;
+            this.btnStartCombinedEmulationMode.Text = "Start combined tag emulation mode";
+            this.btnStartCombinedEmulationMode.UseVisualStyleBackColor = true;
+            this.btnStartCombinedEmulationMode.Click += new System.EventHandler(this.btnStartCombinedEmulationMode_Click);
             // 
             // Form2
             // 
@@ -1249,6 +1261,6 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button btnStopTagEmulation;
         private System.Windows.Forms.Button btnStartTagEmulation;
-
+        private System.Windows.Forms.Button btnStartCombinedEmulationMode;
     }
 }

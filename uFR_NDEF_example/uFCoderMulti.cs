@@ -133,8 +133,11 @@ namespace uFCoderMulti
     public static unsafe class uFCoder
     {
         //--------------------------------------------------------------------------------------------------
-        const string DLL_NAME = "uFCoder-x86.dll"; // for x86 target
-        //const string DLL_NAME = "uFCoder-x86_64.dll"; // for x64 target
+#if WIN64
+        public const string DLL_NAME = "uFCoder-x86_64.dll"; // for x64 target
+#else
+        public const string DLL_NAME = "uFCoder-x86.dll"; // for x86 target
+#endif
         //--------------------------------------------------------------------------------------------------
 
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, EntryPoint = "ReaderOpen")]
@@ -185,6 +188,9 @@ namespace uFCoderMulti
 
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, EntryPoint = "TagEmulationStop")]
         public static extern DL_STATUS TagEmulationStop();
+
+        [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, EntryPoint = "CombinedModeEmulationStart")]
+        public static extern DL_STATUS CombinedModeEmulationStart();
         //---------------------------------------------------------------------
 
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, EntryPoint = "GetDlogicCardType")]
