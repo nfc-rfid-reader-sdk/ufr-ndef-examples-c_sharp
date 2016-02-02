@@ -125,8 +125,6 @@
             this.NdefInfoRecs = new System.Windows.Forms.ToolStripStatusLabel();
             this.NdefInfoEmpty = new System.Windows.Forms.ToolStripStatusLabel();
             this.NdefInfoTNF = new System.Windows.Forms.ToolStripStatusLabel();
-            this.btnStartSharedRamEmu = new System.Windows.Forms.Button();
-            this.btnStopSharedRamEmu = new System.Windows.Forms.Button();
             this.statInfo.SuspendLayout();
             this.statDevice.SuspendLayout();
             this.panelReader.SuspendLayout();
@@ -964,8 +962,6 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.btnStartSharedRamEmu);
-            this.groupBox3.Controls.Add(this.btnStopSharedRamEmu);
             this.groupBox3.Controls.Add(this.btnStartCombinedEmulationMode);
             this.groupBox3.Controls.Add(this.btnStopTagEmulation);
             this.groupBox3.Controls.Add(this.btnStartTagEmulation);
@@ -978,9 +974,9 @@
             // 
             // btnStartCombinedEmulationMode
             // 
-            this.btnStartCombinedEmulationMode.Location = new System.Drawing.Point(21, 94);
+            this.btnStartCombinedEmulationMode.Location = new System.Drawing.Point(104, 88);
             this.btnStartCombinedEmulationMode.Name = "btnStartCombinedEmulationMode";
-            this.btnStartCombinedEmulationMode.Size = new System.Drawing.Size(196, 38);
+            this.btnStartCombinedEmulationMode.Size = new System.Drawing.Size(226, 38);
             this.btnStartCombinedEmulationMode.TabIndex = 5;
             this.btnStartCombinedEmulationMode.Text = "Start combined tag emulation mode";
             this.btnStartCombinedEmulationMode.UseVisualStyleBackColor = true;
@@ -988,9 +984,9 @@
             // 
             // btnStopTagEmulation
             // 
-            this.btnStopTagEmulation.Location = new System.Drawing.Point(21, 138);
+            this.btnStopTagEmulation.Location = new System.Drawing.Point(104, 132);
             this.btnStopTagEmulation.Name = "btnStopTagEmulation";
-            this.btnStopTagEmulation.Size = new System.Drawing.Size(196, 38);
+            this.btnStopTagEmulation.Size = new System.Drawing.Size(226, 38);
             this.btnStopTagEmulation.TabIndex = 4;
             this.btnStopTagEmulation.Text = "Stop tag emulation mode";
             this.btnStopTagEmulation.UseVisualStyleBackColor = true;
@@ -998,9 +994,9 @@
             // 
             // btnStartTagEmulation
             // 
-            this.btnStartTagEmulation.Location = new System.Drawing.Point(21, 50);
+            this.btnStartTagEmulation.Location = new System.Drawing.Point(104, 44);
             this.btnStartTagEmulation.Name = "btnStartTagEmulation";
-            this.btnStartTagEmulation.Size = new System.Drawing.Size(196, 38);
+            this.btnStartTagEmulation.Size = new System.Drawing.Size(226, 38);
             this.btnStartTagEmulation.TabIndex = 3;
             this.btnStartTagEmulation.Text = "Start dedicated tag emulation mode";
             this.btnStartTagEmulation.UseVisualStyleBackColor = true;
@@ -1116,26 +1112,6 @@
             this.NdefInfoTNF.Size = new System.Drawing.Size(50, 17);
             this.NdefInfoTNF.Text = "TNF";
             // 
-            // btnStartSharedRamEmu
-            // 
-            this.btnStartSharedRamEmu.Location = new System.Drawing.Point(226, 50);
-            this.btnStartSharedRamEmu.Name = "btnStartSharedRamEmu";
-            this.btnStartSharedRamEmu.Size = new System.Drawing.Size(167, 38);
-            this.btnStartSharedRamEmu.TabIndex = 7;
-            this.btnStartSharedRamEmu.Text = "Start shared RAM mode";
-            this.btnStartSharedRamEmu.UseVisualStyleBackColor = true;
-            this.btnStartSharedRamEmu.Click += new System.EventHandler(this.btnStartSharedRamEmu_Click);
-            // 
-            // btnStopSharedRamEmu
-            // 
-            this.btnStopSharedRamEmu.Location = new System.Drawing.Point(226, 138);
-            this.btnStopSharedRamEmu.Name = "btnStopSharedRamEmu";
-            this.btnStopSharedRamEmu.Size = new System.Drawing.Size(167, 38);
-            this.btnStopSharedRamEmu.TabIndex = 6;
-            this.btnStopSharedRamEmu.Text = "Stop shared RAM mode";
-            this.btnStopSharedRamEmu.UseVisualStyleBackColor = true;
-            this.btnStopSharedRamEmu.Click += new System.EventHandler(this.btnStopSharedRamEmu_Click);
-            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1148,7 +1124,7 @@
             this.Controls.Add(this.statInfo);
             this.Name = "Form2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "  NFC Type 2 Tag programming example -  D-Logic";
+            this.Text = "  NFC Type 2 Tag programming example v2.0";
             this.statInfo.ResumeLayout(false);
             this.statInfo.PerformLayout();
             this.statDevice.ResumeLayout(false);
@@ -1286,7 +1262,5 @@
         private System.Windows.Forms.Button btnStopTagEmulation;
         private System.Windows.Forms.Button btnStartTagEmulation;
         private System.Windows.Forms.Button btnStartCombinedEmulationMode;
-        private System.Windows.Forms.Button btnStartSharedRamEmu;
-        private System.Windows.Forms.Button btnStopSharedRamEmu;
     }
 }
