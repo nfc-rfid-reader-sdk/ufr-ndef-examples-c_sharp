@@ -322,14 +322,20 @@ namespace uFR_NDEF_example
                 case DLOGIC_CARD_TYPE.DL_MIFARE_CLASSIC_1K:
                     data_len = 752;
                     break;
-                case DLOGIC_CARD_TYPE.DL_NTAG_213:
-                    data_len = 752;
-                    break;
-                case DLOGIC_CARD_TYPE.DL_MIFARE_CLASSIC_4K:
-                    data_len = 3356;
-                    break;
                 case DLOGIC_CARD_TYPE.DL_MIFARE_CLASSIC_4k:
                     data_len = 3356;
+                    break;
+                case DLOGIC_CARD_TYPE.DL_NTAG_203:
+                    data_len = 144;
+                    break;
+                case DLOGIC_CARD_TYPE.DL_NTAG_213:
+                    data_len = 144;
+                    break;
+                case DLOGIC_CARD_TYPE.DL_NTAG_215:
+                    data_len = 504;
+                    break;
+                case DLOGIC_CARD_TYPE.DL_NTAG_216:
+                    data_len = 888;
                     break;
                 case DLOGIC_CARD_TYPE.DL_MIFARE_ULTRALIGHT:
                     data_len = 48;
@@ -337,7 +343,10 @@ namespace uFR_NDEF_example
                 case DLOGIC_CARD_TYPE.DL_MIFARE_ULTRALIGHT_C:
                     data_len = 144;
                     break;
-                case DLOGIC_CARD_TYPE.DL_NTAG_203:
+                case DLOGIC_CARD_TYPE.DL_MIFARE_ULTRALIGHT_EV1_11:
+                    data_len = 48;
+                    break;
+                case DLOGIC_CARD_TYPE.DL_MIFARE_ULTRALIGHT_EV1_21:
                     data_len = 144;
                     break;
 
