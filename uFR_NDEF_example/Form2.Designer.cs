@@ -73,7 +73,7 @@
             this.tabURL = new System.Windows.Forms.TabPage();
             this.btnStoreUrlToReader = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
-            this.bWrURL = new System.Windows.Forms.Button();
+            this.bWrURI = new System.Windows.Forms.Button();
             this.eURL = new System.Windows.Forms.TextBox();
             this.tabCard = new System.Windows.Forms.TabPage();
             this.btnStoreVCardToReader = new System.Windows.Forms.Button();
@@ -125,6 +125,8 @@
             this.NdefInfoRecs = new System.Windows.Forms.ToolStripStatusLabel();
             this.NdefInfoEmpty = new System.Windows.Forms.ToolStripStatusLabel();
             this.NdefInfoTNF = new System.Windows.Forms.ToolStripStatusLabel();
+            this.label18 = new System.Windows.Forms.Label();
+            this.cbUriIdentifierCode = new System.Windows.Forms.ComboBox();
             this.statInfo.SuspendLayout();
             this.statDevice.SuspendLayout();
             this.panelReader.SuspendLayout();
@@ -581,24 +583,26 @@
             // 
             // tabURL
             // 
+            this.tabURL.Controls.Add(this.cbUriIdentifierCode);
+            this.tabURL.Controls.Add(this.label18);
             this.tabURL.Controls.Add(this.btnStoreUrlToReader);
             this.tabURL.Controls.Add(this.label15);
-            this.tabURL.Controls.Add(this.bWrURL);
+            this.tabURL.Controls.Add(this.bWrURI);
             this.tabURL.Controls.Add(this.eURL);
             this.tabURL.Location = new System.Drawing.Point(4, 22);
             this.tabURL.Name = "tabURL";
             this.tabURL.Padding = new System.Windows.Forms.Padding(3);
             this.tabURL.Size = new System.Drawing.Size(427, 361);
             this.tabURL.TabIndex = 2;
-            this.tabURL.Text = "URL";
+            this.tabURL.Text = "URI";
             this.tabURL.UseVisualStyleBackColor = true;
             // 
             // btnStoreUrlToReader
             // 
-            this.btnStoreUrlToReader.Location = new System.Drawing.Point(6, 152);
+            this.btnStoreUrlToReader.Location = new System.Drawing.Point(6, 173);
             this.btnStoreUrlToReader.Name = "btnStoreUrlToReader";
             this.btnStoreUrlToReader.Size = new System.Drawing.Size(345, 82);
-            this.btnStoreUrlToReader.TabIndex = 3;
+            this.btnStoreUrlToReader.TabIndex = 5;
             this.btnStoreUrlToReader.Text = "Store URL for tag emulation mode\r\n(min. v3.8.0 firmware and library needed)";
             this.btnStoreUrlToReader.UseVisualStyleBackColor = true;
             this.btnStoreUrlToReader.Click += new System.EventHandler(this.btnStoreUrlToReader_Click);
@@ -606,28 +610,28 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(7, 19);
+            this.label15.Location = new System.Drawing.Point(7, 40);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(155, 13);
-            this.label15.TabIndex = 0;
-            this.label15.Text = "Enter URL without http://www.";
+            this.label15.Size = new System.Drawing.Size(51, 13);
+            this.label15.TabIndex = 2;
+            this.label15.Text = "URI field:";
             // 
-            // bWrURL
+            // bWrURI
             // 
-            this.bWrURL.Location = new System.Drawing.Point(6, 64);
-            this.bWrURL.Name = "bWrURL";
-            this.bWrURL.Size = new System.Drawing.Size(345, 82);
-            this.bWrURL.TabIndex = 2;
-            this.bWrURL.Text = "Write URL";
-            this.bWrURL.UseVisualStyleBackColor = true;
-            this.bWrURL.Click += new System.EventHandler(this.bWrURL_Click);
+            this.bWrURI.Location = new System.Drawing.Point(6, 85);
+            this.bWrURI.Name = "bWrURI";
+            this.bWrURI.Size = new System.Drawing.Size(345, 82);
+            this.bWrURI.TabIndex = 4;
+            this.bWrURI.Text = "Write URI";
+            this.bWrURI.UseVisualStyleBackColor = true;
+            this.bWrURI.Click += new System.EventHandler(this.bWrURL_Click);
             // 
             // eURL
             // 
-            this.eURL.Location = new System.Drawing.Point(6, 38);
+            this.eURL.Location = new System.Drawing.Point(6, 59);
             this.eURL.Name = "eURL";
             this.eURL.Size = new System.Drawing.Size(345, 20);
-            this.eURL.TabIndex = 1;
+            this.eURL.TabIndex = 3;
             // 
             // tabCard
             // 
@@ -970,7 +974,7 @@
             this.groupBox3.Size = new System.Drawing.Size(416, 215);
             this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Tag emulation mode (min. v3.8.0 firmware and library needed)";
+            this.groupBox3.Text = "Tag emulation mode (min. firmware v3.9.2 and library v3.9.7 needed)";
             // 
             // btnStartCombinedEmulationMode
             // 
@@ -1112,6 +1116,60 @@
             this.NdefInfoTNF.Size = new System.Drawing.Size(50, 17);
             this.NdefInfoTNF.Text = "TNF";
             // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(7, 13);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(100, 13);
+            this.label18.TabIndex = 0;
+            this.label18.Text = "URI Identifier Code:";
+            // 
+            // cbUriIdentifierCode
+            // 
+            this.cbUriIdentifierCode.FormattingEnabled = true;
+            this.cbUriIdentifierCode.Items.AddRange(new object[] {
+            "N/A. No prepending is done.",
+            "http://www.",
+            "https://www.",
+            "http://",
+            "https://",
+            "tel:",
+            "mailto:",
+            "ftp://anonymous:anonymous@",
+            "ftp://ftp.",
+            "ftps://",
+            "sftp://",
+            "smb://",
+            "nfs://",
+            "ftp://",
+            "dav://",
+            "news:",
+            "telnet://",
+            "imap:",
+            "rtsp://",
+            "urn:",
+            "pop:",
+            "sip:",
+            "sips:",
+            "tftp:",
+            "btspp://",
+            "btl2cap://",
+            "btgoep://",
+            "tcpobex://",
+            "irdaobex://",
+            "file://",
+            "urn:epc:id:",
+            " urn:epc:tag:",
+            "urn:epc:pat:",
+            "urn:epc:raw:",
+            "urn:epc:",
+            "urn:nfc:"});
+            this.cbUriIdentifierCode.Location = new System.Drawing.Point(121, 12);
+            this.cbUriIdentifierCode.Name = "cbUriIdentifierCode";
+            this.cbUriIdentifierCode.Size = new System.Drawing.Size(230, 21);
+            this.cbUriIdentifierCode.TabIndex = 1;
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1124,7 +1182,8 @@
             this.Controls.Add(this.statInfo);
             this.Name = "Form2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "  NFC Type 2 Tag programming example v2.0";
+            this.Text = "  NFC Type 2 Tag programming example v3.0";
+            this.Load += new System.EventHandler(this.Form2_Load);
             this.statInfo.ResumeLayout(false);
             this.statInfo.PerformLayout();
             this.statDevice.ResumeLayout(false);
@@ -1216,7 +1275,7 @@
         private System.Windows.Forms.RichTextBox eSMS;
         private System.Windows.Forms.TabPage tabURL;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Button bWrURL;
+        private System.Windows.Forms.Button bWrURI;
         private System.Windows.Forms.TextBox eURL;
         private System.Windows.Forms.TabPage tabCard;
         private System.Windows.Forms.Label label14;
@@ -1262,5 +1321,7 @@
         private System.Windows.Forms.Button btnStopTagEmulation;
         private System.Windows.Forms.Button btnStartTagEmulation;
         private System.Windows.Forms.Button btnStartCombinedEmulationMode;
+        private System.Windows.Forms.ComboBox cbUriIdentifierCode;
+        private System.Windows.Forms.Label label18;
     }
 }

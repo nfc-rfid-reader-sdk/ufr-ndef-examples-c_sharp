@@ -676,7 +676,7 @@ namespace uFR_NDEF_example
             tmp_payload = System.Text.Encoding.UTF8.GetBytes(tmp_str);
             payload = new byte[tmp_payload.Length + 1];
             Array.Copy(tmp_payload, 0, payload, 1, tmp_payload.Length);
-            payload[0] = 1;
+            payload[0] = (byte)cbUriIdentifierCode.SelectedIndex;
 
             tnf = 1;
             type = "U";
@@ -1111,6 +1111,11 @@ namespace uFR_NDEF_example
 
             status = write_emulation_ndef(tnf, type, id, payload);
             prn_status(status, "Bluetooth address written");
+        }
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
+            cbUriIdentifierCode.SelectedIndex = 1;
         }
     }
 }
