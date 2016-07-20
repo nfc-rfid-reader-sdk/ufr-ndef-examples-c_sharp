@@ -164,6 +164,12 @@ namespace uFCoderMulti
         public static extern DL_STATUS write_ndef_record(byte message_nr, byte* tnf, byte* type_record, byte* type_length, byte* id, byte* id_length,
            byte* payload, uint* payload_length, byte* card_formated);
 
+        [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, EntryPoint = "write_ndef_record_mirroring")]
+        public static extern DL_STATUS write_ndef_record_mirroring(byte message_nr,
+                  byte* tnf, byte* type_record, byte* type_length, byte* id,
+                  byte* id_length, byte* payload, UInt32* payload_length,
+                  byte* card_formated, int use_uid_ascii_mirror, int use_counter_ascii_mirror, UInt32 payload_mirroring_pos);
+
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, EntryPoint = "get_ndef_record_count")]
         public static extern DL_STATUS get_ndef_record_count(byte* ndef_message_cnt, byte* ndef_record_cnt, byte* ndef_record_array, byte* empty_ndef_message_cnt);
 

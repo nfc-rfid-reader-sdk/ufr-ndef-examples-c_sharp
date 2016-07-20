@@ -15,6 +15,11 @@ namespace uFR_NDEF_example
     public partial class Form2 : Form
     {
         public const int BLUETOOTH_ADDRESS_SIZE_WITH_DELIMITERS = 17;
+        private const string URI_IDENTIFIER_CODE_TAG_OPEN = "<#";
+        private const string URI_IDENTIFIER_CODE_TAG_CLOSE = ">";
+        private readonly int URI_IDENTIFIER_CODE_TAG_LEN = URI_IDENTIFIER_CODE_TAG_OPEN.Length + URI_IDENTIFIER_CODE_TAG_CLOSE.Length;
+        private UInt32 mAsciiMirrorPos = 0;
+        private string mPayload;
 
         public Form2()
         {
@@ -211,7 +216,10 @@ namespace uFR_NDEF_example
 
         private void bCloseReader_Click(object sender, EventArgs e)
         {
+            uFCoder.ReaderClose();
             reader_close_do();
+            statusResult.Text = "";
+            statusResult.BackColor = Control.DefaultBackColor;
         }
 
         private void bCardInit_Click(object sender, EventArgs e)
@@ -508,6 +516,35 @@ namespace uFR_NDEF_example
             txtPayload.Text = SG1.CurrentRow.Cells[3].Value.ToString();
         }
 
+        private DL_STATUS ndef_write_mirroring(int TNF, string Type, string ID, byte[] Payload, UInt32 mirror_pos)
+        {
+            DL_STATUS result = DL_STATUS.UNKNOWN_ERROR;
+            byte card_formated;
+            byte tnf = (byte)TNF;
+            int use_counter_ascii_mirror = chkCounterAsciiMirror.Checked ? 1 : 0;
+            int use_uid_ascii_mirror = chkUidAsciiMirror.Checked ? 1 : 0;
+
+            byte[] type = System.Text.Encoding.UTF8.GetBytes(Type);
+            byte type_length = (byte)type.Length;
+
+            byte[] id = System.Text.Encoding.UTF8.GetBytes(ID);
+            byte id_length = (byte)ID.Length;
+            byte[] payload = Payload;
+            uint payload_length = (uint)payload.Length;
+
+            unsafe
+            {
+                fixed (byte* f_type = type)
+                fixed (byte* f_id = id)
+                fixed (byte* f_payload = payload)
+                    result = uFCoder.write_ndef_record_mirroring(1, &tnf, f_type, &type_length, f_id, &id_length, 
+                        f_payload, &payload_length, &card_formated,
+                        use_uid_ascii_mirror, use_counter_ascii_mirror, mirror_pos);
+            }
+
+            return result;
+        }
+
         private DL_STATUS ndef_write(int TNF, string Type, string ID, byte[] Payload)
         {
             DL_STATUS result = DL_STATUS.UNKNOWN_ERROR;
@@ -524,15 +561,8 @@ namespace uFR_NDEF_example
             byte[] id = System.Text.Encoding.UTF8.GetBytes(ID);
             byte id_length = (byte)ID.Length;
 
-            //byte[] payload = new byte[1000];
             byte[] payload = Payload;
             uint payload_length = (uint)payload.Length;
-
-            //memset(type, 0, 256);
-            //memset(id, 0, 256);
-            //memset(payload, 0, 1000);
-
-            //Payload
 
             unsafe
             {
@@ -541,8 +571,6 @@ namespace uFR_NDEF_example
                 fixed (byte* f_payload = payload)
                     result = uFCoder.write_ndef_record(1, &tnf, f_type, &type_length, f_id, &id_length, f_payload, &payload_length, &card_formated);
             }
-
-            //prn_st("write_ndef_record", result);
 
             return result;
         }
@@ -658,7 +686,6 @@ namespace uFR_NDEF_example
             string type;
             string id;
             byte[] payload;
-            string tmp_str = "";
             byte[] tmp_payload;
 
             // TODO: validate URL
@@ -671,9 +698,8 @@ namespace uFR_NDEF_example
             }
 
             // URL TNF=1, Type = URI = "U", Type Length =1 , payload[0]=1
-            tmp_str = eURL.Text;
 
-            tmp_payload = System.Text.Encoding.UTF8.GetBytes(tmp_str);
+            tmp_payload = System.Text.Encoding.UTF8.GetBytes(mPayload);
             payload = new byte[tmp_payload.Length + 1];
             Array.Copy(tmp_payload, 0, payload, 1, tmp_payload.Length);
             payload[0] = (byte)cbUriIdentifierCode.SelectedIndex;
@@ -682,8 +708,15 @@ namespace uFR_NDEF_example
             type = "U";
             id = "";
 
-            result = ndef_write(tnf, type, id, payload);
-
+//            if (chkUidAsciiMirror.Checked || chkCounterAsciiMirror.Checked)
+//            {
+                result = ndef_write_mirroring(tnf, type, id, payload, mAsciiMirrorPos);
+/*            }
+            else
+            {
+                result = ndef_write(tnf, type, id, payload);
+            }
+*/
             prn_status(result, "URL Written");
         }
 
@@ -1116,6 +1149,65 @@ namespace uFR_NDEF_example
         private void Form2_Load(object sender, EventArgs e)
         {
             cbUriIdentifierCode.SelectedIndex = 1;
+        }
+
+        private void updatePayload(object sender, EventArgs e)
+        {
+            int UsedUriIdentifierCodeTagLen = -1;
+            tbPayload.Text = "";
+            mPayload = "";
+
+            if (cbUriIdentifierCode.SelectedIndex != 0)
+            {
+                UsedUriIdentifierCodeTagLen = URI_IDENTIFIER_CODE_TAG_LEN + cbUriIdentifierCode.SelectedIndex.ToString().Length - 1;
+                tbPayload.Text = URI_IDENTIFIER_CODE_TAG_OPEN + cbUriIdentifierCode.SelectedIndex + URI_IDENTIFIER_CODE_TAG_CLOSE;
+            }
+
+            tbPayload.Text += eURL.Text;
+            mPayload += eURL.Text;
+
+            if (chkUidAsciiMirror.Checked && chkCounterAsciiMirror.Checked)
+            {
+                mAsciiMirrorPos = (UInt32)(tbPayload.Text.Length + tbAsciiMirror.Text.Length - UsedUriIdentifierCodeTagLen);
+                tbPayload.Text += tbAsciiMirror.Text + "00000000000000x000000";
+                mPayload += tbAsciiMirror.Text + "00000000000000x000000";
+            }
+            else if (chkUidAsciiMirror.Checked || chkCounterAsciiMirror.Checked)
+            {
+                mAsciiMirrorPos = (UInt32)(tbPayload.Text.Length + tbAsciiMirror.Text.Length - UsedUriIdentifierCodeTagLen);
+                if (chkUidAsciiMirror.Checked)
+                {
+                    tbPayload.Text += tbAsciiMirror.Text + "00000000000000";
+                    mPayload += tbAsciiMirror.Text + "00000000000000";
+                }
+                if (chkCounterAsciiMirror.Checked)
+                {
+                    tbPayload.Text += tbAsciiMirror.Text + "000000";
+                    mPayload += tbAsciiMirror.Text + "000000";
+                }
+            }
+            else
+            {
+                mAsciiMirrorPos = 0;
+            }
+        }
+
+        private void chkUidAsciiMirror_CheckedChanged(object sender, EventArgs e)
+        {
+            lbAsciiMirror.Enabled = chkUidAsciiMirror.Checked || chkCounterAsciiMirror.Checked;
+            tbAsciiMirror.Enabled = chkUidAsciiMirror.Checked || chkCounterAsciiMirror.Checked;
+
+            btnStoreUrlToReader.Enabled = !chkUidAsciiMirror.Checked && !chkCounterAsciiMirror.Checked;
+            updatePayload(sender, e);
+        }
+
+        private void chkCounterAsciiMirror_CheckedChanged(object sender, EventArgs e)
+        {
+            lbAsciiMirror.Enabled = chkUidAsciiMirror.Checked || chkCounterAsciiMirror.Checked;
+            tbAsciiMirror.Enabled = chkUidAsciiMirror.Checked || chkCounterAsciiMirror.Checked;
+
+            btnStoreUrlToReader.Enabled = !chkUidAsciiMirror.Checked && !chkCounterAsciiMirror.Checked;
+            updatePayload(sender, e);
         }
     }
 }

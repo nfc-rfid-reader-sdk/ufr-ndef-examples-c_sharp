@@ -71,6 +71,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.eSMS = new System.Windows.Forms.RichTextBox();
             this.tabURL = new System.Windows.Forms.TabPage();
+            this.lbPayload = new System.Windows.Forms.Label();
+            this.tbPayload = new System.Windows.Forms.TextBox();
+            this.lbAsciiMirror = new System.Windows.Forms.Label();
+            this.tbAsciiMirror = new System.Windows.Forms.TextBox();
+            this.chkCounterAsciiMirror = new System.Windows.Forms.CheckBox();
+            this.chkUidAsciiMirror = new System.Windows.Forms.CheckBox();
+            this.cbUriIdentifierCode = new System.Windows.Forms.ComboBox();
+            this.label18 = new System.Windows.Forms.Label();
             this.btnStoreUrlToReader = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.bWrURI = new System.Windows.Forms.Button();
@@ -125,8 +133,6 @@
             this.NdefInfoRecs = new System.Windows.Forms.ToolStripStatusLabel();
             this.NdefInfoEmpty = new System.Windows.Forms.ToolStripStatusLabel();
             this.NdefInfoTNF = new System.Windows.Forms.ToolStripStatusLabel();
-            this.label18 = new System.Windows.Forms.Label();
-            this.cbUriIdentifierCode = new System.Windows.Forms.ComboBox();
             this.statInfo.SuspendLayout();
             this.statDevice.SuspendLayout();
             this.panelReader.SuspendLayout();
@@ -583,6 +589,12 @@
             // 
             // tabURL
             // 
+            this.tabURL.Controls.Add(this.lbPayload);
+            this.tabURL.Controls.Add(this.tbPayload);
+            this.tabURL.Controls.Add(this.lbAsciiMirror);
+            this.tabURL.Controls.Add(this.tbAsciiMirror);
+            this.tabURL.Controls.Add(this.chkCounterAsciiMirror);
+            this.tabURL.Controls.Add(this.chkUidAsciiMirror);
             this.tabURL.Controls.Add(this.cbUriIdentifierCode);
             this.tabURL.Controls.Add(this.label18);
             this.tabURL.Controls.Add(this.btnStoreUrlToReader);
@@ -597,12 +609,128 @@
             this.tabURL.Text = "URI";
             this.tabURL.UseVisualStyleBackColor = true;
             // 
+            // lbPayload
+            // 
+            this.lbPayload.AutoSize = true;
+            this.lbPayload.Location = new System.Drawing.Point(6, 255);
+            this.lbPayload.Name = "lbPayload";
+            this.lbPayload.Size = new System.Drawing.Size(80, 13);
+            this.lbPayload.TabIndex = 10;
+            this.lbPayload.Text = "Result payload:";
+            // 
+            // tbPayload
+            // 
+            this.tbPayload.Location = new System.Drawing.Point(6, 271);
+            this.tbPayload.Multiline = true;
+            this.tbPayload.Name = "tbPayload";
+            this.tbPayload.ReadOnly = true;
+            this.tbPayload.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.tbPayload.Size = new System.Drawing.Size(195, 84);
+            this.tbPayload.TabIndex = 11;
+            // 
+            // lbAsciiMirror
+            // 
+            this.lbAsciiMirror.AutoSize = true;
+            this.lbAsciiMirror.Enabled = false;
+            this.lbAsciiMirror.Location = new System.Drawing.Point(38, 148);
+            this.lbAsciiMirror.Name = "lbAsciiMirror";
+            this.lbAsciiMirror.Size = new System.Drawing.Size(213, 13);
+            this.lbAsciiMirror.TabIndex = 5;
+            this.lbAsciiMirror.Text = "ASCII Prefix (delimiter and parameter name):";
+            // 
+            // tbAsciiMirror
+            // 
+            this.tbAsciiMirror.Enabled = false;
+            this.tbAsciiMirror.Location = new System.Drawing.Point(41, 164);
+            this.tbAsciiMirror.Name = "tbAsciiMirror";
+            this.tbAsciiMirror.Size = new System.Drawing.Size(250, 20);
+            this.tbAsciiMirror.TabIndex = 6;
+            this.tbAsciiMirror.Text = "?m=";
+            this.tbAsciiMirror.TextChanged += new System.EventHandler(this.updatePayload);
+            // 
+            // chkCounterAsciiMirror
+            // 
+            this.chkCounterAsciiMirror.AutoSize = true;
+            this.chkCounterAsciiMirror.Location = new System.Drawing.Point(41, 119);
+            this.chkCounterAsciiMirror.Name = "chkCounterAsciiMirror";
+            this.chkCounterAsciiMirror.Size = new System.Drawing.Size(307, 17);
+            this.chkCounterAsciiMirror.TabIndex = 7;
+            this.chkCounterAsciiMirror.Text = "Enable NFC Counter ASCII Mirror (NTAG213/215/216 only)";
+            this.chkCounterAsciiMirror.UseVisualStyleBackColor = true;
+            this.chkCounterAsciiMirror.CheckedChanged += new System.EventHandler(this.chkCounterAsciiMirror_CheckedChanged);
+            // 
+            // chkUidAsciiMirror
+            // 
+            this.chkUidAsciiMirror.AutoSize = true;
+            this.chkUidAsciiMirror.Location = new System.Drawing.Point(41, 96);
+            this.chkUidAsciiMirror.Name = "chkUidAsciiMirror";
+            this.chkUidAsciiMirror.Size = new System.Drawing.Size(218, 17);
+            this.chkUidAsciiMirror.TabIndex = 4;
+            this.chkUidAsciiMirror.Text = "Enable UID ASCII Mirror (NTAG21x only)";
+            this.chkUidAsciiMirror.UseVisualStyleBackColor = true;
+            this.chkUidAsciiMirror.CheckedChanged += new System.EventHandler(this.chkUidAsciiMirror_CheckedChanged);
+            // 
+            // cbUriIdentifierCode
+            // 
+            this.cbUriIdentifierCode.FormattingEnabled = true;
+            this.cbUriIdentifierCode.Items.AddRange(new object[] {
+            "N/A. No prepending is done.",
+            "http://www.",
+            "https://www.",
+            "http://",
+            "https://",
+            "tel:",
+            "mailto:",
+            "ftp://anonymous:anonymous@",
+            "ftp://ftp.",
+            "ftps://",
+            "sftp://",
+            "smb://",
+            "nfs://",
+            "ftp://",
+            "dav://",
+            "news:",
+            "telnet://",
+            "imap:",
+            "rtsp://",
+            "urn:",
+            "pop:",
+            "sip:",
+            "sips:",
+            "tftp:",
+            "btspp://",
+            "btl2cap://",
+            "btgoep://",
+            "tcpobex://",
+            "irdaobex://",
+            "file://",
+            "urn:epc:id:",
+            " urn:epc:tag:",
+            "urn:epc:pat:",
+            "urn:epc:raw:",
+            "urn:epc:",
+            "urn:nfc:"});
+            this.cbUriIdentifierCode.Location = new System.Drawing.Point(152, 17);
+            this.cbUriIdentifierCode.Name = "cbUriIdentifierCode";
+            this.cbUriIdentifierCode.Size = new System.Drawing.Size(230, 21);
+            this.cbUriIdentifierCode.TabIndex = 1;
+            this.cbUriIdentifierCode.SelectedIndexChanged += new System.EventHandler(this.updatePayload);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(38, 18);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(100, 13);
+            this.label18.TabIndex = 0;
+            this.label18.Text = "URI Identifier Code:";
+            // 
             // btnStoreUrlToReader
             // 
-            this.btnStoreUrlToReader.Location = new System.Drawing.Point(6, 173);
+            this.btnStoreUrlToReader.Location = new System.Drawing.Point(207, 315);
             this.btnStoreUrlToReader.Name = "btnStoreUrlToReader";
-            this.btnStoreUrlToReader.Size = new System.Drawing.Size(345, 82);
-            this.btnStoreUrlToReader.TabIndex = 5;
+            this.btnStoreUrlToReader.Size = new System.Drawing.Size(214, 40);
+            this.btnStoreUrlToReader.TabIndex = 13;
             this.btnStoreUrlToReader.Text = "Store URL for tag emulation mode\r\n(min. v3.8.0 firmware and library needed)";
             this.btnStoreUrlToReader.UseVisualStyleBackColor = true;
             this.btnStoreUrlToReader.Click += new System.EventHandler(this.btnStoreUrlToReader_Click);
@@ -610,7 +738,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(7, 40);
+            this.label15.Location = new System.Drawing.Point(38, 45);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(51, 13);
             this.label15.TabIndex = 2;
@@ -618,20 +746,21 @@
             // 
             // bWrURI
             // 
-            this.bWrURI.Location = new System.Drawing.Point(6, 85);
+            this.bWrURI.Location = new System.Drawing.Point(207, 271);
             this.bWrURI.Name = "bWrURI";
-            this.bWrURI.Size = new System.Drawing.Size(345, 82);
-            this.bWrURI.TabIndex = 4;
+            this.bWrURI.Size = new System.Drawing.Size(214, 38);
+            this.bWrURI.TabIndex = 12;
             this.bWrURI.Text = "Write URI";
             this.bWrURI.UseVisualStyleBackColor = true;
             this.bWrURI.Click += new System.EventHandler(this.bWrURL_Click);
             // 
             // eURL
             // 
-            this.eURL.Location = new System.Drawing.Point(6, 59);
+            this.eURL.Location = new System.Drawing.Point(41, 61);
             this.eURL.Name = "eURL";
-            this.eURL.Size = new System.Drawing.Size(345, 20);
+            this.eURL.Size = new System.Drawing.Size(341, 20);
             this.eURL.TabIndex = 3;
+            this.eURL.TextChanged += new System.EventHandler(this.updatePayload);
             // 
             // tabCard
             // 
@@ -1116,60 +1245,6 @@
             this.NdefInfoTNF.Size = new System.Drawing.Size(50, 17);
             this.NdefInfoTNF.Text = "TNF";
             // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(7, 13);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(100, 13);
-            this.label18.TabIndex = 0;
-            this.label18.Text = "URI Identifier Code:";
-            // 
-            // cbUriIdentifierCode
-            // 
-            this.cbUriIdentifierCode.FormattingEnabled = true;
-            this.cbUriIdentifierCode.Items.AddRange(new object[] {
-            "N/A. No prepending is done.",
-            "http://www.",
-            "https://www.",
-            "http://",
-            "https://",
-            "tel:",
-            "mailto:",
-            "ftp://anonymous:anonymous@",
-            "ftp://ftp.",
-            "ftps://",
-            "sftp://",
-            "smb://",
-            "nfs://",
-            "ftp://",
-            "dav://",
-            "news:",
-            "telnet://",
-            "imap:",
-            "rtsp://",
-            "urn:",
-            "pop:",
-            "sip:",
-            "sips:",
-            "tftp:",
-            "btspp://",
-            "btl2cap://",
-            "btgoep://",
-            "tcpobex://",
-            "irdaobex://",
-            "file://",
-            "urn:epc:id:",
-            " urn:epc:tag:",
-            "urn:epc:pat:",
-            "urn:epc:raw:",
-            "urn:epc:",
-            "urn:nfc:"});
-            this.cbUriIdentifierCode.Location = new System.Drawing.Point(121, 12);
-            this.cbUriIdentifierCode.Name = "cbUriIdentifierCode";
-            this.cbUriIdentifierCode.Size = new System.Drawing.Size(230, 21);
-            this.cbUriIdentifierCode.TabIndex = 1;
-            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1182,7 +1257,7 @@
             this.Controls.Add(this.statInfo);
             this.Name = "Form2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "  NFC Type 2 Tag programming example v3.0";
+            this.Text = "  NFC Type 2 Tag programming example v3.1";
             this.Load += new System.EventHandler(this.Form2_Load);
             this.statInfo.ResumeLayout(false);
             this.statInfo.PerformLayout();
@@ -1323,5 +1398,11 @@
         private System.Windows.Forms.Button btnStartCombinedEmulationMode;
         private System.Windows.Forms.ComboBox cbUriIdentifierCode;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.CheckBox chkUidAsciiMirror;
+        private System.Windows.Forms.CheckBox chkCounterAsciiMirror;
+        private System.Windows.Forms.TextBox tbAsciiMirror;
+        private System.Windows.Forms.TextBox tbPayload;
+        private System.Windows.Forms.Label lbPayload;
+        private System.Windows.Forms.Label lbAsciiMirror;
     }
 }
