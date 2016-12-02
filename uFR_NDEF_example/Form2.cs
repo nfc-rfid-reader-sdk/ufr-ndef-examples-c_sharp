@@ -708,15 +708,15 @@ namespace uFR_NDEF_example
             type = "U";
             id = "";
 
-//            if (chkUidAsciiMirror.Checked || chkCounterAsciiMirror.Checked)
-//            {
+            if (chkUidAsciiMirror.Checked || chkCounterAsciiMirror.Checked)
+            {
                 result = ndef_write_mirroring(tnf, type, id, payload, mAsciiMirrorPos);
-/*            }
+            }
             else
             {
                 result = ndef_write(tnf, type, id, payload);
             }
-*/
+
             prn_status(result, "URL Written");
         }
 

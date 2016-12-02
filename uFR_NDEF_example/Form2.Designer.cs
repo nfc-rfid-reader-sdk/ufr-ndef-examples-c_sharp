@@ -1257,7 +1257,7 @@
             this.Controls.Add(this.statInfo);
             this.Name = "Form2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "  NFC Type 2 Tag programming example v3.1";
+            this.Text = "  NFC Type 2 Tag programming example v3.2";
             this.Load += new System.EventHandler(this.Form2_Load);
             this.statInfo.ResumeLayout(false);
             this.statInfo.PerformLayout();
