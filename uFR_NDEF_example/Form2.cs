@@ -588,7 +588,7 @@ namespace uFR_NDEF_example
             byte id_length = (byte)ID.Length;
 
             byte[] payload = Payload;
-            uint payload_length = (uint)payload.Length;
+            byte payload_length = (byte)payload.Length;
 
             unsafe
             {
@@ -1027,8 +1027,15 @@ namespace uFR_NDEF_example
             type = "U";
             id = "";
 
-            status = write_emulation_ndef(tnf, type, id, payload);
-            prn_status(status, "URL written");
+            dlgStoreNDEFEmulation dlg = new dlgStoreNDEFEmulation(tnf, type, id, payload);
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                prn_status(dlg.Status, "URL written");
+            }
+            dlg.Dispose();
+
+            //status = write_emulation_ndef(tnf, type, id, payload);
+            //prn_status(status, "URL written");
         }
 
         private void btnStoreVCardToReader_Click(object sender, EventArgs e)
@@ -1208,6 +1215,36 @@ namespace uFR_NDEF_example
 
             btnStoreUrlToReader.Enabled = !chkUidAsciiMirror.Checked && !chkCounterAsciiMirror.Checked;
             updatePayload(sender, e);
+        }
+
+        private void chkShowPasswd_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkShowPasswd.Checked)
+            {
+                tbPasswd.PasswordChar = '\0';
+            }
+            else
+            {
+                tbPasswd.PasswordChar = '*';
+            }
+        }
+
+        private void btUnlock_Click(object sender, EventArgs e)
+        {
+            DL_STATUS status = DL_STATUS.UNKNOWN_ERROR;
+
+            status = uFCoder.EE_Lock(tbPasswd.Text, 0);
+
+            prn_status(status, "NV Unlocked");
+        }
+
+        private void btLock_Click(object sender, EventArgs e)
+        {
+            DL_STATUS status = DL_STATUS.UNKNOWN_ERROR;
+
+            status = uFCoder.EE_Lock(tbPasswd.Text, 1);
+
+            prn_status(status, "NV Locked");
         }
     }
 }

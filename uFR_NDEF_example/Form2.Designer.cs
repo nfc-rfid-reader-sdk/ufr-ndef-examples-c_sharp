@@ -117,7 +117,13 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
             this.tabTools = new System.Windows.Forms.TabPage();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.gbEEPROM = new System.Windows.Forms.GroupBox();
+            this.chkShowPasswd = new System.Windows.Forms.CheckBox();
+            this.tbPasswd = new System.Windows.Forms.TextBox();
+            this.lbPasswd = new System.Windows.Forms.Label();
+            this.btLock = new System.Windows.Forms.Button();
+            this.btUnlock = new System.Windows.Forms.Button();
+            this.gbEmul = new System.Windows.Forms.GroupBox();
             this.btnStartCombinedEmulationMode = new System.Windows.Forms.Button();
             this.btnStopTagEmulation = new System.Windows.Forms.Button();
             this.btnStartTagEmulation = new System.Windows.Forms.Button();
@@ -151,7 +157,8 @@
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tabTools.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.gbEEPROM.SuspendLayout();
+            this.gbEmul.SuspendLayout();
             this.statNDEF.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -165,7 +172,7 @@
             this.statInfo.Location = new System.Drawing.Point(0, 596);
             this.statInfo.Name = "statInfo";
             this.statInfo.Size = new System.Drawing.Size(443, 22);
-            this.statInfo.TabIndex = 4;
+            this.statInfo.TabIndex = 2;
             this.statInfo.Text = "statusStrip1";
             // 
             // toolStripStatusLabel6
@@ -182,14 +189,14 @@
             // 
             this.statusReader.AutoSize = false;
             this.statusReader.Name = "statusReader";
-            this.statusReader.Size = new System.Drawing.Size(160, 17);
+            this.statusReader.Size = new System.Drawing.Size(150, 17);
             this.statusReader.Text = "statusReader";
             // 
             // statusResult
             // 
             this.statusResult.AutoSize = false;
             this.statusResult.Name = "statusResult";
-            this.statusResult.Size = new System.Drawing.Size(200, 17);
+            this.statusResult.Size = new System.Drawing.Size(225, 17);
             this.statusResult.Text = "statusResult";
             // 
             // statDevice
@@ -207,7 +214,7 @@
             this.statDevice.Name = "statDevice";
             this.statDevice.Size = new System.Drawing.Size(443, 22);
             this.statDevice.Stretch = false;
-            this.statDevice.TabIndex = 3;
+            this.statDevice.TabIndex = 1;
             this.statDevice.Text = "statusStrip2";
             // 
             // toolStripStatusLabel5
@@ -425,7 +432,7 @@
             this.bWrAAR.Name = "bWrAAR";
             this.bWrAAR.Size = new System.Drawing.Size(412, 23);
             this.bWrAAR.TabIndex = 2;
-            this.bWrAAR.Text = "Write AAR";
+            this.bWrAAR.Text = "Write AAR to Tag";
             this.bWrAAR.UseVisualStyleBackColor = true;
             this.bWrAAR.Click += new System.EventHandler(this.bWrAAR_Click);
             // 
@@ -1079,7 +1086,8 @@
             // tabTools
             // 
             this.tabTools.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.tabTools.Controls.Add(this.groupBox3);
+            this.tabTools.Controls.Add(this.gbEEPROM);
+            this.tabTools.Controls.Add(this.gbEmul);
             this.tabTools.Controls.Add(this.progressBar1);
             this.tabTools.Controls.Add(this.bEraseAllRec);
             this.tabTools.Controls.Add(this.bEraseLastRec);
@@ -1093,44 +1101,108 @@
             this.tabTools.Text = "TOOLS";
             this.tabTools.UseVisualStyleBackColor = true;
             // 
-            // groupBox3
+            // gbEEPROM
             // 
-            this.groupBox3.Controls.Add(this.btnStartCombinedEmulationMode);
-            this.groupBox3.Controls.Add(this.btnStopTagEmulation);
-            this.groupBox3.Controls.Add(this.btnStartTagEmulation);
-            this.groupBox3.Location = new System.Drawing.Point(9, 206);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(416, 215);
-            this.groupBox3.TabIndex = 5;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Tag emulation mode (min. firmware v3.9.2 and library v3.9.7 needed)";
+            this.gbEEPROM.Controls.Add(this.chkShowPasswd);
+            this.gbEEPROM.Controls.Add(this.tbPasswd);
+            this.gbEEPROM.Controls.Add(this.lbPasswd);
+            this.gbEEPROM.Controls.Add(this.btLock);
+            this.gbEEPROM.Controls.Add(this.btUnlock);
+            this.gbEEPROM.Location = new System.Drawing.Point(10, 206);
+            this.gbEEPROM.Name = "gbEEPROM";
+            this.gbEEPROM.Size = new System.Drawing.Size(197, 215);
+            this.gbEEPROM.TabIndex = 4;
+            this.gbEEPROM.TabStop = false;
+            this.gbEEPROM.Text = "NV Lock/Unlock (min. firmware v4.0.20 and library v4.0.22 needed)";
+            // 
+            // chkShowPasswd
+            // 
+            this.chkShowPasswd.AutoSize = true;
+            this.chkShowPasswd.Location = new System.Drawing.Point(15, 79);
+            this.chkShowPasswd.Name = "chkShowPasswd";
+            this.chkShowPasswd.Size = new System.Drawing.Size(102, 17);
+            this.chkShowPasswd.TabIndex = 2;
+            this.chkShowPasswd.Text = "Show Password";
+            this.chkShowPasswd.UseVisualStyleBackColor = true;
+            this.chkShowPasswd.CheckedChanged += new System.EventHandler(this.chkShowPasswd_CheckedChanged);
+            // 
+            // tbPasswd
+            // 
+            this.tbPasswd.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.tbPasswd.Location = new System.Drawing.Point(74, 52);
+            this.tbPasswd.Name = "tbPasswd";
+            this.tbPasswd.PasswordChar = '*';
+            this.tbPasswd.Size = new System.Drawing.Size(112, 22);
+            this.tbPasswd.TabIndex = 1;
+            this.tbPasswd.Text = "11111111";
+            // 
+            // lbPasswd
+            // 
+            this.lbPasswd.AutoSize = true;
+            this.lbPasswd.Location = new System.Drawing.Point(12, 56);
+            this.lbPasswd.Name = "lbPasswd";
+            this.lbPasswd.Size = new System.Drawing.Size(56, 13);
+            this.lbPasswd.TabIndex = 0;
+            this.lbPasswd.Text = "Password:";
+            // 
+            // btLock
+            // 
+            this.btLock.Location = new System.Drawing.Point(15, 155);
+            this.btLock.Name = "btLock";
+            this.btLock.Size = new System.Drawing.Size(171, 38);
+            this.btLock.TabIndex = 4;
+            this.btLock.Text = "Lock NV Memory";
+            this.btLock.UseVisualStyleBackColor = true;
+            this.btLock.Click += new System.EventHandler(this.btLock_Click);
+            // 
+            // btUnlock
+            // 
+            this.btUnlock.Location = new System.Drawing.Point(14, 111);
+            this.btUnlock.Name = "btUnlock";
+            this.btUnlock.Size = new System.Drawing.Size(172, 38);
+            this.btUnlock.TabIndex = 3;
+            this.btUnlock.Text = "Unlock NV Memory";
+            this.btUnlock.UseVisualStyleBackColor = true;
+            this.btUnlock.Click += new System.EventHandler(this.btUnlock_Click);
+            // 
+            // gbEmul
+            // 
+            this.gbEmul.Controls.Add(this.btnStartCombinedEmulationMode);
+            this.gbEmul.Controls.Add(this.btnStopTagEmulation);
+            this.gbEmul.Controls.Add(this.btnStartTagEmulation);
+            this.gbEmul.Location = new System.Drawing.Point(213, 206);
+            this.gbEmul.Name = "gbEmul";
+            this.gbEmul.Size = new System.Drawing.Size(212, 215);
+            this.gbEmul.TabIndex = 5;
+            this.gbEmul.TabStop = false;
+            this.gbEmul.Text = "Tag emulation mode (min. firmware v3.9.2 and library v3.9.7 needed)";
             // 
             // btnStartCombinedEmulationMode
             // 
-            this.btnStartCombinedEmulationMode.Location = new System.Drawing.Point(104, 88);
+            this.btnStartCombinedEmulationMode.Location = new System.Drawing.Point(15, 111);
             this.btnStartCombinedEmulationMode.Name = "btnStartCombinedEmulationMode";
-            this.btnStartCombinedEmulationMode.Size = new System.Drawing.Size(226, 38);
-            this.btnStartCombinedEmulationMode.TabIndex = 5;
+            this.btnStartCombinedEmulationMode.Size = new System.Drawing.Size(184, 38);
+            this.btnStartCombinedEmulationMode.TabIndex = 1;
             this.btnStartCombinedEmulationMode.Text = "Start combined tag emulation mode";
             this.btnStartCombinedEmulationMode.UseVisualStyleBackColor = true;
             this.btnStartCombinedEmulationMode.Click += new System.EventHandler(this.btnStartCombinedEmulationMode_Click);
             // 
             // btnStopTagEmulation
             // 
-            this.btnStopTagEmulation.Location = new System.Drawing.Point(104, 132);
+            this.btnStopTagEmulation.Location = new System.Drawing.Point(15, 155);
             this.btnStopTagEmulation.Name = "btnStopTagEmulation";
-            this.btnStopTagEmulation.Size = new System.Drawing.Size(226, 38);
-            this.btnStopTagEmulation.TabIndex = 4;
+            this.btnStopTagEmulation.Size = new System.Drawing.Size(184, 38);
+            this.btnStopTagEmulation.TabIndex = 2;
             this.btnStopTagEmulation.Text = "Stop tag emulation mode";
             this.btnStopTagEmulation.UseVisualStyleBackColor = true;
             this.btnStopTagEmulation.Click += new System.EventHandler(this.btnStopTagEmulation_Click);
             // 
             // btnStartTagEmulation
             // 
-            this.btnStartTagEmulation.Location = new System.Drawing.Point(104, 44);
+            this.btnStartTagEmulation.Location = new System.Drawing.Point(15, 67);
             this.btnStartTagEmulation.Name = "btnStartTagEmulation";
-            this.btnStartTagEmulation.Size = new System.Drawing.Size(226, 38);
-            this.btnStartTagEmulation.TabIndex = 3;
+            this.btnStartTagEmulation.Size = new System.Drawing.Size(185, 38);
+            this.btnStartTagEmulation.TabIndex = 0;
             this.btnStartTagEmulation.Text = "Start dedicated tag emulation mode";
             this.btnStartTagEmulation.UseVisualStyleBackColor = true;
             this.btnStartTagEmulation.Click += new System.EventHandler(this.btnStartTagEmulation_Click);
@@ -1141,7 +1213,7 @@
             this.progressBar1.Location = new System.Drawing.Point(3, 437);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(425, 23);
-            this.progressBar1.TabIndex = 4;
+            this.progressBar1.TabIndex = 6;
             // 
             // bEraseAllRec
             // 
@@ -1197,7 +1269,7 @@
             this.statNDEF.Location = new System.Drawing.Point(0, 552);
             this.statNDEF.Name = "statNDEF";
             this.statNDEF.Size = new System.Drawing.Size(443, 22);
-            this.statNDEF.TabIndex = 2;
+            this.statNDEF.TabIndex = 0;
             this.statNDEF.Text = "statusStrip3";
             // 
             // toolStripStatusLabel1
@@ -1257,7 +1329,7 @@
             this.Controls.Add(this.statInfo);
             this.Name = "Form2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "  NFC Type 2 Tag programming example v3.2";
+            this.Text = "  NFC Type 2 Tag programming example v3.4";
             this.Load += new System.EventHandler(this.Form2_Load);
             this.statInfo.ResumeLayout(false);
             this.statInfo.PerformLayout();
@@ -1285,7 +1357,9 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.tabTools.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
+            this.gbEEPROM.ResumeLayout(false);
+            this.gbEEPROM.PerformLayout();
+            this.gbEmul.ResumeLayout(false);
             this.statNDEF.ResumeLayout(false);
             this.statNDEF.PerformLayout();
             this.ResumeLayout(false);
@@ -1392,7 +1466,7 @@
         private System.Windows.Forms.Button btnStoreUrlToReader;
         private System.Windows.Forms.Button btnStoreVCardToReader;
         private System.Windows.Forms.Button btnStoreBluetoothToReader;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox gbEmul;
         private System.Windows.Forms.Button btnStopTagEmulation;
         private System.Windows.Forms.Button btnStartTagEmulation;
         private System.Windows.Forms.Button btnStartCombinedEmulationMode;
@@ -1404,5 +1478,11 @@
         private System.Windows.Forms.TextBox tbPayload;
         private System.Windows.Forms.Label lbPayload;
         private System.Windows.Forms.Label lbAsciiMirror;
+        private System.Windows.Forms.GroupBox gbEEPROM;
+        private System.Windows.Forms.Button btLock;
+        private System.Windows.Forms.Button btUnlock;
+        private System.Windows.Forms.TextBox tbPasswd;
+        private System.Windows.Forms.Label lbPasswd;
+        private System.Windows.Forms.CheckBox chkShowPasswd;
     }
 }

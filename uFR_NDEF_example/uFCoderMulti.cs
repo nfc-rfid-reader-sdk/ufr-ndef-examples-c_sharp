@@ -187,7 +187,11 @@ namespace uFCoderMulti
         //---------------------------------------------------------------------
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, EntryPoint = "WriteEmulationNdef")]
         public static extern DL_STATUS WriteEmulationNdef(byte tnf, byte* type_record, byte type_length, byte* id, byte id_length,
-                                                            byte* payload, uint payload_length);
+                                                            byte* payload, byte payload_length);
+
+        [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, EntryPoint = "WriteEmulationNdefWithAAR")]
+        public static extern DL_STATUS WriteEmulationNdefWithAAR(byte tnf, byte* type_record, byte type_length, byte* id, byte id_length,
+                                                                 byte* payload, byte payload_length, byte* aar, byte aar_length);
 
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, EntryPoint = "TagEmulationStart")]
         public static extern DL_STATUS TagEmulationStart();
@@ -284,5 +288,15 @@ namespace uFCoderMulti
         public static extern DL_STATUS LinearWrite_PK(byte* data, ushort linear_address, ushort length, ushort* bytes_written,
                                      byte auth_mode, byte* key);
         //---------------------------------------------------------------------
+        [DllImport(DLL_NAME, CallingConvention = CallingConvention.StdCall, EntryPoint = "EE_Lock")]
+        private static extern DL_STATUS Linkage_EE_Lock(StringBuilder password, UInt32 locked);
+        public static DL_STATUS EE_Lock(String password, UInt32 locked)
+        {
+            if (password.Length != 8)
+                return DL_STATUS.UFR_PARAMETERS_ERROR;
+
+            StringBuilder ptr_password = new StringBuilder(password);
+            return Linkage_EE_Lock(ptr_password, locked);
+        }
     }
 }
