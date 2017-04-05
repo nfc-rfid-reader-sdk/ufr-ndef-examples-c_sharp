@@ -12,7 +12,7 @@ using uFCoderMulti;
 
 namespace uFR_NDEF_example
 {
-    public partial class Form2 : Form
+    public partial class frmMain : Form
     {
         public const int BLUETOOTH_ADDRESS_SIZE_WITH_DELIMITERS = 17;
         private const string URI_IDENTIFIER_CODE_TAG_OPEN = "<#";
@@ -21,7 +21,7 @@ namespace uFR_NDEF_example
         private UInt32 mAsciiMirrorPos = 0;
         private string mPayload;
 
-        public Form2()
+        public frmMain()
         {
             InitializeComponent();
             AddContextMenu(txtPayload);

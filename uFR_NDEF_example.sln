@@ -1,9 +1,9 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "uFR_NDEF_example", "uFR_NDEF_example\uFR_NDEF_example.csproj", "{255F7175-D497-4D67-B7F7-4132FDC227DB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "uFR_NDEF_example", "uFR_NDEF_example.csproj", "{255F7175-D497-4D67-B7F7-4132FDC227DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

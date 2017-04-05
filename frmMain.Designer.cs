@@ -1,6 +1,6 @@
 ﻿namespace uFR_NDEF_example
 {
-    partial class Form2
+    partial class frmMain
     {
         /// <summary>
         /// Required designer variable.
