@@ -134,9 +134,9 @@ namespace uFCoderMulti
     {
         //--------------------------------------------------------------------------------------------------
 #if WIN64
-        public const string DLL_NAME = "uFCoder-x86_64.dll"; // for x64 target
+        public const string DLL_NAME = "../../../lib/windows/X86_64/uFCoder-x86_64.dll"; // for x64 target
 #else
-        public const string DLL_NAME = "uFCoder-x86.dll"; // for x86 target
+        public const string DLL_NAME = "../../../lib/windows/X86/uFCoder-x86.dll"; // for x86 target
 #endif
         //--------------------------------------------------------------------------------------------------
 
