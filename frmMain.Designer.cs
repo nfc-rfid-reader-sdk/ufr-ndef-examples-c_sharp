@@ -1317,7 +1317,7 @@
             this.NdefInfoTNF.Size = new System.Drawing.Size(50, 17);
             this.NdefInfoTNF.Text = "TNF";
             // 
-            // Form2
+            // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -1327,10 +1327,10 @@
             this.Controls.Add(this.statNDEF);
             this.Controls.Add(this.statDevice);
             this.Controls.Add(this.statInfo);
-            this.Name = "Form2";
+            this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "  NFC Type 2 Tag programming example v3.4";
-            this.Load += new System.EventHandler(this.Form2_Load);
+            this.Text = "NDEF programming example";
+            this.Load += new System.EventHandler(this.frmMain_Load);
             this.statInfo.ResumeLayout(false);
             this.statInfo.PerformLayout();
             this.statDevice.ResumeLayout(false);

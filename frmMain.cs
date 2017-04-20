@@ -1,19 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using uFCoderMulti;
+using System.IO;
 
 namespace uFR_NDEF_example
 {
     public partial class frmMain : Form
     {
+        string assemblyVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
         public const int BLUETOOTH_ADDRESS_SIZE_WITH_DELIMITERS = 17;
         private const string URI_IDENTIFIER_CODE_TAG_OPEN = "<#";
         private const string URI_IDENTIFIER_CODE_TAG_CLOSE = ">";
@@ -43,8 +39,6 @@ namespace uFR_NDEF_example
             }
 
             reader_close_do();
-
-            read_dll_version();
         }
 
         public void AddContextMenu(RichTextBox rtb)
@@ -94,15 +88,63 @@ namespace uFR_NDEF_example
 
         private void read_dll_version()
         {
-            uint dll_ver;
+            uint dll_ver = 0;
             byte dll_major_ver;
             byte dll_minor_ver;
             ushort dll_build;
-
+            bool tryDefaultDllPath = false;
+            bool reportDllError = false;
 
             //-------------------------------------------------------
             // uFR DLL
-            dll_ver = uFCoder.GetDllVersion();
+#if WIN64
+            string DllPath = "..\\..\\..\\lib\\windows\\x86_64"; // for x64 target
+#else
+            string DllPath = "..\\..\\..\\lib\\windows\\x86"; // for x86 target
+#endif
+            string path = Directory.GetCurrentDirectory();
+            string assemblyProbeDirectory = DllPath;
+            try
+            {
+                Directory.SetCurrentDirectory(assemblyProbeDirectory);
+                dll_ver = uFCoder.GetDllVersion();
+            }
+            catch (System.IO.DirectoryNotFoundException)
+            {
+                tryDefaultDllPath = true;
+            }
+            catch (System.DllNotFoundException)
+            {
+                tryDefaultDllPath = true;
+            }
+            catch (System.BadImageFormatException)
+            {
+                tryDefaultDllPath = true;
+            }
+            Directory.SetCurrentDirectory(path);
+            if (tryDefaultDllPath)
+            {
+                try
+                {
+                    dll_ver = uFCoder.GetDllVersion();
+                }
+                catch (System.DllNotFoundException)
+                {
+                    reportDllError = true;
+                }
+                catch (System.BadImageFormatException)
+                {
+                    reportDllError = true;
+                }
+                if (reportDllError)
+                {
+                    MessageBox.Show("Error while importing uFCoder library.\n" +
+                        "Can't find dll file or library file is corrupted", 
+                        "Dll import error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.Close();
+                }
+            }
+
             dll_major_ver = (byte)dll_ver;
             dll_minor_ver = (byte)(dll_ver >> 8);
             dll_build = (byte)(dll_ver >> 16);
@@ -358,6 +400,9 @@ namespace uFR_NDEF_example
                     data_len = 144;
                     break;
 
+                case DLOGIC_CARD_TYPE.DL_UNKNOWN_ISO_14443_4:
+                    data_len = 8192;
+                    break;
                 default:
                     data_len = 0;
                     break;
@@ -422,7 +467,6 @@ namespace uFR_NDEF_example
             {
                 fixed (byte* pData = record_cnt_array)
                     result = uFCoder.get_ndef_record_count(&message_cnt, &record_cnt, pData, &empty_record_cnt);
-
             }
 
             prn_status(result, "Read record count");
@@ -537,7 +581,7 @@ namespace uFR_NDEF_example
                 fixed (byte* f_type = type)
                 fixed (byte* f_id = id)
                 fixed (byte* f_payload = payload)
-                    result = uFCoder.write_ndef_record_mirroring(1, &tnf, f_type, &type_length, f_id, &id_length, 
+                    result = uFCoder.write_ndef_record_mirroring(1, &tnf, f_type, &type_length, f_id, &id_length,
                         f_payload, &payload_length, &card_formated,
                         use_uid_ascii_mirror, use_counter_ascii_mirror, mirror_pos);
             }
@@ -1153,9 +1197,11 @@ namespace uFR_NDEF_example
             prn_status(status, "Bluetooth address written");
         }
 
-        private void Form2_Load(object sender, EventArgs e)
+        private void frmMain_Load(object sender, EventArgs e)
         {
             cbUriIdentifierCode.SelectedIndex = 1;
+            this.Text = this.Text + " v" + assemblyVersion;
+            read_dll_version();
         }
 
         private void updatePayload(object sender, EventArgs e)

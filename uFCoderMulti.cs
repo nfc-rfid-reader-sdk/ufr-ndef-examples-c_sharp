@@ -49,6 +49,8 @@ namespace uFCoderMulti
         DL_MIFARE_DESFIRE_EV1_2K = 0x28,
         DL_MIFARE_DESFIRE_EV1_4K = 0x29,
         DL_MIFARE_DESFIRE_EV1_8K = 0x2A,
+
+        DL_UNKNOWN_ISO_14443_4 = 0x40
     }
 
     // MIFARE CLASSIC Authentication Modes:
@@ -134,9 +136,9 @@ namespace uFCoderMulti
     {
         //--------------------------------------------------------------------------------------------------
 #if WIN64
-        public const string DLL_NAME = "../../../lib/windows/X86_64/uFCoder-x86_64.dll"; // for x64 target
+        public const string DLL_NAME = "uFCoder-x86_64.dll"; // for x64 target
 #else
-        public const string DLL_NAME = "../../../lib/windows/X86/uFCoder-x86.dll"; // for x86 target
+        public const string DLL_NAME = "uFCoder-x86.dll"; // for x86 target
 #endif
         //--------------------------------------------------------------------------------------------------
 
